@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Khin Myat Thu | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* ===== BASE ===== */
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050505; /* DARK PREMIUM */
+    margin:0;
+    color:#ffffff;
+}
+
+/* ===== NAV ===== */
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:18px 50px;
+    background:rgba(255,255,255,0.02);
+    backdrop-filter:blur(10px);
+    position:sticky;
+    top:0;
+    box-shadow:none;
+}
+
+nav a{
+    margin-left:25px;
+    text-decoration:none;
+    color:#a0a0a0;
+}
+
+nav a:hover{color:#00ffa3}
+
+/* ===== HERO ===== */
+.hero h1{
+    font-size:42px;
+    color:white;
+}
+
+.green{color:#00ffa3;}
+
+.typing{
+    font-size:20px;
+    color:#00ffa3;
+    font-weight:600;
+    margin-top:5px;
+}
+
+.hero{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:80px 80px 40px;
+    gap:60px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.hero img{
+    width:280px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(0,255,163,0.25);
+}
+/* ===== CARD ===== */
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:30px; /* ADD THIS */
+    transition:0.3s;
+}
+.card:hover{
+    border-color:#00ffa3;
+    transform:translateY(-5px);
+}
+
+/* ===== PROJECT ===== */
+.project{
+    border-left:3px solid #00ffa3;
+    padding-left:18px;
+    margin-bottom:25px;
+}
+
+.project h3{
+    color:#00ffa3;
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.date{
+    font-size:12px;
+    color:#888;
+    margin-bottom:10px;
+}
+
+.project p{
+    font-size:14px;
+    line-height:1.6;
+    color:#cfcfcf;
+}
+
+/* ===== SKILLS ===== */
+.badge{
+    display:inline-block;
+    background:rgba(0,255,163,0.1);
+    color:#00ffa3;
+    padding:6px 12px;
+    border-radius:12px;
+    margin:6px;
+    font-size:12px;
+}
+
+/* ===== CONTACT ===== */
+.contact a{
+    display:block;
+    margin:8px 0;
+    text-decoration:none;
+    color:#cfcfcf;
+}
+
+.contact a:hover{color:#00ffa3}
+
+
+
+.section{
+    padding:20px 80px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.section-title{
+    font-size:20px;
+    margin-bottom:25px;
+    font-weight:600;
+    color:#00ffa3;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+<div style="color:#00c97c;font-weight:700;">KMT</div>
+<div>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+<div>
+<h1>Hello, I'm <span class="green">Khin Myat Thu</span></h1>
+<div class="typing" id="typing"></div>
+</div>
+
+<img src="khin.jpg">
+</div>
+
+<!-- PROFILE -->
+<div class="section">
+<div class="card">
+<div class="section-title"><i class="fa fa-user"></i> Profile</div>
+<p>
+I have experience in developing and maintaining web and mobile applications through academic and project work. Skilled in working with databases, APIs, and modern development tools such as Django, React Native, Firebase, and MySQL. My experience also includes collaborating in team projects to deliver practical and high-quality software solutions.
+</p>
+</div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="section">
+<div class="section-title"><i class="fa fa-code"></i> Project Experience</div>
+
+<div class="grid">
+
+<div class="card project">
+<h3><i class="fa fa-shopping-cart">&nbsp; &nbsp;</i>Branded Cosmetics Online Shopping System</h3>
+<div class="date">(Full-Stack Web Application)<br>13rd June 2024 – 10th October 2024</div>
+<p>Developed an e-commerce platform with product listing, user authentication, and order management, integrating database and payment systems for a seamless shopping experience..</p>
+</div>
+
+<div class="card project">
+<h3><i class="fa fa-recycle">&nbsp; &nbsp;</i>RecycleLink - EcoCommerce Platform</h3>
+<div class="date">(Full-Stack Web Application)<br>18th December 2024 – 20th March 2025</div>
+<p>Built a real-time recycling supplier tracking system using Django and WebSockets, enabling location-based notifications to connect users with nearby suppliers.</p>
+</div>
+
+<div class="card project">
+<h3><i class="fa fa-mobile">&nbsp; &nbsp;</i>Climbio - Smart Business Toolkits for MSMEs</h3>
+<div class="date">(Full-Stack Mobile Application)<br>June - October 2025</div>
+<p>Developing a React Native and Firebase-based app to help MSMEs manage catalogs, customer feedback, and referrals with a scalable, user-friendly design.</p>
+</div>
+
+<div class="card project">
+<h3><i class="fa fa-brain">&nbsp; &nbsp;</i>Career Ladder - AI-powered Career Mapping System</h3>
+<div class="date">(Venture Base Hackathon)<br>Oct 13–19, 2025</div>
+<p>Designed an AI-powered career development platform that generates personalized learning paths, skill recommendations, and job insights to guide users toward their career goals.</p>
+</div>
+
+<div class="card project">
+<h3><i class="fa fa-seedling">&nbsp; &nbsp;</i>Future Harvest - Building a Resilient Seed Economy</h3>
+<div class="date">(HackAtom – Science Festival Myanmar 2025)<br>Nov 24–25, 2025</div>
+<p>Proposed an innovative agriculture solution integrating advanced energy systems to support the production of resilient, high-yield seeds, improving food security and farming sustainability.</p>
+</div>
+
+</div>
+</div>
+
+<!-- SKILLS -->
+<div class="section">
+<div class="card">
+<div class="section-title"><i class="fa fa-laptop-code"></i> Skills</div>
+
+<div>
+<b>Technical:</b><br>
+<span class="badge">Python</span>
+<span class="badge">Django</span>
+<span class="badge">React Native</span>
+<span class="badge">Firebase</span>
+<span class="badge">MySQL</span>
+<span class="badge">PostgreSQL</span>
+<span class="badge">Kotlin</span>
+<span class="badge">Machine Learning</span>
+<span class="badge">Software Engineering</span>
+</div>
+
+<br>
+
+<div>
+<b>Soft Skills:</b><br>
+<span class="badge">Adaptability</span>
+<span class="badge">Problem Solving</span>
+<span class="badge">Teamwork</span>
+<span class="badge">Continuous Learning</span>
+</div>
+
+</div>
+</div>
+
+<!-- CERTIFICATE -->
+<div class="section">
+<div class="card">
+<div class="section-title"><i class="fa fa-certificate"></i> Certificates</div>
+
+<p><b>SSEAYP Youth Conference 2022</b><br>International Youth Exchange Cabinet Office, Japan<br>December 18, 2022</p>
+
+<br>
+
+<p><b>Youth Talk at MIIT</b><br>Information and Public Relations Department<br>February 23, 2023</p>
+
+</div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section">
+<div class="card">
+<div class="section-title"><i class="fa fa-graduation-cap"></i> Education</div>
+
+<p><b>Diploma in English</b><br>Mandalay University of Foreign Language (MUFL), 2023 - 2024</p>
+
+<br>
+
+<p><b>B.E (Hons) in Computer Science Engineering</b><br>Myanmar Institute of Information Technology (MIIT), 2022 - 2027</p>
+
+</div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+<div class="card contact">
+<div class="section-title"><i class="fa fa-envelope"></i> Contact</div>
+
+<a href="tel:+959797237421">📞 +959797237421</a>
+<a href="mailto:khinmyatthu2193@gmail.com">📧 khinmyatthu2193@gmail.com</a>
+<a href="#">🔗 LinkedIn</a>
+<a href="#">💻 GitHub</a>
+
+</div>
+</div>
+
+<script>
+
+/* SMOOTH LOOP TYPING (NO SHAKE) */
+const text = "Junior Fullstack Developer";
+let index = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    const el = document.getElementById("typing");
+
+    if (!isDeleting) {
+        el.innerHTML = text.substring(0, index++);
+        if (index > text.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 1200); // pause before delete
+            return;
+        }
+    } else {
+        el.innerHTML = text.substring(0, index--);
+        if (index < 0) {
+            isDeleting = false;
+            setTimeout(typeEffect, 400); // pause before typing again
+            return;
+        }
+    }
+
+    setTimeout(typeEffect, isDeleting ? 40 : 60);
+}
+
+typeEffect();
+
+</script>
+
+</body>
+</html>
