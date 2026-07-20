@@ -1,85 +1,96 @@
+import { motion } from "framer-motion";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ProjectCard from "./components/ProjectCard";
 import Contact from "./components/Contact";
 import { projects } from "./data/projects";
-import { motion } from "framer-motion";
+
+const strengths = [
+  "Product-minded development",
+  "Clean, accessible interfaces",
+  "End-to-end delivery",
+];
 
 export default function App() {
   return (
-    <div className="bg-bg text-textMain min-h-screen relative overflow-x-hidden">
-      {/* Animated Background Gradient */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-40%] left-[-20%] w-[80%] h-[80%] bg-primary/10 rounded-full blur-[150px] animate-float"></div>
-        <div className="absolute bottom-[-40%] right-[-20%] w-[80%] h-[80%] bg-accent/10 rounded-full blur-[150px] animate-float" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute top-[50%] left-[50%] w-[60%] h-[60%] bg-primary/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
+    <div className="min-h-screen overflow-x-hidden bg-bg text-textMain selection:bg-primary selection:text-bg">
+      <div className="noise fixed inset-0 z-50 pointer-events-none" />
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="orb orb-one" />
+        <div className="orb orb-two" />
+        <div className="grid-lines absolute inset-0" />
       </div>
 
       <Navbar />
-      <Hero />
+      <main>
+        <Hero />
 
-      <section id="about" className="relative z-10 px-6 py-20 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8">
-          <div className="bg-bgCard/60 backdrop-blur-sm rounded-2xl border border-borderSoft p-8">
-            <span className="text-primary text-sm font-semibold tracking-wider uppercase">About Me</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-3">Building useful systems for real users</h2>
-            <p className="mt-4 text-textDim leading-relaxed">
-              I’m passionate about turning practical problems into digital products that help businesses grow. My work spans full-stack web apps, mobile-first products, and AI-powered solutions for small businesses and community-driven impact.
-            </p>
-            <ul className="mt-6 space-y-3 text-textMain">
-              <li>• Focused on scalable product design, clean UX, and end-to-end delivery</li>
-              <li>• Interested in MSME digitization, real-time systems, and AI-assisted decision-making</li>
-              <li>• Enjoys hackathons, rapid experimentation, and shipping ideas into working solutions</li>
-            </ul>
-          </div>
+        <section id="about" className="section-shell scroll-mt-24">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"
+          >
+            <div>
+              <p className="eyebrow">01 / About</p>
+              <h2 className="section-title mt-5">I build useful ideas into products people can trust.</h2>
+            </div>
 
-          <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl border border-borderSoft p-8">
-            <span className="text-primary text-sm font-semibold tracking-wider uppercase">Highlights</span>
-            <div className="mt-6 space-y-4 text-textMain">
-              <div>
-                <p className="text-sm text-textDim">Education</p>
-                <p className="font-semibold">Final-year CS student @ MIIT</p>
+            <div className="lg:pt-9">
+              <p className="text-xl leading-relaxed text-textDim md:text-2xl md:leading-relaxed">
+                I’m a final-year Computer Science student focused on turning practical problems into thoughtful digital products—from mobile-first business tools to AI-assisted systems.
+              </p>
+              <div className="mt-9 grid gap-3 sm:grid-cols-3">
+                {strengths.map((item) => (
+                  <div key={item} className="flex items-start gap-3 border-t border-borderMedium pt-4 text-sm leading-relaxed text-textMain">
+                    <CheckCircle2 className="mt-0.5 shrink-0 text-primary" size={17} />
+                    {item}
+                  </div>
+                ))}
               </div>
-              <div>
-                <p className="text-sm text-textDim">Core Stack</p>
-                <p className="font-semibold">React • React Native • Django • Firebase • Gemini AI</p>
-              </div>
-              <div>
-                <p className="text-sm text-textDim">Achievements</p>
-                <p className="font-semibold">1st Place • One Project One Week Hackathon (2026)</p>
+              <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-borderSoft bg-borderSoft sm:grid-cols-3">
+                {[
+                  ["MIIT", "Final-year CS"],
+                  ["6+", "Products built"],
+                  ["1st", "Hackathon 2026"],
+                ].map(([value, label]) => (
+                  <div key={label} className="bg-bgCard/90 p-5 sm:p-6">
+                    <p className="font-display text-3xl font-semibold text-primary">{value}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.14em] text-textMuted">{label}</p>
+                  </div>
+                ))}
               </div>
             </div>
+          </motion.div>
+        </section>
+
+        <section id="projects" className="section-shell scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 flex flex-col gap-7 md:flex-row md:items-end md:justify-between"
+          >
+            <div>
+              <p className="eyebrow">02 / Selected work</p>
+              <h2 className="section-title mt-5">Projects with purpose.</h2>
+            </div>
+            <a href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer" className="text-link group">
+              Explore GitHub <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </motion.div>
+
+          <div className="border-t border-borderMedium">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.title} project={project} index={index} />
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* PROJECT SECTION */}
-      <section id="projects" className="relative z-10 px-6 py-20 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary text-sm font-semibold tracking-wider uppercase">Portfolio</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2">
-            Featured <span className="text-gradient">Projects</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"></div>
-          <p className="text-textDim mt-4 max-w-2xl mx-auto">
-            Here are some of my recent works showcasing my skills in fullstack development
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
-          ))}
-        </div>
-      </section>
-
-      <Contact />
+        <Contact />
+      </main>
     </div>
   );
 }

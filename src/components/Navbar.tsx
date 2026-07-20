@@ -1,112 +1,17 @@
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+const links = [{ name: "About", href: "#about" }, { name: "Work", href: "#projects" }, { name: "Contact", href: "#contact" }];
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
-  ];
-
-  return (
-    <>
-      <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed w-full z-50 px-6 py-4 transition-all duration-300 ${
-          isScrolled
-            ? "bg-bgCard/60 backdrop-blur-xl border-b border-borderSoft shadow-lg"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          {/* Logo */}
-          <a href="#" className="group relative">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              KMT
-            </h1>
-            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300"></div>
-          </a>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-textDim hover:text-primary transition-colors duration-200 text-sm font-medium relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
-            <button
-              onClick={() => alert("Resume download would start here")}
-              className="px-5 py-2 bg-primary/10 border border-primary/30 text-primary rounded-lg hover:bg-primary hover:text-black transition-all duration-300 text-sm font-medium"
-            >
-              Resume
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-textMain hover:text-primary transition-colors"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-        </div>
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, x: "100%" }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: "100%" }}
-          className="fixed top-0 right-0 w-full max-w-sm h-full bg-bgCard/95 backdrop-blur-xl border-l border-borderSoft z-40 md:hidden"
-        >
-          <div className="flex flex-col items-center justify-center h-full gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-2xl text-textDim hover:text-primary transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-            <button
-              onClick={() => {
-                alert("Resume download would start here");
-                setIsMobileMenuOpen(false);
-              }}
-              className="px-6 py-3 bg-primary/10 border border-primary/30 text-primary rounded-lg hover:bg-primary hover:text-black transition-all"
-            >
-              Resume
-            </button>
-          </div>
-        </motion.div>
-      )}
-    </>
-  );
+  const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false);
+  useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 24); onScroll(); window.addEventListener("scroll", onScroll); return () => window.removeEventListener("scroll", onScroll); }, []);
+  useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [open]);
+  return <header className={`fixed inset-x-0 top-0 z-40 transition-all ${scrolled ? "border-b border-borderSoft bg-bg/80 backdrop-blur-xl" : ""}`}>
+    <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Main navigation">
+      <a href="#home" className="font-display text-2xl font-semibold">KMT<span className="text-primary">.</span></a>
+      <div className="hidden items-center gap-8 md:flex">{links.map(l => <a key={l.name} href={l.href} className="text-sm text-textDim transition-colors hover:text-textMain">{l.name}</a>)}<a href="#contact" className="rounded-full border border-primary/40 px-5 py-2.5 text-sm text-primary transition-colors hover:bg-primary hover:text-bg">My contacts</a></div>
+      <button onClick={() => setOpen(!open)} className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full border border-borderMedium md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>{open ? <X size={19} /> : <Menu size={19} />}</button>
+    </nav>
+    <AnimatePresence>{open && <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} className="fixed inset-0 z-40 flex flex-col justify-center bg-bg px-8 md:hidden"><p className="eyebrow mb-8">Navigation</p>{links.map((l,i) => <a key={l.name} href={l.href} onClick={() => setOpen(false)} className="border-t border-borderMedium py-5 font-display text-4xl">0{i+1} <span className="ml-4 text-textDim">{l.name}</span></a>)}</motion.div>}</AnimatePresence>
+  </header>;
 }

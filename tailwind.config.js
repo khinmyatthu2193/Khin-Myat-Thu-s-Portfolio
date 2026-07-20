@@ -3,20 +3,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#0A0A0A",
-        bgSoft: "#111111",
-        bgCard: "#1A1A1A",
-        primary: "#34D399",
-        primaryGlow: "#6EE7B7",
-        accent: "#22D3EE",
-        textMain: "#F3F4F6",
-        textDim: "#9CA3AF",
-        textMuted: "#6B7280",
+        bg: "#0B0D0C",
+        bgSoft: "#101310",
+        bgCard: "#151916",
+        primary: "#B7F34A",
+        primaryGlow: "#D2FF7B",
+        accent: "#7EE7C4",
+        textMain: "#F0F2ED",
+        textDim: "#A5ABA3",
+        textMuted: "#70776F",
         borderSoft: "rgba(255,255,255,0.08)",
         borderMedium: "rgba(255,255,255,0.12)",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        display: ['Playfair Display', 'Georgia', 'serif'],
       },
       animation: {
         'gradient': 'gradient 8s linear infinite',

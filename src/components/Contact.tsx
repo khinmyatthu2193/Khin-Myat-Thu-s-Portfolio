@@ -1,137 +1,62 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Check, Copy, Mail, MapPin, Phone } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useState } from "react";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+const contacts = [
+  { label: "Email", value: "khinmyatthu2193@gmail.com", icon: Mail, copy: true },
+  { label: "Phone", value: "+959 797 237 421", icon: Phone, copy: true },
+  { label: "Location", value: "Mandalay, Myanmar", icon: MapPin },
+];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    alert("Message sent! (Demo)");
-    setFormData({ name: "", email: "", message: "" });
+export default function Contact() {
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const copyValue = async (value: string) => {
+    await navigator.clipboard.writeText(value);
+    setCopied(value);
+    window.setTimeout(() => setCopied(null), 1800);
   };
 
   return (
-    <section id="contact" className="relative z-10 px-6 py-24 bg-bgSoft/50">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary text-sm font-semibold tracking-wider uppercase">Get in Touch</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2">
-            Let's Work <span className="text-gradient">Together</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"></div>
-          <p className="text-textDim mt-4 max-w-2xl mx-auto">
-            Have a product idea, business challenge, or mobile/web project in mind? I’d love to connect and build something impactful together.
-          </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <div className="bg-bgCard/60 backdrop-blur-sm rounded-2xl p-6 border border-borderSoft">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <Mail className="text-primary" size={20} />
-                  </div>
-                  <div>
-                    <p className="text-textDim text-sm">Email</p>
-                    <p className="text-textMain">khinmyatthu2193@gmail.com</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <Phone className="text-primary" size={20} />
-                  </div>
-                  <div>
-                    <p className="text-textDim text-sm">Phone</p>
-                    <p className="text-textMain">+959 797 237 421</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <MapPin className="text-primary" size={20} />
-                  </div>
-                  <div>
-                    <p className="text-textDim text-sm">Location</p>
-                    <p className="text-textMain">Mandalay, Myanmar</p>
-                  </div>
-                </div>
+    <section id="contact" className="relative z-10 scroll-mt-20 border-t border-borderSoft bg-bgSoft/70">
+      <div className="section-shell !pb-10">
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+            <div>
+              <p className="eyebrow">03 / Contact</p>
+              <h2 className="section-title mt-5">Let’s make something <span className="text-gradient italic">meaningful.</span></h2>
+              <p className="mt-6 max-w-md leading-relaxed text-textDim">
+                Have a project, opportunity, or idea in mind? Here are the best ways to reach me.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer" className="social-button"><FaGithub size={17} /> GitHub</a>
+                <a href="https://www.linkedin.com/in/khin-myat-thu-837892352" target="_blank" rel="noreferrer" className="social-button"><FaLinkedin size={17} /> LinkedIn</a>
               </div>
             </div>
-          </motion.div>
 
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit} className="bg-bgCard/60 backdrop-blur-sm rounded-2xl p-6 border border-borderSoft space-y-6">
-              <div>
-                <label className="block text-textMain mb-2 text-sm font-medium">Your Name</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-borderSoft text-textMain focus:border-primary focus:outline-none transition-colors"
-                  placeholder="John Doe"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-textMain mb-2 text-sm font-medium">Email Address</label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-borderSoft text-textMain focus:border-primary focus:outline-none transition-colors"
-                  placeholder="john@example.com"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-textMain mb-2 text-sm font-medium">Your Message</label>
-                <textarea
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-borderSoft text-textMain focus:border-primary focus:outline-none transition-colors resize-none"
-                  placeholder="Tell me about your project..."
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full group relative px-6 py-3 bg-gradient-to-r from-primary to-accent rounded-lg font-semibold text-black overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(52,211,153,0.5)]"
-              >
-                <span className="relative z-10 inline-flex items-center gap-2">
-                  Send Message <Send size={18} />
-                </span>
-              </button>
-            </form>
-          </motion.div>
-        </div>
+            <div className="overflow-hidden rounded-2xl border border-borderMedium bg-bgCard/60">
+              {contacts.map(({ label, value, icon: Icon, copy }) => (
+                <div key={label} className="group flex items-center gap-4 border-b border-borderSoft p-5 last:border-b-0 sm:p-6">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary/5 text-primary"><Icon size={19} /></div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs uppercase tracking-[0.15em] text-textMuted">{label}</p>
+                    <p className="mt-1 break-all text-sm text-textMain sm:text-base">{value}</p>
+                  </div>
+                  {copy && (
+                    <button onClick={() => copyValue(value)} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-borderMedium text-textDim transition-colors hover:border-primary hover:text-primary" aria-label={`Copy ${label.toLowerCase()}`} title={`Copy ${label.toLowerCase()}`}>
+                      {copied === value ? <Check size={17} className="text-primary" /> : <Copy size={17} />}
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <footer className="mt-20 flex flex-col gap-3 border-t border-borderSoft pt-7 text-xs uppercase tracking-[0.14em] text-textMuted sm:flex-row sm:justify-between">
+            <p>© 2026 Khin Myat Thu</p><p>Designed &amp; built with intention</p>
+          </footer>
+        </motion.div>
       </div>
     </section>
   );
