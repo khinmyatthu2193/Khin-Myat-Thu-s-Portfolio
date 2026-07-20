@@ -64,7 +64,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-textDim text-sm">Phone</p>
-                    <p className="text-textMain">+95 097 972 374 21</p>
+                    <p className="text-textMain">+959 797 237 421</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5">
