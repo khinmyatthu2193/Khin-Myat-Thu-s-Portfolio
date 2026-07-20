@@ -33,7 +33,7 @@ export default function Contact() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"></div>
           <p className="text-textDim mt-4 max-w-2xl mx-auto">
-            Have a project in mind? I'd love to hear about it. Let's create something amazing together.
+            Have a product idea, business challenge, or mobile/web project in mind? I’d love to connect and build something impactful together.
           </p>
         </motion.div>
 

@@ -1,15 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-// Make sure to use the correct image path - update this based on your actual file
 import profile from "../assets/khin.jpg";
+
+const highlights = ["Full-Stack Development", "React Native", "Django + Firebase", "AI Product Building"];
 
 export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center relative z-10 px-6 pt-20">
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
-        
-        {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -22,11 +21,11 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
             className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6"
           >
-            <span className="text-primary text-sm font-medium">Available for work</span>
+            <span className="text-primary text-sm font-medium">Final-year CS Student • MIIT</span>
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            Hello, I'm{" "}
+            Hi there, I'm{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block mt-2">
               Khin Myat Thu
             </span>
@@ -38,8 +37,16 @@ export default function Hero() {
             transition={{ delay: 0.4 }}
             className="mt-6 text-textDim text-lg max-w-2xl mx-auto lg:mx-0"
           >
-            Computer Science student building real-world applications and exploring modern web technologies.
+            Final-year Computer Science student at the Myanmar Institute of Information Technology, building practical web, mobile, and AI-powered systems with real-world impact.
           </motion.p>
+
+          <div className="mt-6 flex flex-wrap gap-3 justify-center lg:justify-start">
+            {highlights.map((item) => (
+              <span key={item} className="px-3 py-2 rounded-full border border-borderSoft bg-bgCard/60 text-sm text-textMain">
+                {item}
+              </span>
+            ))}
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -47,10 +54,10 @@ export default function Hero() {
             transition={{ delay: 0.5 }}
             className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
-            <button className="group relative px-8 py-3 bg-gradient-to-r from-primary to-accent rounded-lg font-semibold text-black overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(52,211,153,0.5)]">
+            <a href="#contact" className="group relative px-8 py-3 bg-gradient-to-r from-primary to-accent rounded-lg font-semibold text-black overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(52,211,153,0.5)] text-center">
               <span className="relative z-10">Hire Me</span>
               <div className="absolute inset-0 bg-gradient-to-r from-primaryGlow to-accent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </button>
+            </a>
 
             <a
               href="#projects"
@@ -60,7 +67,6 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -70,7 +76,7 @@ export default function Hero() {
             <a href="https://github.com/khinmyatthu2193" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-bgCard border border-borderSoft hover:border-primary hover:text-primary transition-all">
               <FaGithub size={20} />
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-bgCard border border-borderSoft hover:border-primary hover:text-primary transition-all">
+            <a href="https://www.linkedin.com/in/khin-myat-thu-837892352" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-bgCard border border-borderSoft hover:border-primary hover:text-primary transition-all">
               <FaLinkedin size={20} />
             </a>
             <a href="mailto:khinmyatthu2193@gmail.com" className="p-2 rounded-lg bg-bgCard border border-borderSoft hover:border-primary hover:text-primary transition-all">
@@ -79,7 +85,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
           animate={{ opacity: 1, scale: 1, rotateY: 0 }}
@@ -87,10 +92,7 @@ export default function Hero() {
           className="flex-1 relative"
         >
           <div className="relative">
-            {/* Glow effect */}
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl animate-pulse"></div>
-            
-            {/* Image Container */}
             <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent blur-xl"></div>
               <div className="absolute inset-[3px] rounded-full bg-bg"></div>
@@ -110,7 +112,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
