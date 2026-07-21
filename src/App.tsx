@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ProjectCard from "./components/ProjectCard";
 import Contact from "./components/Contact";
+import Skills from "./components/Skills";
 import { projects } from "./data/projects";
 
 const strengths = [
@@ -66,6 +67,8 @@ export default function App() {
           </motion.div>
         </section>
 
+        <Skills />
+
         <section id="projects" className="section-shell scroll-mt-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -74,7 +77,7 @@ export default function App() {
             className="mb-12 flex flex-col gap-7 md:flex-row md:items-end md:justify-between"
           >
             <div>
-              <p className="eyebrow">02 / Selected work</p>
+              <p className="eyebrow">03 / Selected work</p>
               <h2 className="section-title mt-5">Projects with purpose.</h2>
             </div>
             <a href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer" className="text-link group">

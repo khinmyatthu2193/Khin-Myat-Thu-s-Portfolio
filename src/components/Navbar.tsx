@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
-const links = [{ name: "About", href: "#about" }, { name: "Work", href: "#projects" }, { name: "Contact", href: "#contact" }];
+const links = [{ name: "About", href: "#about" }, { name: "Skills", href: "#skills" }, { name: "Work", href: "#projects" }, { name: "Contact", href: "#contact" }];
 export default function Navbar() {
   const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">(() =>
