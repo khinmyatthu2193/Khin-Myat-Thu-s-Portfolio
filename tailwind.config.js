@@ -3,17 +3,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#0B0D0C",
-        bgSoft: "#101310",
-        bgCard: "#151916",
-        primary: "#B7F34A",
-        primaryGlow: "#D2FF7B",
-        accent: "#7EE7C4",
-        textMain: "#F0F2ED",
-        textDim: "#A5ABA3",
-        textMuted: "#70776F",
-        borderSoft: "rgba(255,255,255,0.08)",
-        borderMedium: "rgba(255,255,255,0.12)",
+        bg: "rgb(var(--color-bg) / <alpha-value>)",
+        bgSoft: "rgb(var(--color-bg-soft) / <alpha-value>)",
+        bgCard: "rgb(var(--color-bg-card) / <alpha-value>)",
+        primary: "rgb(var(--color-primary) / <alpha-value>)",
+        primaryGlow: "rgb(var(--color-primary-glow) / <alpha-value>)",
+        accent: "rgb(var(--color-accent) / <alpha-value>)",
+        textMain: "rgb(var(--color-text-main) / <alpha-value>)",
+        textDim: "rgb(var(--color-text-dim) / <alpha-value>)",
+        textMuted: "rgb(var(--color-text-muted) / <alpha-value>)",
+        borderSoft: "rgb(var(--color-border) / 0.08)",
+        borderMedium: "rgb(var(--color-border) / 0.12)",
       },
       fontFamily: {
         sans: ['DM Sans', 'system-ui', 'sans-serif'],
