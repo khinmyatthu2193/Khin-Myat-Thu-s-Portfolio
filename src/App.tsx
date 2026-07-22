@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import ProjectCard from "./components/ProjectCard";
 import Contact from "./components/Contact";
 import Skills from "./components/Skills";
+import Blog from "./components/Blog";
 import { projects } from "./data/projects";
 
 const strengths = [
@@ -95,6 +96,8 @@ export default function App() {
             ))}
           </div>
         </section>
+
+        <Blog />
 
         <Contact />
       </main>

@@ -35,7 +35,7 @@ export default function Contact() {
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
             <div>
-              <p className="eyebrow">04 / Contact</p>
+              <p className="eyebrow">05 / Contact</p>
               <h2 className="section-title mt-5">Let’s make something <span className="text-gradient italic">meaningful.</span></h2>
               <p className="mt-6 max-w-md leading-relaxed text-textDim">
                 Have a project, opportunity, or idea in mind? Here are the best ways to reach me.

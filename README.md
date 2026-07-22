@@ -31,6 +31,7 @@ The production output is generated in `dist`.
 ## Updating portfolio content
 
 - Project content and links: `src/data/projects.ts`
+- Learning notes: `src/data/posts.ts`
 - Skills: `src/components/Skills.tsx`
 - Contact information: `src/components/Contact.tsx`
 - Main introduction and profile image: `src/components/Hero.tsx`
