@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionConfig, motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -15,7 +15,11 @@ const strengths = [
 
 export default function App() {
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen overflow-x-hidden bg-bg text-textMain selection:bg-primary selection:text-bg">
+      <a href="#main-content" className="fixed left-4 top-4 z-[60] -translate-y-24 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-bg transition-transform focus:translate-y-0">
+        Skip to content
+      </a>
       <div className="noise fixed inset-0 z-50 pointer-events-none" />
       <div className="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className="orb orb-one" />
@@ -24,7 +28,7 @@ export default function App() {
       </div>
 
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
 
         <section id="about" className="section-shell scroll-mt-24">
@@ -95,5 +99,6 @@ export default function App() {
         <Contact />
       </main>
     </div>
+    </MotionConfig>
   );
 }

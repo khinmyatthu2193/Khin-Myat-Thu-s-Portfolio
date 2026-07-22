@@ -1,21 +1,32 @@
 import { motion } from "framer-motion";
 import { Check, Copy, Mail, MapPin, Phone } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const contacts = [
-  { label: "Email", value: "khinmyatthu2193@gmail.com", icon: Mail, copy: true },
-  { label: "Phone", value: "+959 797 237 421", icon: Phone, copy: true },
+  { label: "Email", value: "khinmyatthu2193@gmail.com", href: "mailto:khinmyatthu2193@gmail.com", icon: Mail, copy: true },
+  { label: "Phone", value: "+959 797 237 421", href: "tel:+959797237421", icon: Phone, copy: true },
   { label: "Location", value: "Mandalay, Myanmar", icon: MapPin },
 ];
 
 export default function Contact() {
   const [copied, setCopied] = useState<string | null>(null);
+  const [copyError, setCopyError] = useState(false);
+  const resetTimer = useRef<number | undefined>(undefined);
+
+  useEffect(() => () => window.clearTimeout(resetTimer.current), []);
 
   const copyValue = async (value: string) => {
-    await navigator.clipboard.writeText(value);
-    setCopied(value);
-    window.setTimeout(() => setCopied(null), 1800);
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopyError(false);
+      setCopied(value);
+      window.clearTimeout(resetTimer.current);
+      resetTimer.current = window.setTimeout(() => setCopied(null), 1800);
+    } catch {
+      setCopyError(true);
+      setCopied(null);
+    }
   };
 
   return (
@@ -36,12 +47,12 @@ export default function Contact() {
             </div>
 
             <div className="overflow-hidden rounded-2xl border border-borderMedium bg-bgCard/60">
-              {contacts.map(({ label, value, icon: Icon, copy }) => (
+              {contacts.map(({ label, value, href, icon: Icon, copy }) => (
                 <div key={label} className="group flex items-center gap-4 border-b border-borderSoft p-5 last:border-b-0 sm:p-6">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary/5 text-primary"><Icon size={19} /></div>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs uppercase tracking-[0.15em] text-textMuted">{label}</p>
-                    <p className="mt-1 break-all text-sm text-textMain sm:text-base">{value}</p>
+                    {href ? <a className="mt-1 block break-all text-sm text-textMain underline decoration-borderMedium underline-offset-4 hover:text-primary sm:text-base" href={href}>{value}</a> : <p className="mt-1 break-all text-sm text-textMain sm:text-base">{value}</p>}
                   </div>
                   {copy && (
                     <button onClick={() => copyValue(value)} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-borderMedium text-textDim transition-colors hover:border-primary hover:text-primary" aria-label={`Copy ${label.toLowerCase()}`} title={`Copy ${label.toLowerCase()}`}>
@@ -50,6 +61,7 @@ export default function Contact() {
                   )}
                 </div>
               ))}
+              <p className="sr-only" aria-live="polite">{copyError ? "Could not copy contact information." : copied ? "Contact information copied." : ""}</p>
             </div>
           </div>
 
