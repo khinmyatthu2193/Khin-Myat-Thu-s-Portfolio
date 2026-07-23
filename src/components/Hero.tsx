@@ -35,16 +35,14 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.15 }} className="relative mx-auto w-full max-w-[390px]">
-          <div className="portrait-frame relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-bgCard">
-            <img src={profile} alt="Portrait of Khin Myat Thu" width="480" height="600" fetchPriority="high" className="h-full w-full object-cover object-top grayscale-[18%] transition duration-700 hover:scale-[1.025] hover:grayscale-0" />
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg/90 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-              <p className="text-xs uppercase tracking-[0.18em] text-white/70">Developer<br />Product builder</p>
-              <span className="font-display text-5xl italic text-primary">K.</span>
-            </div>
+        <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.15 }} className="relative mx-auto w-full max-w-[360px]">
+          <div className="portrait-frame relative aspect-square overflow-hidden rounded-full border-2 border-primary/45 bg-bgCard p-1.5">
+            <img src={profile} alt="Portrait of Khin Myat Thu" width="480" height="480" fetchPriority="high" className="h-full w-full rounded-full object-cover object-top grayscale-[12%] transition duration-700 hover:scale-[1.025] hover:grayscale-0" />
           </div>
-          <div className="absolute -bottom-5 -left-5 -z-10 h-full w-full rounded-[2rem] border border-primary/20" />
+          <div className="absolute -bottom-4 -left-4 -z-10 h-full w-full rounded-full border border-primary/25" />
+          <div className="absolute bottom-3 right-3 flex h-16 w-16 items-center justify-center rounded-full border border-primary/30 bg-bg font-display text-3xl italic text-primary shadow-lg">
+            K.
+          </div>
         </motion.div>
       </div>
     </section>
