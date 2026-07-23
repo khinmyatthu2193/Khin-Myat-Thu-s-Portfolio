@@ -5,34 +5,34 @@
 @layer base {
   :root {
     color-scheme: dark;
-    --color-bg: 11 13 12;
-    --color-bg-soft: 16 19 16;
-    --color-bg-card: 21 25 22;
-    --color-primary: 183 243 74;
-    --color-primary-glow: 210 255 123;
-    --color-accent: 126 231 196;
-    --color-text-main: 240 242 237;
-    --color-text-dim: 165 171 163;
-    --color-text-muted: 112 119 111;
+    --color-bg: 14 15 14;
+    --color-bg-soft: 20 21 20;
+    --color-bg-card: 27 29 27;
+    --color-primary: 126 184 105;
+    --color-primary-glow: 166 207 120;
+    --color-accent: 195 218 151;
+    --color-text-main: 242 243 239;
+    --color-text-dim: 176 179 173;
+    --color-text-muted: 119 123 117;
     --color-border: 255 255 255;
   }
   :root.light {
     color-scheme: light;
-    --color-bg: 247 248 243;
-    --color-bg-soft: 239 242 233;
-    --color-bg-card: 255 255 252;
-    --color-primary: 70 112 5;
-    --color-primary-glow: 96 145 18;
-    --color-accent: 16 125 103;
-    --color-text-main: 22 27 23;
-    --color-text-dim: 75 84 76;
-    --color-text-muted: 103 111 104;
-    --color-border: 14 25 17;
+    --color-bg: 247 252 237;
+    --color-bg-soft: 237 247 218;
+    --color-bg-card: 252 255 245;
+    --color-primary: 66 128 61;
+    --color-primary-glow: 104 164 84;
+    --color-accent: 143 169 68;
+    --color-text-main: 27 48 27;
+    --color-text-dim: 70 91 66;
+    --color-text-muted: 100 116 94;
+    --color-border: 43 91 40;
   }
   html { scroll-behavior: smooth; }
   body { margin: 0; background: rgb(var(--color-bg)); color: rgb(var(--color-text-main)); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; transition: background-color .25s ease, color .25s ease; }
   button, a { -webkit-tap-highlight-color: transparent; }
-  :focus-visible { outline: 2px solid #b7f34a; outline-offset: 4px; }
+  :focus-visible { outline: 2px solid rgb(var(--color-primary)); outline-offset: 4px; }
 }
 @layer components {
   .section-shell { @apply relative z-10 mx-auto max-w-[1400px] px-5 py-24 sm:px-8 md:py-32 lg:px-12; }
@@ -43,10 +43,11 @@
 }
 @layer utilities {
   .font-display { font-family: 'Playfair Display', Georgia, serif; }
-  .text-gradient { background: linear-gradient(120deg, #b7f34a 10%, #7ee7c4 85%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .text-gradient { background: linear-gradient(120deg, rgb(var(--color-primary)) 10%, rgb(var(--color-accent)) 85%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .grid-lines { background-image: linear-gradient(rgb(var(--color-border) / .025) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--color-border) / .025) 1px, transparent 1px); background-size: 72px 72px; mask-image: linear-gradient(to bottom, black, transparent 82%); }
   .noise { opacity: .028; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E"); }
 }
-.orb { position:absolute; width:45vw; height:45vw; border-radius:999px; filter:blur(130px); opacity:.08; }.orb-one{top:-15%;right:-10%;background:#b7f34a}.orb-two{top:45%;left:-25%;background:#4ad9c2}
+.orb { position:absolute; width:45vw; height:45vw; border-radius:999px; filter:blur(130px); opacity:.08; }.orb-one{top:-15%;right:-10%;background:rgb(var(--color-primary))}.orb-two{top:45%;left:-25%;background:rgb(var(--color-accent))}
 .portrait-frame::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgb(var(--color-border) / .08);border-radius:inherit;pointer-events:none}.project-row{position:relative}.project-row::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgb(var(--color-primary) / .05),transparent 70%);transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.2,.8,.2,1)}.project-row:hover::before{transform:scaleX(1);transform-origin:left}
+:root.light .orb{opacity:.12}:root.light .grid-lines{opacity:.75}:root.light .portrait-frame{box-shadow:0 24px 70px rgb(54 96 43/.14)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
