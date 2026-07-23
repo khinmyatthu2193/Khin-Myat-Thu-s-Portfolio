@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Mail, Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const links = [
@@ -7,7 +7,6 @@ const links = [
   { name: "Skills", href: "#skills" },
   { name: "Work", href: "#projects" },
   { name: "Notes", href: "#blog" },
-  { name: "Contact", href: "#contact" },
 ];
 
 interface ThemeToggleProps {
@@ -98,7 +97,9 @@ export default function Navbar() {
           {links.map((link) => (
             <a key={link.name} href={link.href} aria-current={activeSection === link.href ? "location" : undefined} className={`text-sm transition-colors hover:text-textMain ${activeSection === link.href ? "text-primary" : "text-textDim"}`}>{link.name}</a>
           ))}
-          <a href="#contact" className="rounded-full border border-primary/40 px-5 py-2.5 text-sm text-primary transition-colors hover:bg-primary hover:text-bg">My contacts</a>
+          <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm text-primary transition-colors hover:bg-primary hover:text-bg">
+            <Mail size={16} aria-hidden="true" /> My contacts
+          </a>
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </div>
         <div className="relative z-50 flex items-center gap-2 md:hidden">
@@ -115,6 +116,9 @@ export default function Navbar() {
             {links.map((link, index) => (
               <a key={link.name} href={link.href} onClick={() => setOpen(false)} className="border-t border-borderMedium py-5 font-display text-4xl">0{index + 1} <span className="ml-4 text-textDim">{link.name}</span></a>
             ))}
+            <a href="#contact" onClick={() => setOpen(false)} className="mt-7 inline-flex items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
+              <Mail size={18} aria-hidden="true" /> My contacts
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
