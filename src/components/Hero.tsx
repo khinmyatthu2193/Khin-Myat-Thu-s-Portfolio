@@ -14,13 +14,13 @@ export default function Hero() {
             <span className="inline-flex items-center gap-1.5"><MapPin size={13} /> Mandalay, Myanmar</span>
           </div>
 
-          <h1 className="font-display text-[clamp(3.6rem,8vw,8.6rem)] font-medium leading-[0.85] tracking-[-0.055em]">
-            Khin Myat
+          <h1 className="font-display text-[clamp(3rem,7vw,7.2rem)] font-medium leading-[0.88] tracking-[-0.05em]">
+            <span className="text-gradient">Khin Myat</span>
             <span className="block text-gradient italic">Thu.</span>
           </h1>
 
-          <div className="mt-9 grid max-w-3xl gap-7 border-l border-primary/50 pl-6 sm:grid-cols-[1fr_auto] sm:items-end">
-            <p className="max-w-xl text-lg leading-relaxed text-textDim md:text-xl">
+          <div className="mt-8 grid max-w-3xl gap-7 border-l border-primary/50 pl-6 sm:grid-cols-[1fr_auto] sm:items-end">
+            <p className="max-w-xl text-lg leading-relaxed text-textBody md:text-xl">
               Full-stack developer and product builder creating clear, human-centered web, mobile, and AI experiences.
             </p>
             <a href="#projects" className="group inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg transition-transform hover:rotate-[-8deg] hover:scale-105" aria-label="View selected projects">
@@ -28,7 +28,7 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm">
+          <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm">
             <a className="text-link group" href="#contact">Contact <ArrowUpRight size={15} /></a>
             <a className="text-link group" href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a>
             <a className="text-link group" href="https://www.linkedin.com/in/khin-myat-thu-837892352" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a>

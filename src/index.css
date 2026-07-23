@@ -14,6 +14,7 @@
     --color-text-main: 242 243 239;
     --color-text-dim: 176 179 173;
     --color-text-muted: 119 123 117;
+    --color-text-body: 198 201 194;
     --color-border: 255 255 255;
   }
   :root.light {
@@ -27,6 +28,7 @@
     --color-text-main: 27 48 27;
     --color-text-dim: 70 91 66;
     --color-text-muted: 100 116 94;
+    --color-text-body: 88 106 82;
     --color-border: 43 91 40;
   }
   html { scroll-behavior: smooth; }
@@ -36,8 +38,11 @@
 }
 @layer components {
   .section-shell { @apply relative z-10 mx-auto max-w-[1400px] px-5 py-24 sm:px-8 md:py-32 lg:px-12; }
-  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-primary; }
-  .section-title { @apply font-display text-4xl font-medium leading-[1.02] tracking-[-0.035em] sm:text-5xl lg:text-6xl; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.15em] text-primary; }
+  .section-title { @apply font-display text-4xl font-medium leading-[1.02] tracking-[-0.035em] text-balance sm:text-5xl lg:text-6xl; }
+  .text-body { color: rgb(var(--color-text-body)); }
+  .label-tag { @apply rounded-full border border-borderSoft px-3 py-1 text-xs font-medium uppercase tracking-wider text-textMuted; }
+  .label-sm { @apply text-xs font-semibold uppercase tracking-[0.14em]; }
   .text-link { @apply inline-flex items-center gap-1.5 text-textMain underline decoration-borderMedium underline-offset-4 transition-colors hover:text-primary; }
   .social-button { @apply inline-flex items-center gap-2 rounded-full border border-borderMedium px-4 py-2.5 text-sm text-textDim transition-colors hover:border-primary hover:text-primary; }
 }

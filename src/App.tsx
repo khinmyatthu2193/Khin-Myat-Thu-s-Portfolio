@@ -45,7 +45,7 @@ export default function App() {
             </div>
 
             <div className="lg:pt-9">
-              <p className="text-xl leading-relaxed text-textDim md:text-2xl md:leading-relaxed">
+              <p className="text-xl leading-relaxed text-textBody md:text-2xl md:leading-relaxed">
                 I’m a final-year Computer Science student focused on turning practical problems into thoughtful digital products—from mobile-first business tools to AI-assisted systems.
               </p>
               <div className="mt-9 grid gap-3 sm:grid-cols-3">
@@ -64,7 +64,7 @@ export default function App() {
                 ].map(([value, label]) => (
                   <div key={label} className="bg-bgCard/90 p-5 sm:p-6">
                     <p className="font-display text-3xl font-semibold text-primary">{value}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.14em] text-textMuted">{label}</p>
+                    <p className={`label-sm text-textMuted`}>{label}</p>
                   </div>
                 ))}
               </div>

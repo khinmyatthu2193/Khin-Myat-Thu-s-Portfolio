@@ -15,7 +15,7 @@ export default function Blog() {
             <p className="eyebrow">04 / Learning notes</p>
             <h2 className="section-title mt-5">What I learn along the way.</h2>
           </div>
-          <p className="max-w-2xl self-end text-lg leading-relaxed text-textDim">
+          <p className="max-w-2xl self-end text-lg leading-relaxed text-textBody">
             Practical lessons from building products, exploring technology, and turning ideas into experiences people can use.
           </p>
         </div>
@@ -35,10 +35,10 @@ export default function Blog() {
                 <span className="inline-flex items-center gap-1.5"><BookOpen size={14} />{post.readTime}</span>
               </div>
               <h3 className="mt-6 font-display text-2xl font-medium leading-tight">{post.title}</h3>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-textDim">{post.summary}</p>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-textBody">{post.summary}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-borderSoft px-3 py-1 text-[10px] uppercase tracking-wider text-textMuted">{tag}</span>
+                  <span key={tag} className="label-tag">{tag}</span>
                 ))}
               </div>
               <details className="group/note mt-6 border-t border-borderMedium pt-5">
@@ -48,7 +48,7 @@ export default function Blog() {
                 </summary>
                 <div className="mt-5 space-y-4">
                   {post.lessons.map((lesson) => (
-                    <p key={lesson} className="border-l border-primary/40 pl-4 text-sm leading-relaxed text-textDim">{lesson}</p>
+                    <p key={lesson} className="border-l-2 border-primary/40 pl-4 text-sm leading-relaxed text-textBody">{lesson}</p>
                   ))}
                 </div>
               </details>

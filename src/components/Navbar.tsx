@@ -95,8 +95,9 @@ export default function Navbar() {
         <a href="#home" className="font-display text-2xl font-semibold" aria-label="Khin Myat Thu, home">KMT<span className="text-primary">.</span></a>
         <div className="hidden items-center gap-8 md:flex">
           {links.map(({ name, href, icon: Icon }) => (
-            <a key={name} href={href} aria-current={activeSection === href ? "location" : undefined} className={`inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
+            <a key={name} href={href} aria-current={activeSection === href ? "location" : undefined} className={`relative inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
               <Icon size={15} aria-hidden="true" /> {name}
+              {activeSection === href && <span className="absolute -bottom-1 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-primary" />}
             </a>
           ))}
           <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm text-primary transition-colors hover:bg-primary hover:text-bg">

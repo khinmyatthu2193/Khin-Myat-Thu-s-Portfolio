@@ -12,6 +12,7 @@ export default {
         textMain: "rgb(var(--color-text-main) / <alpha-value>)",
         textDim: "rgb(var(--color-text-dim) / <alpha-value>)",
         textMuted: "rgb(var(--color-text-muted) / <alpha-value>)",
+        textBody: "rgb(var(--color-text-body) / <alpha-value>)",
         borderSoft: "rgb(var(--color-border) / 0.08)",
         borderMedium: "rgb(var(--color-border) / 0.12)",
       },

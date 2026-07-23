@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Braces, Code2, Database, Lightbulb, Smartphone, Sparkles } from "lucide-react";
+import { Braces, Code2, Database, Smartphone, Sparkles } from "lucide-react";
 
 const skillGroups = [
   {
@@ -42,16 +42,15 @@ export default function Skills() {
         <div>
           <p className="eyebrow">02 / Skills &amp; languages</p>
           <h2 className="section-title mt-5">The tools behind the <span className="text-gradient italic">work.</span></h2>
-          <p className="mt-6 max-w-md leading-relaxed text-textDim">
+          <p className="mt-6 max-w-md leading-relaxed text-textBody">
             I combine full-stack engineering, product thinking, and emerging technology to turn ideas into useful experiences.
           </p>
 
           <div className="mt-9 rounded-2xl border border-primary/20 bg-primary/5 p-5">
             <div className="flex items-center gap-3 text-primary">
-              <Lightbulb size={19} />
-              <p className="text-xs font-semibold uppercase tracking-[0.16em]">How I work</p>
+              <p className="label-sm text-primary">How I work</p>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-textDim">
+            <p className="mt-3 text-sm leading-relaxed text-textBody">
               Curious, collaborative, and focused on shipping solutions that are clear, dependable, and easy to use.
             </p>
           </div>
@@ -72,10 +71,10 @@ export default function Skills() {
                   <Icon size={19} />
                 </div>
                 <h3 className="mt-5 font-display text-2xl font-medium">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-textDim">{description}</p>
+                <p className="mt-2 text-sm leading-relaxed text-textBody">{description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {skills.map((skill) => (
-                    <span key={skill} className="rounded-full border border-borderSoft px-3 py-1 text-[11px] uppercase tracking-wider text-textMuted">
+                    <span key={skill} className="label-tag">
                       {skill}
                     </span>
                   ))}
@@ -87,7 +86,7 @@ export default function Skills() {
           <div className="mt-6 border-y border-borderMedium py-6">
             <div className="mb-4 flex items-center gap-2 text-textMuted">
               <Braces size={16} />
-              <p className="text-xs font-semibold uppercase tracking-[0.18em]">Programming languages</p>
+              <p className="label-sm text-textMuted">Programming languages</p>
             </div>
             <div className="flex flex-wrap gap-x-8 gap-y-3">
               {languages.map((language, index) => (

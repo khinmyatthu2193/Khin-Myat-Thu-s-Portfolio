@@ -16,9 +16,9 @@ export default function ProjectCard({ project, index }: { project: Project; inde
         <h3 className="font-display text-2xl font-medium leading-tight transition-colors group-hover:text-primary md:text-3xl">{project.title}</h3>
       </div>
       <div>
-        <p className="leading-relaxed text-textDim">{project.description}</p>
+        <p className="leading-relaxed text-textBody">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
-          {project.technologies?.map((tech) => <span key={tech} className="rounded-full border border-borderSoft px-3 py-1 text-[11px] uppercase tracking-wider text-textMuted">{tech}</span>)}
+          {project.technologies?.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
         </div>
       </div>
       <a href={project.github} target="_blank" rel="noreferrer" aria-label={`View ${project.title}`} className="flex h-11 w-11 items-center justify-center rounded-full border border-borderMedium text-textDim transition-all group-hover:border-primary group-hover:bg-primary group-hover:text-bg">
