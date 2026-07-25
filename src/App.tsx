@@ -10,6 +10,9 @@ import Blog from "./components/Blog";
 import AllProjects from "./components/AllProjects";
 import ProjectDetails from "./components/ProjectDetails";
 import Achievements from "./components/Achievements";
+import AllAchievements from "./components/AllAchievements";
+import AchievementDetails from "./components/AchievementDetails";
+import { achievements } from "./data/achievements";
 import { projects } from "./data/projects";
 
 const strengths = [
@@ -109,6 +112,9 @@ export default function App() {
   const project = route[0] === "projects" && route[1]
     ? projects.find((item) => item.slug === route[1])
     : undefined;
+  const achievement = route[0] === "achievements" && route[1]
+    ? achievements.find((item) => item.slug === route[1])
+    : undefined;
 
   useEffect(() => {
     const onHashChange = () => setHash(window.location.hash);
@@ -140,7 +146,17 @@ export default function App() {
       </div>
 
       <Navbar key={isHome ? "home" : "inner"} isHome={isHome} />
-      {isHome ? <HomePage /> : project ? <ProjectDetails project={project} /> : <AllProjects />}
+      {isHome ? (
+        <HomePage />
+      ) : project ? (
+        <ProjectDetails project={project} />
+      ) : achievement ? (
+        <AchievementDetails achievement={achievement} />
+      ) : route[0] === "achievements" ? (
+        <AllAchievements />
+      ) : (
+        <AllProjects />
+      )}
     </div>
     </MotionConfig>
   );
