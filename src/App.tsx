@@ -9,6 +9,7 @@ import Skills from "./components/Skills";
 import Blog from "./components/Blog";
 import AllProjects from "./components/AllProjects";
 import ProjectDetails from "./components/ProjectDetails";
+import Achievements from "./components/Achievements";
 import { projects } from "./data/projects";
 
 const strengths = [
@@ -91,6 +92,8 @@ function HomePage() {
             </a>
           </div>
         </section>
+
+        <Achievements />
 
         <Blog />
 

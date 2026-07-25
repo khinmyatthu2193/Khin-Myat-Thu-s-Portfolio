@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { BriefcaseBusiness, Code2, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
+import { Award, BriefcaseBusiness, Code2, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logo from "../assets/my_logo.png";
 
@@ -7,6 +7,7 @@ const links = [
   { name: "About", href: "#about", icon: UserRound },
   { name: "Skills", href: "#skills", icon: Code2 },
   { name: "Projects", href: "#projects", icon: BriefcaseBusiness },
+  { name: "Achievements", href: "#achievements", icon: Award },
   { name: "Learning Notes", href: "#blog", icon: NotebookPen },
 ];
 
@@ -102,7 +103,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
             className="nav-logo pointer-events-none absolute -left-[46px] -top-[21px] w-[150px] max-w-none transition-transform group-hover:scale-[1.03]"
           />
         </a>
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {links.map(({ name, href, icon: Icon }) => (
             <a key={name} href={href} aria-current={activeSection === href ? "location" : undefined} className={`relative inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
               <Icon size={15} aria-hidden="true" /> {name}
@@ -114,7 +115,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
           </a>
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </div>
-        <div className="relative z-50 flex items-center gap-2 md:hidden">
+        <div className="relative z-50 flex items-center gap-2 lg:hidden">
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
           <button ref={menuButtonRef} type="button" onClick={() => setOpen((current) => !current)} className="flex h-10 w-10 items-center justify-center rounded-full border border-borderMedium" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-menu">
             {open ? <X size={19} /> : <Menu size={19} />}
@@ -128,7 +129,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            className="fixed inset-0 z-40 flex h-[100dvh] flex-col overflow-y-auto bg-bg px-6 pb-10 pt-28 sm:px-8 md:hidden"
+            className="fixed inset-0 z-40 flex h-[100dvh] flex-col overflow-y-auto bg-bg px-6 pb-10 pt-28 sm:px-8 lg:hidden"
           >
             <p className="eyebrow mb-7 shrink-0">Navigation</p>
             {links.map(({ name, href, icon: Icon }, index) => (
