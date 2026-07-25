@@ -13,10 +13,10 @@ export default function Blog() {
         <div className="mb-12 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
           <div>
             <p className="eyebrow">04 / Learning notes</p>
-            <h2 className="section-title mt-5">What I learn along the way.</h2>
+            <h2 className="section-title mt-5">What I’m learning.</h2>
           </div>
           <p className="max-w-2xl self-end text-lg leading-relaxed text-textBody">
-            Practical lessons from building products, exploring technology, and turning ideas into experiences people can use.
+            Short notes, useful discoveries, and practical lessons from my daily development journey.
           </p>
         </div>
 

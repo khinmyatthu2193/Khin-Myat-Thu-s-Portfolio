@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 const links = [
   { name: "About", href: "#about", icon: UserRound },
   { name: "Skills", href: "#skills", icon: Code2 },
-  { name: "Work", href: "#projects", icon: BriefcaseBusiness },
-  { name: "Notes", href: "#blog", icon: NotebookPen },
+  { name: "Projects", href: "#projects", icon: BriefcaseBusiness },
+  { name: "Learning Notes", href: "#blog", icon: NotebookPen },
 ];
 
 interface ThemeToggleProps {
