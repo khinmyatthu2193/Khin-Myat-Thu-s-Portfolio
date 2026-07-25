@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { BriefcaseBusiness, Code2, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import logo from "../assets/my_logo.png";
 
 const links = [
   { name: "About", href: "#about", icon: UserRound },
@@ -92,7 +93,13 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
   return (
     <header className={`fixed inset-x-0 top-0 z-40 transition-all ${scrolled ? "border-b border-borderSoft bg-bg/80 backdrop-blur-xl" : ""}`}>
       <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Main navigation">
-        <a href="#home" className="font-display text-2xl font-semibold" aria-label="Khin Myat Thu, home">KMT<span className="text-primary">.</span></a>
+        <a href="#home" className="group relative h-14 w-16 shrink-0 overflow-hidden" aria-label="Khin Myat Thu, home">
+          <img
+            src={logo}
+            alt=""
+            className="nav-logo pointer-events-none absolute -left-[46px] -top-[21px] w-[150px] max-w-none transition-transform group-hover:scale-[1.03]"
+          />
+        </a>
         <div className="hidden items-center gap-8 md:flex">
           {links.map(({ name, href, icon: Icon }) => (
             <a key={name} href={href} aria-current={activeSection === href ? "location" : undefined} className={`relative inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
