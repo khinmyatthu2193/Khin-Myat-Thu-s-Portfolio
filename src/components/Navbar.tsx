@@ -91,7 +91,9 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
   };
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-40 transition-all ${scrolled ? "border-b border-borderSoft bg-bg/80 backdrop-blur-xl" : ""}`}>
+    <header className={`fixed inset-x-0 top-0 z-40 transition-[background-color,border-color] ${
+      scrolled && !open ? "border-b border-borderSoft bg-bg/80 backdrop-blur-xl" : ""
+    }`}>
       <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Main navigation">
         <a href="#home" className="group relative h-14 w-16 shrink-0 overflow-hidden" aria-label="Khin Myat Thu, home">
           <img
@@ -121,15 +123,21 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
       </nav>
       <AnimatePresence>
         {open && (
-          <motion.div id="mobile-menu" initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} className="fixed inset-0 z-40 flex flex-col justify-center bg-bg px-8 md:hidden">
-            <p className="eyebrow mb-8">Navigation</p>
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            className="fixed inset-0 z-40 flex h-[100dvh] flex-col overflow-y-auto bg-bg px-6 pb-10 pt-28 sm:px-8 md:hidden"
+          >
+            <p className="eyebrow mb-7 shrink-0">Navigation</p>
             {links.map(({ name, href, icon: Icon }, index) => (
-              <a key={name} href={href} onClick={() => setOpen(false)} className="flex items-center border-t border-borderMedium py-5 font-display text-4xl">
-                <span>0{index + 1}</span>
-                <span className="ml-4 inline-flex items-center gap-3 text-textDim"><Icon size={28} aria-hidden="true" /> {name}</span>
+              <a key={name} href={href} onClick={() => setOpen(false)} className="flex shrink-0 items-center border-t border-borderMedium py-4 font-display text-3xl sm:py-5 sm:text-4xl">
+                <span className="w-12 shrink-0">0{index + 1}</span>
+                <span className="ml-3 inline-flex items-center gap-3 text-textDim"><Icon className="shrink-0" size={26} aria-hidden="true" /> {name}</span>
               </a>
             ))}
-            <a href="#contact" onClick={() => setOpen(false)} className="mt-7 inline-flex items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
+            <a href="#contact" onClick={() => setOpen(false)} className="mt-7 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
               <Mail size={18} aria-hidden="true" /> My contacts
             </a>
           </motion.div>
