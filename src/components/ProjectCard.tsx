@@ -1,29 +1,98 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Image as ImageIcon, Play } from "lucide-react";
+import type { Project } from "../data/projects";
 
-interface Project { title: string; date: string; description: string; github: string; technologies?: string[]; }
+function ProjectPreview({ project, index }: { project: Project; index: number }) {
+  const { media } = project;
+
+  if (media.type === "video" && media.src) {
+    return (
+      <video
+        className="h-full w-full object-cover"
+        controls
+        preload="metadata"
+        poster={media.poster}
+        aria-label={media.alt}
+      >
+        <source src={media.src} />
+      </video>
+    );
+  }
+
+  if (media.type === "image" && media.src) {
+    return <img className="h-full w-full object-cover" src={media.src} alt={media.alt} loading="lazy" />;
+  }
+
+  return (
+    <div className={`project-preview project-preview-${(index % 3) + 1}`} role="img" aria-label={media.alt}>
+      <div className="project-browser">
+        <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-2">
+          <i /><i /><i />
+          <span className="ml-2 h-1.5 w-24 rounded-full bg-white/10" />
+        </div>
+        <div className="grid flex-1 grid-cols-[0.32fr_1fr] gap-2 p-3">
+          <div className="rounded-md bg-white/[0.055] p-2">
+            <span className="mb-2 block h-2 w-3/4 rounded-full bg-white/15" />
+            <span className="mb-1 block h-1.5 rounded-full bg-white/[0.08]" />
+            <span className="block h-1.5 w-4/5 rounded-full bg-white/[0.08]" />
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="rounded-md bg-primary/20" />
+            <div className="rounded-md bg-white/[0.07]" />
+            <div className="col-span-2 rounded-md bg-white/[0.055]" />
+          </div>
+        </div>
+      </div>
+      <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full border border-white/10 bg-black/35 px-3 py-2 text-xs font-medium text-white backdrop-blur-md">
+        {media.type === "video" ? <Play size={13} fill="currentColor" /> : <ImageIcon size={13} />}
+        {media.type === "video" ? "Demo video" : "Product preview"}
+      </div>
+      {media.type === "video" && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white shadow-2xl backdrop-blur-md">
+            <Play className="ml-1" size={23} fill="currentColor" />
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.45, delay: Math.min(index * 0.06, 0.25) }}
-      className="project-row group grid gap-5 border-b border-borderMedium py-9 md:grid-cols-[80px_1fr_1fr_48px] md:items-start md:gap-8"
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-70px" }}
+      transition={{ duration: 0.5 }}
+      className="group grid gap-7 border-t border-borderMedium py-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-14 lg:py-16"
     >
-      <span className="font-display text-xl italic text-textMuted">0{index + 1}</span>
-      <div>
-        <p className="mb-2 text-xs uppercase tracking-[0.15em] text-primary">{project.date}</p>
-        <h3 className="font-display text-2xl font-medium leading-tight transition-colors group-hover:text-primary md:text-3xl">{project.title}</h3>
-      </div>
-      <div>
-        <p className="leading-relaxed text-textBody">{project.description}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.technologies?.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
+      <div className={index % 2 ? "lg:order-2" : ""}>
+        <div className="project-media aspect-[16/10] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard">
+          <ProjectPreview project={project} index={index} />
         </div>
       </div>
-      <a href={project.github} target="_blank" rel="noreferrer" aria-label={`View ${project.title}`} className="flex h-11 w-11 items-center justify-center rounded-full border border-borderMedium text-textDim transition-all group-hover:border-primary group-hover:bg-primary group-hover:text-bg">
-        <ArrowUpRight size={19} />
-      </a>
+
+      <div className={index % 2 ? "lg:order-1" : ""}>
+        <div className="mb-5 flex items-center gap-4">
+          <span className="font-display text-xl italic text-textMuted">0{index + 1}</span>
+          <span className="h-px flex-1 bg-borderSoft" />
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            {project.media.type === "video" ? "Video demo" : "Case study"}
+          </span>
+        </div>
+        <p className="mb-3 text-xs uppercase tracking-[0.15em] text-primary">{project.date}</p>
+        <h3 className="font-display text-3xl font-medium leading-tight transition-colors group-hover:text-primary md:text-4xl">
+          {project.title}
+        </h3>
+        <p className="mt-5 max-w-xl leading-relaxed text-textBody">{project.description}</p>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.technologies.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
+        </div>
+        <a href={project.github} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-textMain transition-colors hover:text-primary">
+          View project <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </a>
+      </div>
     </motion.article>
   );
 }

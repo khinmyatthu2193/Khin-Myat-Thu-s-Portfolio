@@ -90,7 +90,7 @@ export default function App() {
             </a>
           </motion.div>
 
-          <div className="border-t border-borderMedium">
+          <div>
             {projects.map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index} />
             ))}
