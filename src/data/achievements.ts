@@ -3,7 +3,7 @@ export type Achievement = {
   title: string;
   issuer: string;
   date: string;
-  type: "Award" | "Certificate";
+  type: "Hackathon" | "Certificate" | "Others";
   description: string;
   image?: string;
   imageAlt?: string;
@@ -17,7 +17,7 @@ export const achievements: Achievement[] = [
     title: "1st Place — Hackathon 2026",
     issuer: "Hackathon 2026",
     date: "2026",
-    type: "Award",
+    type: "Hackathon",
     description: "Recognized with first place for turning an ambitious idea into a thoughtful, practical product.",
     imageAlt: "Khin Myat Thu celebrating a first-place hackathon win",
     featured: true,
