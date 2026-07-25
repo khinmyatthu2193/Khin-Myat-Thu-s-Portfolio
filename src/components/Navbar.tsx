@@ -30,7 +30,7 @@ function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
   );
 }
 
-export default function Navbar() {
+export default function Navbar({ isHome = true }: { isHome?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -44,7 +44,7 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
     const sections = links

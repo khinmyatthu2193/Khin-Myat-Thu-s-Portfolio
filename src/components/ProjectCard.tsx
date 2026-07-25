@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Image as ImageIcon, Play } from "lucide-react";
 import type { Project } from "../data/projects";
 
-function ProjectPreview({ project, index }: { project: Project; index: number }) {
+export function ProjectPreview({ project, index }: { project: Project; index: number }) {
   const { media } = project;
 
   if (media.type === "video" && media.src) {
@@ -68,9 +68,9 @@ export default function ProjectCard({ project, index }: { project: Project; inde
       className="group grid gap-7 border-t border-borderMedium py-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-14 lg:py-16"
     >
       <div className={index % 2 ? "lg:order-2" : ""}>
-        <div className="project-media aspect-[16/10] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard">
+        <a href={`#/projects/${project.slug}`} className="project-media block aspect-[16/10] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard" aria-label={`View ${project.title} case study`}>
           <ProjectPreview project={project} index={index} />
-        </div>
+        </a>
       </div>
 
       <div className={index % 2 ? "lg:order-1" : ""}>
@@ -78,19 +78,19 @@ export default function ProjectCard({ project, index }: { project: Project; inde
           <span className="font-display text-xl italic text-textMuted">0{index + 1}</span>
           <span className="h-px flex-1 bg-borderSoft" />
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-            {project.media.type === "video" ? "Video demo" : "Case study"}
+            {project.category}
           </span>
         </div>
         <p className="mb-3 text-xs uppercase tracking-[0.15em] text-primary">{project.date}</p>
         <h3 className="font-display text-3xl font-medium leading-tight transition-colors group-hover:text-primary md:text-4xl">
-          {project.title}
+          <a href={`#/projects/${project.slug}`}>{project.title}</a>
         </h3>
         <p className="mt-5 max-w-xl leading-relaxed text-textBody">{project.description}</p>
         <div className="mt-5 flex flex-wrap gap-2">
           {project.technologies.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
         </div>
-        <a href={project.github} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-textMain transition-colors hover:text-primary">
-          View project <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        <a href={`#/projects/${project.slug}`} className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-textMain transition-colors hover:text-primary">
+          View case study <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </a>
       </div>
     </motion.article>
