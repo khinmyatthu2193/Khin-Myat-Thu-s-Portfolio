@@ -28,7 +28,12 @@ const skillGroups = [
   },
 ];
 
-const languages = ["Python", "TypeScript", "JavaScript", "SQL"];
+const languages = [
+  { name: "Python", code: "PY" },
+  { name: "TypeScript", code: "TS" },
+  { name: "JavaScript", code: "JS" },
+  { name: "SQL", code: "DB" },
+];
 
 export default function Skills() {
   return (
@@ -91,17 +96,36 @@ export default function Skills() {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col gap-6 rounded-2xl bg-primary px-6 py-7 text-bg md:flex-row md:items-center md:justify-between md:px-8">
-          <div className="flex items-center gap-3">
-            <Braces size={18} />
-            <p className="label-sm">Programming languages</p>
+        <div className="mt-12 border-t border-borderSoft pt-8">
+          <div className="mb-6 flex items-center gap-4">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary">
+              <Braces size={17} />
+            </div>
+            <div>
+              <p className="eyebrow">Language toolkit</p>
+              <h3 className="mt-1 font-display text-2xl">Programming languages</h3>
+            </div>
+            <span className="ml-auto hidden h-px flex-1 bg-borderSoft sm:block" />
           </div>
-          <div className="flex flex-wrap gap-x-8 gap-y-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {languages.map((language, index) => (
-              <div key={language} className="flex items-center gap-2">
-                <span className="font-display text-xs italic opacity-70">0{index + 1}</span>
-                <span className="text-base font-medium">{language}</span>
-              </div>
+              <motion.div
+                key={language.name}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.06 }}
+                whileHover={{ y: -4 }}
+                className="group flex items-center gap-4 rounded-xl border border-borderSoft bg-bgCard/50 p-4 transition-colors hover:border-primary/30 hover:bg-primary/[0.045]"
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 font-mono text-xs font-semibold tracking-wider text-primary">
+                  {language.code}
+                </span>
+                <div>
+                  <span className="font-display text-xs italic text-primary/70">0{index + 1}</span>
+                  <p className="mt-0.5 font-medium text-textMain">{language.name}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
