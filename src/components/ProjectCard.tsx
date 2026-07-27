@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Image as ImageIcon, Play } from "lucide-react";
 import type { Project } from "../data/projects";
 
-export function ProjectPreview({ project, index }: { project: Project; index: number }) {
+export function ProjectPreview({ project, index, fit = "cover" }: { project: Project; index: number; fit?: "cover" | "contain" }) {
   const { media } = project;
 
   if (media.type === "video" && media.src) {
@@ -20,7 +20,14 @@ export function ProjectPreview({ project, index }: { project: Project; index: nu
   }
 
   if (media.type === "image" && media.src) {
-    return <img className="h-full w-full object-cover" src={media.src} alt={media.alt} loading="lazy" />;
+    return (
+      <img
+        className={`h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"}`}
+        src={media.src}
+        alt={media.alt}
+        loading="lazy"
+      />
+    );
   }
 
   return (

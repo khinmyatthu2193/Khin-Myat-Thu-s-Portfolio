@@ -1,4 +1,3 @@
-import brancyDemo from "../assets/branded_cosmetic_online_shopping_system.mp4";
 import brancyHome from "../assets/brancy_ss/home_page.png";
 import brancyCategories from "../assets/brancy_ss/product_categories_page.png";
 import brancyProduct from "../assets/brancy_ss/product.png";
@@ -42,7 +41,6 @@ export type Project = {
   highlights?: string[];
   challenges?: string[];
   gallery?: ProjectMedia[];
-  demoVideo?: string;
 };
 
 export const projects: Project[] = [
@@ -62,7 +60,6 @@ export const projects: Project[] = [
     technologies: ["Django", "Python", "JavaScript", "HTML", "CSS"],
     featured: true,
     media: { type: "image", src: brancyHome, alt: "BRANCY cosmetics storefront homepage" },
-    demoVideo: brancyDemo,
     responsibilities: [
       "Designed and implemented the web application structure",
       "Developed responsive customer-facing interfaces",

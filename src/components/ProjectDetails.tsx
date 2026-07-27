@@ -1,9 +1,24 @@
-import { ArrowLeft, ArrowUpRight, Check, Play } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ArrowUpRight, Check, Maximize2, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import type { Project } from "../data/projects";
 import { ProjectPreview } from "./ProjectCard";
 
 export default function ProjectDetails({ project }: { project: Project }) {
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!activeImage) return;
+    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setActiveImage(null);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [activeImage]);
+
   return (
     <main id="main-content" className="relative z-10">
       <article>
@@ -30,8 +45,8 @@ export default function ProjectDetails({ project }: { project: Project }) {
         </header>
 
         <section className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
-          <div className="project-media aspect-[16/8] min-h-[280px] overflow-hidden rounded-3xl border border-borderSoft bg-bgCard">
-            <ProjectPreview project={project} index={0} />
+          <div className="project-media aspect-[16/9] min-h-[280px] overflow-hidden rounded-3xl border border-borderSoft bg-[#f5eeee]">
+            <ProjectPreview project={project} index={0} fit="contain" />
           </div>
         </section>
 
@@ -93,16 +108,34 @@ export default function ProjectDetails({ project }: { project: Project }) {
               <h2 className="mt-4 font-display text-4xl md:text-5xl">Screens and flow.</h2>
             </div>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
+          <motion.div
+            className="grid gap-6 md:grid-cols-2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
+          >
             {(project.gallery ?? [undefined, undefined]).map((media, index) => (
-              <figure key={media?.src ?? index} className="overflow-hidden rounded-2xl border border-borderSoft bg-bgCard">
-                <div className="aspect-[16/10]">
-                  <ProjectPreview project={{ ...project, media: media ?? { ...project.media, type: "image", src: undefined } }} index={index + 1} />
-                </div>
-                {media?.alt && <figcaption className="border-t border-borderSoft px-4 py-3 text-sm text-textDim">{media.alt}</figcaption>}
-              </figure>
+              <motion.figure
+                key={media?.src ?? index}
+                variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="group overflow-hidden rounded-2xl border border-borderSoft bg-bgCard transition-colors hover:border-primary/40"
+              >
+                <button
+                  type="button"
+                  className="relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden text-left"
+                  onClick={() => media?.src && setActiveImage(media.src)}
+                  aria-label={media?.alt ? `Expand ${media.alt}` : "Expand screenshot"}
+                  disabled={!media?.src}
+                >
+                  <ProjectPreview project={{ ...project, media: media ?? { ...project.media, type: "image", src: undefined } }} index={index + 1} fit="contain" />
+                  {media?.src && <span className="absolute right-4 top-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white opacity-0 backdrop-blur-md transition-all group-hover:translate-y-0 group-hover:opacity-100"><Maximize2 size={16} /></span>}
+                </button>
+                {media?.alt && <figcaption className="flex items-center justify-between border-t border-borderSoft px-4 py-3 text-sm text-textDim"><span>{media.alt}</span><span className="text-xs text-primary">0{index + 1}</span></figcaption>}
+              </motion.figure>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         {(project.stack || project.highlights || project.challenges) && (
@@ -113,32 +146,38 @@ export default function ProjectDetails({ project }: { project: Project }) {
           </section>
         )}
 
-        <section className="section-shell pt-0">
-          <div className="grid overflow-hidden rounded-3xl border border-borderSoft bg-bgCard lg:grid-cols-[0.78fr_1.22fr]">
-            <div className="flex flex-col justify-center p-8 md:p-12">
-              <p className="eyebrow">Demo walkthrough</p>
-              <h2 className="mt-4 font-display text-4xl">See how it works.</h2>
-              <p className="mt-5 leading-relaxed text-textBody">
-                {project.demoVideo ? "Watch the complete shopping journey, from browsing products to managing orders." : "This area is ready for the project walkthrough. Add a video source and poster in the project data to publish it."}
-              </p>
-            </div>
-            <div className="relative flex aspect-video items-center justify-center bg-bgSoft">
-              {project.demoVideo || (project.media.type === "video" && project.media.src) ? (
-                <video className="h-full w-full object-cover" controls preload="metadata" poster={project.media.src ?? project.media.poster}>
-                  <source src={project.demoVideo ?? project.media.src} />
-                </video>
-              ) : (
-                <>
-                  <ProjectPreview project={{ ...project, media: { ...project.media, type: "video", src: undefined } }} index={1} />
-                  <span className="absolute bottom-5 right-5 rounded-full border border-white/15 bg-black/40 px-3 py-2 text-xs text-white backdrop-blur">
-                    <Play className="mr-1 inline" size={13} /> Video coming soon
-                  </span>
-                </>
-              )}
-            </div>
-          </div>
-        </section>
       </article>
+
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            className="fixed inset-0 z-[999] overflow-y-auto bg-black/90 p-4 backdrop-blur-md sm:p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveImage(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Expanded project screenshot"
+          >
+            <div className="flex min-h-full w-full items-start justify-center py-14 sm:py-10">
+              <motion.img
+                src={activeImage}
+                alt="Expanded project screen"
+                className="h-auto max-h-[calc(100dvh-7rem)] max-w-full rounded-xl object-contain shadow-2xl"
+                initial={{ opacity: 0, scale: 0.94, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.25 }}
+                onClick={(event) => event.stopPropagation()}
+              />
+            </div>
+            <button type="button" onClick={() => setActiveImage(null)} className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20" aria-label="Close screenshot">
+              <X size={20} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
