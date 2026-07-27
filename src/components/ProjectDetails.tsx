@@ -50,30 +50,53 @@ export default function ProjectDetails({ project }: { project: Project }) {
           </div>
         </section>
 
-        <section className="section-shell grid gap-12 border-b border-borderSoft lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
-          <div>
-            <p className="eyebrow">Project overview</p>
-            <div className="mt-7 flex flex-wrap gap-2">
+        <section className="section-shell border-b border-borderSoft">
+          <div className="mb-10 flex flex-col gap-5 border-b border-borderSoft pb-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="eyebrow">Project overview</p>
+              <h2 className="mt-4 max-w-xl font-display text-4xl leading-tight md:text-5xl">The idea behind the experience.</h2>
+            </div>
+            <div className="flex max-w-xl flex-wrap gap-2 md:justify-end">
               {project.technologies.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
             </div>
           </div>
-          <div className="max-w-3xl">
-            <p className="font-display text-3xl leading-snug text-textMain md:text-4xl">{project.overview}</p>
-            {(project.projectType || project.role) && (
-              <dl className="mt-10 grid gap-6 sm:grid-cols-2">
-                {project.projectType && <div><dt className="label-sm text-primary">Project type</dt><dd className="mt-2 text-textMain">{project.projectType}</dd></div>}
-                {project.role && <div><dt className="label-sm text-primary">My role</dt><dd className="mt-2 text-textMain">{project.role}</dd></div>}
-              </dl>
-            )}
-            <div className="mt-12 grid gap-9 md:grid-cols-2">
-              <div className="border-t border-borderMedium pt-5">
-                <h2 className="label-sm text-primary">The challenge</h2>
-                <p className="mt-4 leading-relaxed text-textBody">{project.challenge}</p>
-              </div>
-              <div className="border-t border-borderMedium pt-5">
-                <h2 className="label-sm text-primary">The solution</h2>
-                <p className="mt-4 leading-relaxed text-textBody">{project.solution}</p>
-              </div>
+
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-borderSoft bg-bgCard/60 p-7 md:p-9"
+            >
+              <p className="font-display text-2xl leading-relaxed text-textMain md:text-3xl">{project.overview}</p>
+              {(project.projectType || project.role) && (
+                <dl className="mt-8 grid gap-5 border-t border-borderSoft pt-7 sm:grid-cols-2">
+                  {project.projectType && <div><dt className="label-sm text-primary">Project type</dt><dd className="mt-2 text-sm leading-relaxed text-textMain">{project.projectType}</dd></div>}
+                  {project.role && <div><dt className="label-sm text-primary">My role</dt><dd className="mt-2 text-sm leading-relaxed text-textMain">{project.role}</dd></div>}
+                </dl>
+              )}
+            </motion.div>
+
+            <div className="grid gap-4">
+              {[
+                { number: "01", title: "The challenge", copy: project.challenge },
+                { number: "02", title: "The solution", copy: project.solution },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: 18 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  className="group grid gap-5 rounded-2xl border border-borderSoft bg-bgCard/40 p-6 transition-colors hover:border-primary/30 hover:bg-bgCard/70 sm:grid-cols-[auto_1fr] md:p-7"
+                >
+                  <span className="font-display text-2xl text-primary/70">{item.number}</span>
+                  <div>
+                    <h3 className="label-sm text-primary">{item.title}</h3>
+                    <p className="mt-3 max-w-xl leading-relaxed text-textBody">{item.copy}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
