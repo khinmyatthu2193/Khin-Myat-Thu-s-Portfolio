@@ -83,11 +83,6 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     document.documentElement.classList.toggle("light", next === "light");
-    try {
-      localStorage.setItem("theme", next);
-    } catch {
-      // Theme still works when storage is unavailable.
-    }
     setTheme(next);
   };
 

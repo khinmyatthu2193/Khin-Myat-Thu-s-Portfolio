@@ -56,7 +56,7 @@ export const projects: Project[] = [
     overview: "A complete online shopping experience developed for BRANCY, a branded cosmetics business. The platform makes cosmetic products easier to discover through organized categories, detailed product information, customer accounts, and a clear purchase journey.",
     challenge: "Customers often struggle to find reliable cosmetic products when information is limited, comparisons are difficult, and shopping is fragmented across different channels.",
     solution: "I created one convenient platform where customers can explore products, understand product details, complete purchases, and review their orders, supported by an administration area for catalog, inventory, customer, and order management.",
-    github: "https://github.com/khinmyatthu2193",
+    github: "https://github.com/khinmyatthu2193/brancy-branded-cosmetics-onlineshopping-system",
     technologies: ["Django", "Python", "JavaScript", "HTML", "CSS"],
     featured: true,
     media: { type: "image", src: brancyHome, alt: "BRANCY cosmetics storefront homepage" },
