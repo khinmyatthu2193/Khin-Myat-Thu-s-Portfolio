@@ -9,6 +9,12 @@ import brancyCart from "../assets/brancy_ss/cart.png";
 import brancyCheckout from "../assets/brancy_ss/checkout_page.png";
 import brancyInvoice from "../assets/brancy_ss/invoice.png";
 import brancyAdmin from "../assets/brancy_ss/django_administration.png";
+import climbioHome from "../assets/climbio_ss/home.png";
+import climbioDashboard from "../assets/climbio_ss/dashboard.png";
+import climbioInventory from "../assets/climbio_ss/Inventory.png";
+import climbioInvoice from "../assets/climbio_ss/Invoice.png";
+import climbioAiAdvisorOne from "../assets/climbio_ss/AI_advisor1.png";
+import climbioAiAdvisorTwo from "../assets/climbio_ss/AI_advisor2.png";
 
 export type ProjectMedia = {
   type: "image" | "video";
@@ -120,7 +126,59 @@ export const projects: Project[] = [
     github: "https://github.com/khinmyatthu2193/Climbio-2.0",
     technologies: ["React", "TypeScript", "Express", "Prisma", "PostgreSQL"],
     featured: true,
-    media: { type: "image", alt: "Climbio 2.0 business dashboard preview" },
+    media: { type: "image", src: climbioDashboard, alt: "Climbio 2.0 business dashboard preview" },
+    responsibilities: [
+      "Designed and implemented the full-stack application structure",
+      "Built secure authentication with access and refresh token flows",
+      "Developed inventory, category, invoice, dashboard, and storefront features",
+      "Modeled tenant-aware business data with Prisma and PostgreSQL",
+      "Integrated AI-powered business recommendations based on shop data",
+    ],
+    customerFeatures: [
+      "Secure registration and login",
+      "Product and inventory management with categories, stock levels, pricing, and images",
+      "Invoice creation with customer details, discounts, totals, statuses, and PDF generation",
+      "Business dashboard with revenue, stock, low-stock alerts, and sales charts",
+      "Public storefront pages using shop slugs for customer-facing browsing",
+      "Profile and shop settings for currency, logo, address, and invoice footer",
+    ],
+    adminFeatures: [
+      "Role-based access control",
+      "Tenant-aware user-owned records",
+      "Access tokens and HTTP-only refresh cookies",
+      "Password hashing with bcrypt",
+      "Security middleware with Helmet and rate limiting",
+      "Supabase Storage support for product and shop images",
+    ],
+    stack: [
+      { label: "Frontend", items: ["React", "TypeScript", "Vite", "Tailwind CSS"] },
+      { label: "State and data", items: ["Zustand", "TanStack React Query", "Axios"] },
+      { label: "Charts and UI", items: ["Recharts", "Lucide React", "React PDF"] },
+      { label: "Backend", items: ["Node.js", "Express", "TypeScript"] },
+      { label: "Database", items: ["PostgreSQL", "Prisma ORM"] },
+      { label: "Auth and security", items: ["JWT", "bcrypt", "HTTP-only refresh cookies", "Helmet", "Rate limiting"] },
+      { label: "Storage and deployment", items: ["Supabase Storage", "Docker", "Vercel-ready frontend configuration"] },
+    ],
+    highlights: [
+      "Built end-to-end business workflows for inventory, invoices, storefronts, analytics, and settings",
+      "Implemented secure JWT authentication with refresh tokens and role-based access",
+      "Generated PDF invoices from real invoice and customer data",
+      "Created dashboard charts and low-stock insights for quick business decisions",
+      "Added an AI advisor that turns shop data into sales analysis, inventory recommendations, and action plans",
+    ],
+    challenges: [
+      "Designing tenant-aware data ownership so each shop only manages its own records",
+      "Balancing complete business features with a dashboard that stays approachable for small shop owners",
+      "Connecting backend business data to useful AI recommendations instead of generic advice",
+    ],
+    gallery: [
+      { type: "image", src: climbioHome, alt: "Climbio 2.0 public storefront home page" },
+      { type: "image", src: climbioDashboard, alt: "Climbio 2.0 sales dashboard with revenue and stock insights" },
+      { type: "image", src: climbioInventory, alt: "Climbio 2.0 inventory management screen" },
+      { type: "image", src: climbioInvoice, alt: "Climbio 2.0 invoice management screen" },
+      { type: "image", src: climbioAiAdvisorOne, alt: "Climbio 2.0 AI business advisor analysis screen" },
+      { type: "image", src: climbioAiAdvisorTwo, alt: "Climbio 2.0 AI business advisor recommendation screen" },
+    ],
   },
   {
     slug: "career-ladder",
