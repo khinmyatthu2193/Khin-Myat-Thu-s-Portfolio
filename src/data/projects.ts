@@ -10,6 +10,7 @@ import brancyCheckout from "../assets/brancy_ss/checkout_page.png";
 import brancyInvoice from "../assets/brancy_ss/invoice.png";
 import brancyAdmin from "../assets/brancy_ss/django_administration.png";
 import climbioHome from "../assets/climbio_ss/home.png";
+import climbioLogin from "../assets/climbio_ss/login.png";
 import climbioDashboard from "../assets/climbio_ss/dashboard.png";
 import climbioInventory from "../assets/climbio_ss/Inventory.png";
 import climbioInvoice from "../assets/climbio_ss/Invoice.png";
@@ -180,6 +181,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       { type: "image", src: climbioHome, alt: "Climbio 2.0 public storefront home page" },
+      { type: "image", src: climbioLogin, alt: "Climbio 2.0 secure login screen" },
       { type: "image", src: climbioDarkMode, alt: "Climbio 2.0 dashboard in dark mode" },
       { type: "image", src: climbioDashboard, alt: "Climbio 2.0 sales dashboard with revenue and stock insights" },
       { type: "image", src: climbioInventory, alt: "Climbio 2.0 inventory management screen" },
