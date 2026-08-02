@@ -15,6 +15,11 @@ import climbioInventory from "../assets/climbio_ss/Inventory.png";
 import climbioInvoice from "../assets/climbio_ss/Invoice.png";
 import climbioAiAdvisorOne from "../assets/climbio_ss/AI_advisor1.png";
 import climbioAiAdvisorTwo from "../assets/climbio_ss/AI_advisor2.png";
+import climbioAiChatbot from "../assets/climbio_ss/AI_chatbot.png";
+import climbioDarkMode from "../assets/climbio_ss/Climbio_indarkmode.png";
+import climbioPublicStore from "../assets/climbio_ss/Public_Store.png";
+import climbioSettings from "../assets/climbio_ss/Setting.png";
+import climbioCustomerStore from "../assets/climbio_ss/storeview_fromcustomer.png";
 
 export type ProjectMedia = {
   type: "image" | "video";
@@ -140,7 +145,9 @@ export const projects: Project[] = [
       "Invoice creation with customer details, discounts, totals, statuses, and PDF generation",
       "Business dashboard with revenue, stock, low-stock alerts, and sales charts",
       "Public storefront pages using shop slugs for customer-facing browsing",
+      "Customer-facing store view for browsing available shop products",
       "Profile and shop settings for currency, logo, address, and invoice footer",
+      "Dark mode interface for comfortable day-to-day business use",
     ],
     adminFeatures: [
       "Role-based access control",
@@ -173,11 +180,16 @@ export const projects: Project[] = [
     ],
     gallery: [
       { type: "image", src: climbioHome, alt: "Climbio 2.0 public storefront home page" },
+      { type: "image", src: climbioDarkMode, alt: "Climbio 2.0 dashboard in dark mode" },
       { type: "image", src: climbioDashboard, alt: "Climbio 2.0 sales dashboard with revenue and stock insights" },
       { type: "image", src: climbioInventory, alt: "Climbio 2.0 inventory management screen" },
       { type: "image", src: climbioInvoice, alt: "Climbio 2.0 invoice management screen" },
+      { type: "image", src: climbioPublicStore, alt: "Climbio 2.0 public store management screen" },
+      { type: "image", src: climbioCustomerStore, alt: "Climbio 2.0 customer-facing store view" },
+      { type: "image", src: climbioSettings, alt: "Climbio 2.0 shop settings screen" },
       { type: "image", src: climbioAiAdvisorOne, alt: "Climbio 2.0 AI business advisor analysis screen" },
       { type: "image", src: climbioAiAdvisorTwo, alt: "Climbio 2.0 AI business advisor recommendation screen" },
+      { type: "image", src: climbioAiChatbot, alt: "Climbio 2.0 AI chatbot assistant screen" },
     ],
   },
   {
