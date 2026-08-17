@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Image as ImageIcon, Play } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import type { Project } from "../data/projects";
 
 export function ProjectPreview({ project, index, fit = "cover" }: { project: Project; index: number; fit?: "cover" | "contain" }) {
@@ -92,13 +93,33 @@ export default function ProjectCard({ project, index }: { project: Project; inde
         <h3 className="font-display text-3xl font-medium leading-tight transition-colors group-hover:text-primary md:text-4xl">
           <a href={`#/projects/${project.slug}`}>{project.title}</a>
         </h3>
-        <p className="mt-5 max-w-xl leading-relaxed text-textBody">{project.description}</p>
+        <p className="mt-4 max-w-xl text-lg leading-relaxed text-textBody">{project.description}</p>
+        <dl className="mt-6 grid gap-4 border-y border-borderSoft py-5 sm:grid-cols-2">
+          <div>
+            <dt className="label-sm text-primary">Problem</dt>
+            <dd className="mt-2 line-clamp-2 text-sm leading-relaxed text-textDim">{project.challenge}</dd>
+          </div>
+          <div>
+            <dt className="label-sm text-primary">What I built</dt>
+            <dd className="mt-2 line-clamp-2 text-sm leading-relaxed text-textDim">{project.solution}</dd>
+          </div>
+          {project.role && (
+            <div className="sm:col-span-2">
+              <dt className="label-sm text-primary">My contribution</dt>
+              <dd className="mt-2 text-sm text-textMain">{project.role}</dd>
+            </div>
+          )}
+        </dl>
         <div className="mt-5 flex flex-wrap gap-2">
           {project.technologies.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
         </div>
-        <a href={`#/projects/${project.slug}`} className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-textMain transition-colors hover:text-primary">
-          View case study <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-        </a>
+        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a href={`#/projects/${project.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-textMain transition-colors hover:text-primary">
+            View case study <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </a>
+          {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" className="text-link text-sm">Live demo <ArrowUpRight size={15} /></a>}
+          {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="text-link text-sm"><FaGithub size={15} /> GitHub <ArrowUpRight size={14} /></a>}
+        </div>
       </div>
     </motion.article>
   );

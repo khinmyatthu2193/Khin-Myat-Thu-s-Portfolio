@@ -4,10 +4,10 @@ import profile from "../assets/khin.jpg";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative z-10 flex min-h-screen items-center px-5 pb-16 pt-28 sm:px-8 lg:px-12">
+    <section id="home" className="relative z-10 flex items-center px-5 pb-16 pt-32 sm:min-h-[760px] sm:px-8 sm:pb-20 sm:pt-36 lg:min-h-[min(820px,92vh)] lg:px-12">
       <div className="mx-auto grid w-full max-w-[1400px] items-center gap-12 lg:grid-cols-[1.18fr_0.82fr] lg:gap-16">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <div className="mb-8 flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.16em] text-textDim">
+          <div className="mb-7 flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.16em] text-textDim">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-3 py-2 text-primary">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" /> Open to opportunities
             </span>
@@ -19,16 +19,22 @@ export default function Hero() {
             <span className="block text-gradient">Thu.</span>
           </h1>
 
-          <div className="mt-8 grid max-w-3xl gap-7 border-l border-primary/50 pl-6 sm:grid-cols-[1fr_auto] sm:items-end">
-            <p className="max-w-xl text-lg leading-relaxed text-textBody md:text-xl">
-              Final-year Computer Science student and full-stack developer building practical web, mobile, and AI-powered products.
+          <div className="mt-7 max-w-3xl border-l border-primary/50 pl-6">
+            <p className="max-w-[34rem] text-xl font-medium leading-relaxed text-textMain md:text-2xl">
+              Full-stack developer building practical web, mobile, and AI-powered products.
             </p>
-            <a href="#projects" className="group inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg transition-transform hover:rotate-[-8deg] hover:scale-105" aria-label="View selected projects">
-              <ArrowDownRight size={23} />
+            <p className="mt-3 text-sm leading-relaxed text-textDim md:text-base">
+              Final-year Computer Science student at MIIT.
+            </p>
+            <a href="#projects" className="group mt-6 inline-flex min-h-14 items-center gap-3 rounded-full text-sm font-semibold text-textMain transition-colors hover:text-primary" aria-label="Explore selected projects">
+              <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg transition-transform group-hover:-rotate-6 group-hover:scale-[1.03]">
+                <ArrowDownRight size={23} aria-hidden="true" />
+              </span>
+              Explore projects
             </a>
           </div>
 
-          <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm">
+          <div className="mt-7 flex flex-wrap gap-x-7 gap-y-3 text-sm">
             <a className="text-link group" href="#contact">Contact <ArrowUpRight size={15} /></a>
             <a className="text-link group" href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a>
             <a className="text-link group" href="https://www.linkedin.com/in/khin-myat-thu-837892352" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a>

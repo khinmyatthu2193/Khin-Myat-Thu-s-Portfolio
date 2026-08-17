@@ -42,11 +42,11 @@ export default function Skills() {
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        className="border-y border-borderSoft py-14 md:py-20"
+        className="border-y border-borderSoft py-12 md:py-16"
       >
-        <div className="grid gap-8 border-b border-borderSoft pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div className="grid gap-7 border-b border-borderSoft pb-9 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
-            <p className="eyebrow">02 / Skills &amp; languages</p>
+            <p className="eyebrow">03 / Skills &amp; languages</p>
             <h2 className="section-title mt-5">The tools behind the <span className="text-gradient italic">work.</span></h2>
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
@@ -70,7 +70,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.07 }}
-              className={`group relative border-borderSoft py-9 transition-colors hover:bg-primary/[0.035] md:p-9 ${
+              className={`group relative border-borderSoft py-7 transition-colors hover:bg-primary/[0.035] md:p-7 ${
                 index % 2 === 0 ? "md:border-r" : "md:pl-12"
               } ${index < 2 ? "border-b" : ""}`}
             >
@@ -83,9 +83,9 @@ export default function Skills() {
                 </div>
                 <span className="h-px flex-1 translate-y-5 bg-borderSoft transition-colors group-hover:bg-primary/25" />
               </div>
-              <h3 className="mt-6 font-display text-2xl font-medium md:text-3xl">{title}</h3>
+              <h3 className="mt-5 font-display text-2xl font-medium md:text-[1.7rem]">{title}</h3>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-textBody">{description}</p>
-              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
                 {skills.map((skill) => (
                   <span key={skill} className="text-xs font-medium uppercase tracking-[0.1em] text-textMuted before:mr-2 before:text-primary before:content-['/']">
                     {skill}

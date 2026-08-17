@@ -98,15 +98,15 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
             className="nav-logo pointer-events-none absolute -left-[46px] -top-[21px] w-[150px] max-w-none transition-transform group-hover:scale-[1.03]"
           />
         </a>
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-5 lg:flex">
           {links.map(({ name, href, icon: Icon }) => (
             <a key={name} href={href} aria-current={activeSection === href ? "location" : undefined} className={`relative inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
               <Icon size={15} aria-hidden="true" /> {name}
               {activeSection === href && <span className="absolute -bottom-1 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-primary" />}
             </a>
           ))}
-          <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm text-primary transition-colors hover:bg-primary hover:text-bg">
-            <Mail size={16} aria-hidden="true" /> My contacts
+          <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-primaryGlow focus-visible:outline-offset-2">
+            <Mail size={16} aria-hidden="true" /> Contact
           </a>
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </div>
@@ -134,7 +134,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
               </a>
             ))}
             <a href="#contact" onClick={() => setOpen(false)} className="mt-7 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
-              <Mail size={18} aria-hidden="true" /> My contacts
+              <Mail size={18} aria-hidden="true" /> Contact
             </a>
           </motion.div>
         )}

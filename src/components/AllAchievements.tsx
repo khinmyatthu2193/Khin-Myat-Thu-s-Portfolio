@@ -16,7 +16,7 @@ export default function AllAchievements() {
 
   return (
     <main id="main-content" className="relative z-10">
-      <section className="section-shell pb-14 pt-36 md:pb-20 md:pt-44">
+      <section className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
         <a href="#home" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
           <ArrowLeft size={17} /> Back home
         </a>

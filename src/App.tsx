@@ -31,15 +31,15 @@ function HomePage() {
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"
+            className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16"
           >
             <div>
               <p className="eyebrow">01 / About</p>
               <h2 className="section-title mt-5">I build useful ideas into products people can trust.</h2>
             </div>
 
-            <div className="lg:pt-9">
-              <p className="text-xl leading-relaxed text-textBody md:text-2xl md:leading-relaxed">
+            <div className="lg:pt-7">
+              <p className="max-w-3xl text-xl leading-[1.65] text-textBody md:text-2xl">
                 I’m a final-year Computer Science student at the Myanmar Institute of Information Technology, focused on turning practical problems into thoughtful digital products—from mobile-first business tools to AI-assisted systems.
               </p>
               <div className="mt-9 grid gap-3 sm:grid-cols-3">
@@ -50,23 +50,23 @@ function HomePage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-borderSoft bg-borderSoft sm:grid-cols-3">
-                {[
-                  ["MIIT", "Final-year CS"],
-                  ["6+", "Products built"],
-                  ["2×", "First-place wins"],
-                ].map(([value, label]) => (
-                  <div key={label} className="bg-bgCard/90 p-5 sm:p-6">
-                    <p className="font-display text-3xl font-semibold text-primary">{value}</p>
-                    <p className={`label-sm text-textMuted`}>{label}</p>
-                  </div>
-                ))}
+              <div className="mt-9 grid gap-px overflow-hidden rounded-2xl border border-borderSoft bg-borderSoft sm:grid-cols-[1.15fr_1fr_1fr]">
+                <div className="bg-bgCard/90 p-5 sm:p-6">
+                  <p className="label-sm text-textMuted">Education</p>
+                  <p className="mt-2 font-display text-xl font-semibold text-textMain">Final-year CS · MIIT</p>
+                </div>
+                <a href="#projects" className="group bg-bgCard/90 p-5 transition-colors hover:bg-primary/[0.06] sm:p-6" aria-label="Explore six or more products built">
+                  <p className="font-display text-3xl font-semibold text-primary">6+</p>
+                  <p className="label-sm text-textMuted group-hover:text-textMain">Products built</p>
+                </a>
+                <a href="#achievements" className="group bg-bgCard/90 p-5 transition-colors hover:bg-primary/[0.06] sm:p-6" aria-label="View two first-place wins">
+                  <p className="font-display text-3xl font-semibold text-primary">2×</p>
+                  <p className="label-sm text-textMuted group-hover:text-textMain">First-place wins</p>
+                </a>
               </div>
             </div>
           </motion.div>
         </section>
-
-        <Skills />
 
         <section id="projects" className="section-shell scroll-mt-20">
           <motion.div
@@ -76,7 +76,7 @@ function HomePage() {
             className="mb-12 flex flex-col gap-7 md:flex-row md:items-end md:justify-between"
           >
             <div>
-              <p className="eyebrow">03 / Selected work</p>
+              <p className="eyebrow">02 / Selected work</p>
               <h2 className="section-title mt-5">Projects with purpose.</h2>
             </div>
             <a href="#/projects" className="text-link group">
@@ -95,6 +95,8 @@ function HomePage() {
             </a>
           </div>
         </section>
+
+        <Skills />
 
         <Achievements />
 

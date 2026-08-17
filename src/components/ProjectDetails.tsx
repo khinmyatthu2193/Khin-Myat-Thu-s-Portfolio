@@ -22,7 +22,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
   return (
     <main id="main-content" className="relative z-10">
       <article>
-        <header className="section-shell pb-12 pt-36 md:pb-16 md:pt-44">
+        <header className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
           <a href="#/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
             <ArrowLeft size={17} /> All projects
           </a>
@@ -33,9 +33,11 @@ export default function ProjectDetails({ project }: { project: Project }) {
           </h1>
           <p className="mt-7 max-w-3xl text-xl leading-relaxed text-textBody md:text-2xl">{project.description}</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-bg">
-              <FaGithub size={17} /> View repository <ArrowUpRight size={16} />
-            </a>
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-bg">
+                <FaGithub size={17} /> View repository <ArrowUpRight size={16} />
+              </a>
+            )}
             {project.liveUrl && (
               <a href={project.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-borderMedium px-5 py-3 text-sm font-semibold">
                 Live demo <ArrowUpRight size={16} />
