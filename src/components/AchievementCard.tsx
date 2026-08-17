@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Award, Image as ImageIcon, Trophy } from "lucide-react";
 import type { Achievement } from "../data/achievements";
 
-export function AchievementVisual({ achievement }: { achievement: Achievement }) {
+export function AchievementVisual({ achievement, fit = "cover" }: { achievement: Achievement; fit?: "cover" | "contain" }) {
   if (achievement.image) {
     return (
       <img
         src={achievement.image}
         alt={achievement.imageAlt ?? achievement.title}
         loading="lazy"
-        className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
+        className={`h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} transition duration-700 group-hover:scale-[1.025]`}
       />
     );
   }

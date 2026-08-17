@@ -33,8 +33,8 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
         </header>
 
         <section className="mx-auto grid max-w-[1400px] gap-10 px-5 pb-24 sm:px-8 md:pb-32 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-12">
-          <div className="achievement-media group relative aspect-[4/3] min-h-[300px] overflow-hidden rounded-3xl border border-borderSoft">
-            <AchievementVisual achievement={achievement} />
+          <div className="achievement-media group relative aspect-[4/3] min-h-[300px] overflow-hidden rounded-3xl border border-borderSoft bg-bgCard p-2 sm:p-4">
+            <AchievementVisual achievement={achievement} fit="contain" />
           </div>
           <div className="lg:pl-8">
             <p className="eyebrow">The milestone</p>
@@ -68,8 +68,12 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
               {achievement.gallery.map((item, index) => (
                 <motion.figure
                   key={item.src}
-                  variants={{ hidden: { opacity: 0, y: 26 }, visible: { opacity: 1, y: 0 } }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  variants={{
+                    hidden: { opacity: 0, y: 20, rotateY: index % 2 === 0 ? -18 : 18, scale: 0.97 },
+                    visible: { opacity: 1, y: 0, rotateY: 0, scale: 1 },
+                  }}
+                  transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ transformPerspective: 1200, transformOrigin: index % 2 === 0 ? "left center" : "right center" }}
                   className={`${index === 0 ? "md:col-span-2" : ""} group overflow-hidden rounded-2xl border border-borderSoft bg-bgCard transition-colors hover:border-primary/35`}
                 >
                   <button
