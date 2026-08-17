@@ -9,14 +9,14 @@ export default function Hero() {
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           <div className="mb-8 flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.16em] text-textDim">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-3 py-2 text-primary">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" /> Available for opportunities
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" /> Open to opportunities
             </span>
             <span className="inline-flex items-center gap-1.5"><MapPin size={13} /> Mandalay, Myanmar</span>
           </div>
 
           <h1 className="font-display text-[clamp(3rem,7vw,7.2rem)] font-medium leading-[0.88] tracking-[-0.05em]">
             <span className="text-gradient">Khin Myat</span>
-            <span className="block text-gradient italic">Thu.</span>
+            <span className="block text-gradient">Thu.</span>
           </h1>
 
           <div className="mt-8 grid max-w-3xl gap-7 border-l border-primary/50 pl-6 sm:grid-cols-[1fr_auto] sm:items-end">
