@@ -21,7 +21,7 @@ export default function Hero() {
 
           <div className="mt-8 grid max-w-3xl gap-7 border-l border-primary/50 pl-6 sm:grid-cols-[1fr_auto] sm:items-end">
             <p className="max-w-xl text-lg leading-relaxed text-textBody md:text-xl">
-              Full-stack developer and product builder creating clear, human-centered web, mobile, and AI experiences.
+              Final-year Computer Science student and full-stack developer building practical web, mobile, and AI-powered products.
             </p>
             <a href="#projects" className="group inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg transition-transform hover:rotate-[-8deg] hover:scale-105" aria-label="View selected projects">
               <ArrowDownRight size={23} />

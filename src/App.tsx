@@ -40,7 +40,7 @@ function HomePage() {
 
             <div className="lg:pt-9">
               <p className="text-xl leading-relaxed text-textBody md:text-2xl md:leading-relaxed">
-                I’m a final-year Computer Science student focused on turning practical problems into thoughtful digital products—from mobile-first business tools to AI-assisted systems.
+                I’m a final-year Computer Science student at the Myanmar Institute of Information Technology, focused on turning practical problems into thoughtful digital products—from mobile-first business tools to AI-assisted systems.
               </p>
               <div className="mt-9 grid gap-3 sm:grid-cols-3">
                 {strengths.map((item) => (
@@ -54,7 +54,7 @@ function HomePage() {
                 {[
                   ["MIIT", "Final-year CS"],
                   ["6+", "Products built"],
-                  ["1st", "Hackathon 2026"],
+                  ["2×", "First-place wins"],
                 ].map(([value, label]) => (
                   <div key={label} className="bg-bgCard/90 p-5 sm:p-6">
                     <p className="font-display text-3xl font-semibold text-primary">{value}</p>

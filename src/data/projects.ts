@@ -9,18 +9,6 @@ import brancyCart from "../assets/brancy_ss/cart.png";
 import brancyCheckout from "../assets/brancy_ss/checkout_page.png";
 import brancyInvoice from "../assets/brancy_ss/invoice.png";
 import brancyAdmin from "../assets/brancy_ss/django_administration.png";
-import climbioHome from "../assets/climbio_ss/home.png";
-import climbioLogin from "../assets/climbio_ss/login.png";
-import climbioDashboard from "../assets/climbio_ss/dashboard.png";
-import climbioInventory from "../assets/climbio_ss/Inventory.png";
-import climbioInvoice from "../assets/climbio_ss/Invoice.png";
-import climbioAiAdvisorOne from "../assets/climbio_ss/AI_advisor1.png";
-import climbioAiAdvisorTwo from "../assets/climbio_ss/AI_advisor2.png";
-import climbioAiChatbot from "../assets/climbio_ss/AI_chatbot.png";
-import climbioDarkMode from "../assets/climbio_ss/Climbio_indarkmode.png";
-import climbioPublicStore from "../assets/climbio_ss/Public_Store.png";
-import climbioSettings from "../assets/climbio_ss/Setting.png";
-import climbioCustomerStore from "../assets/climbio_ss/storeview_fromcustomer.png";
 
 export type ProjectMedia = {
   type: "image" | "video";
@@ -108,10 +96,10 @@ export const projects: Project[] = [
     title: "RecycleLink – EcoCommerce Platform",
     category: "Web",
     date: "Dec 2024 – Mar 2025",
-    description: "Developed a real-time recycling and supplier notification system using Django Channels and WebSockets to improve waste collection coordination.",
+    description: "Developed a real-time recycling platform with location-based supplier notifications using Django Channels and WebSockets.",
     overview: "A coordination platform that connects recycling activity with suppliers through timely notifications and live status updates.",
     challenge: "Waste collection updates can quickly become outdated when communication is fragmented across different people and channels.",
-    solution: "I used WebSockets and Django Channels to keep important supplier and collection updates synchronized in real time.",
+    solution: "I used proximity matching, WebSockets, and Django Channels to notify nearby suppliers and keep collection updates synchronized in real time.",
     github: "https://github.com/khinmyatthu2193",
     technologies: ["Django Channels", "WebSockets", "PostgreSQL"],
     featured: true,
@@ -119,79 +107,44 @@ export const projects: Project[] = [
   },
   {
     slug: "climbio",
-    title: "Climbio 2.0 - Smart SME Business Suite",
-    category: "Web",
-    date: "2026",
-    subtitle: "Full-Stack Business Management Web Application",
-    projectType: "SaaS-style Web Application / SME Business Suite",
+    title: "Climbio – MSME Smart Business Toolkit",
+    category: "Mobile",
+    date: "Jun 2025 – Oct 2025",
+    subtitle: "Mobile-First Business Management Application",
+    projectType: "Mobile Application / MSME Business Toolkit",
     role: "Full-Stack Developer",
-    description: "A smart business suite for SMEs that helps shop owners manage inventory, invoices, customers, sales analytics, and public storefronts from one dashboard.",
-    overview: "Climbio 2.0 is a full-stack web application designed for small and medium businesses, especially shop owners in Myanmar. It brings product management, invoice workflows, sales performance, public shop visibility, authentication, and AI-powered business advice into one practical system.",
-    challenge: "Many small shop owners rely on separate tools, notebooks, chat apps, or spreadsheets to track products, stock, invoices, and sales. This makes it harder to understand performance, avoid low-stock problems, and keep customer-facing product information organized.",
-    solution: "I built a unified dashboard where business owners can manage products and categories, create invoices, review sales and stock alerts, publish public storefront pages, configure shop settings, and use an AI advisor that analyzes business data to generate practical recommendations.",
-    github: "https://github.com/khinmyatthu2193/Climbio-2.0",
-    technologies: ["React", "TypeScript", "Express", "Prisma", "PostgreSQL"],
+    description: "A mobile-first business toolkit for MSMEs with MiniCatalog, Smart Inbox, and referral-tracking modules.",
+    overview: "Climbio helps small and medium businesses digitize everyday customer and product workflows through an approachable mobile experience.",
+    challenge: "Many MSMEs manage products, customer messages, and referrals across disconnected manual tools.",
+    solution: "I designed a scalable React Native and Firebase application that brings catalogs, customer conversations, and referral tracking into one mobile toolkit.",
+    github: "https://github.com/khinmyatthu2193",
+    technologies: ["React Native", "Firebase", "JavaScript"],
     featured: true,
-    media: { type: "image", src: climbioDashboard, alt: "Climbio 2.0 business dashboard preview" },
+    media: { type: "image", alt: "Climbio MSME mobile toolkit preview" },
     responsibilities: [
-      "Designed and implemented the full-stack application structure",
-      "Built secure authentication with access and refresh token flows",
-      "Developed inventory, category, invoice, dashboard, and storefront features",
-      "Modeled tenant-aware business data with Prisma and PostgreSQL",
-      "Integrated AI-powered business recommendations based on shop data",
+      "Built a mobile-first business management experience for MSMEs",
+      "Designed the MiniCatalog, Smart Inbox, and referral-tracking modules",
+      "Connected application workflows to Firebase services",
+      "Focused on scalable architecture and an approachable mobile user experience",
     ],
     customerFeatures: [
-      "Secure registration and login",
-      "Product and inventory management with categories, stock levels, pricing, and images",
-      "Invoice creation with customer details, discounts, totals, statuses, and PDF generation",
-      "Business dashboard with revenue, stock, low-stock alerts, and sales charts",
-      "Public storefront pages using shop slugs for customer-facing browsing",
-      "Customer-facing store view for browsing available shop products",
-      "Profile and shop settings for currency, logo, address, and invoice footer",
-      "Dark mode interface for comfortable day-to-day business use",
-    ],
-    adminFeatures: [
-      "Role-based access control",
-      "Tenant-aware user-owned records",
-      "Access tokens and HTTP-only refresh cookies",
-      "Password hashing with bcrypt",
-      "Security middleware with Helmet and rate limiting",
-      "Supabase Storage support for product and shop images",
+      "MiniCatalog for presenting products and services",
+      "Smart Inbox for managing customer conversations",
+      "Referral tracking for business growth",
+      "Mobile-first workflows designed for small-business owners",
     ],
     stack: [
-      { label: "Frontend", items: ["React", "TypeScript", "Vite", "Tailwind CSS"] },
-      { label: "State and data", items: ["Zustand", "TanStack React Query", "Axios"] },
-      { label: "Charts and UI", items: ["Recharts", "Lucide React", "React PDF"] },
-      { label: "Backend", items: ["Node.js", "Express", "TypeScript"] },
-      { label: "Database", items: ["PostgreSQL", "Prisma ORM"] },
-      { label: "Auth and security", items: ["JWT", "bcrypt", "HTTP-only refresh cookies", "Helmet", "Rate limiting"] },
-      { label: "Storage and deployment", items: ["Supabase Storage", "Docker", "Vercel-ready frontend configuration"] },
+      { label: "Mobile", items: ["React Native", "JavaScript"] },
+      { label: "Backend services", items: ["Firebase"] },
     ],
     highlights: [
-      "Built end-to-end business workflows for inventory, invoices, storefronts, analytics, and settings",
-      "Implemented secure JWT authentication with refresh tokens and role-based access",
-      "Generated PDF invoices from real invoice and customer data",
-      "Created dashboard charts and low-stock insights for quick business decisions",
-      "Added an AI advisor that turns shop data into sales analysis, inventory recommendations, and action plans",
+      "Combined several everyday MSME workflows in one focused toolkit",
+      "Designed the product around practical mobile use",
+      "Created modular features that can grow with a business",
     ],
     challenges: [
-      "Designing tenant-aware data ownership so each shop only manages its own records",
-      "Balancing complete business features with a dashboard that stays approachable for small shop owners",
-      "Connecting backend business data to useful AI recommendations instead of generic advice",
-    ],
-    gallery: [
-      { type: "image", src: climbioHome, alt: "Climbio 2.0 public storefront home page" },
-      { type: "image", src: climbioLogin, alt: "Climbio 2.0 secure login screen" },
-      { type: "image", src: climbioDarkMode, alt: "Climbio 2.0 dashboard in dark mode" },
-      { type: "image", src: climbioDashboard, alt: "Climbio 2.0 sales dashboard with revenue and stock insights" },
-      { type: "image", src: climbioInventory, alt: "Climbio 2.0 inventory management screen" },
-      { type: "image", src: climbioInvoice, alt: "Climbio 2.0 invoice management screen" },
-      { type: "image", src: climbioPublicStore, alt: "Climbio 2.0 public store management screen" },
-      { type: "image", src: climbioCustomerStore, alt: "Climbio 2.0 customer-facing store view" },
-      { type: "image", src: climbioSettings, alt: "Climbio 2.0 shop settings screen" },
-      { type: "image", src: climbioAiAdvisorOne, alt: "Climbio 2.0 AI business advisor analysis screen" },
-      { type: "image", src: climbioAiAdvisorTwo, alt: "Climbio 2.0 AI business advisor recommendation screen" },
-      { type: "image", src: climbioAiChatbot, alt: "Climbio 2.0 AI chatbot assistant screen" },
+      "Keeping a multi-feature business toolkit simple on small screens",
+      "Designing modules that support different MSME workflows",
     ],
   },
   {
@@ -213,10 +166,10 @@ export const projects: Project[] = [
     title: "Future Harvest – Smart Agriculture System",
     category: "Innovation",
     date: "Nov 2025",
-    description: "Proposed a climate-resilient agriculture solution focused on food security and sustainable production using smart technology concepts.",
+    description: "Proposed a sustainable agriculture solution using SMNR technology, focused on food security and climate resilience.",
     overview: "A smart-agriculture concept exploring how accessible technology can support resilient food production.",
     challenge: "Farmers and food systems need practical ways to respond to climate pressure while protecting long-term productivity.",
-    solution: "I shaped a connected product concept around better information, sustainable decisions, and climate-resilient production.",
+    solution: "I shaped a sustainable production concept around SMNR technology, better information, and climate-resilient farming decisions.",
     github: "https://github.com/khinmyatthu2193",
     technologies: ["Innovation", "Sustainability", "AgriTech"],
     featured: false,

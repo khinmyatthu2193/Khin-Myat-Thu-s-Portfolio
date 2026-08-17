@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
-import { Check, Copy, Mail, MapPin, Phone } from "lucide-react";
+import { Check, Copy, Mail, MapPin } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 
 const contacts = [
   { label: "Email", value: "khinmyatthu2193@gmail.com", href: "mailto:khinmyatthu2193@gmail.com", icon: Mail, copy: true },
-  { label: "Phone", value: "+959 797 237 421", href: "tel:+959797237421", icon: Phone, copy: true },
   { label: "Location", value: "Mandalay, Myanmar", icon: MapPin },
 ];
 
