@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDownRight, ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import profile from "../assets/khin.jpg";
 import { assetUrl } from "@/lib/asset-url";
@@ -28,12 +28,10 @@ export default function Hero() {
             <p className="mt-3 text-sm leading-relaxed text-textDim md:text-base">
               I&apos;m still learning and experimenting — but I keep building.
             </p>
-            <Link href="/projects" className="group mt-6 inline-flex min-h-14 items-center gap-3 rounded-full text-sm font-semibold text-textMain transition-colors hover:text-primary" aria-label="Explore selected projects">
-              <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg transition-transform group-hover:-rotate-6 group-hover:scale-[1.03]">
-                <ArrowDownRight size={23} aria-hidden="true" />
-              </span>
-              Explore projects
-            </Link>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/projects" className="button-primary">View My Projects <ArrowUpRight size={17} aria-hidden="true" /></Link>
+              <Link href="/about-me" className="button-secondary">About Me</Link>
+            </div>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-x-7 gap-y-3 text-sm">

@@ -12,7 +12,7 @@ export default function Blog() {
       >
         <div className="mb-12 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
           <div>
-            <p className="eyebrow">05 / Learning notes</p>
+            <p className="eyebrow">05 / Blog</p>
             <h2 className="section-title mt-5">What I’m learning.</h2>
           </div>
           <p className="max-w-2xl self-end text-lg leading-relaxed text-textBody">

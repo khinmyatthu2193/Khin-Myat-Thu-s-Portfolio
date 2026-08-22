@@ -38,6 +38,7 @@
 }
 @layer components {
   .section-shell { @apply relative z-10 mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-24 lg:px-12; }
+  .home-section { @apply relative z-10 mx-auto max-w-[1400px] px-5 py-14 sm:px-8 md:py-16 lg:px-12 lg:py-20; }
   .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.15em] text-primary; }
   .section-title { @apply font-display text-4xl font-medium leading-[1.02] tracking-[-0.035em] text-balance sm:text-5xl lg:text-6xl; }
   .text-body { color: rgb(var(--color-text-body)); }
@@ -45,6 +46,8 @@
   .label-sm { @apply text-xs font-semibold uppercase tracking-[0.14em]; }
   .text-link { @apply inline-flex items-center gap-1.5 text-textMain underline decoration-borderMedium underline-offset-4 transition-colors hover:text-primary; }
   .social-button { @apply inline-flex items-center gap-2 rounded-full border border-borderMedium px-4 py-2.5 text-sm text-textDim transition-colors hover:border-primary hover:text-primary; }
+  .button-primary { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-bg transition-colors hover:bg-primaryGlow; }
+  .button-secondary { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-primary/35 px-6 py-3 text-sm font-semibold text-textMain transition-colors hover:border-primary hover:text-primary; }
 }
 @layer utilities {
   .font-display { font-family: 'Playfair Display', Georgia, serif; }

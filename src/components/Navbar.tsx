@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Award, BriefcaseBusiness, Code2, Home, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
+import { BriefcaseBusiness, Code2, Home, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -9,10 +9,9 @@ import { assetUrl } from "@/lib/asset-url";
 const links = [
   { name: "Home", href: "/", icon: Home },
   { name: "About", href: "/about-me", icon: UserRound },
-  { name: "Skills", href: "/skills", icon: Code2 },
   { name: "Projects", href: "/projects", icon: BriefcaseBusiness },
-  { name: "Achievements", href: "/achievements", icon: Award },
-  { name: "Learning Notes", href: "/blogs", icon: NotebookPen },
+  { name: "Skills", href: "/skills", icon: Code2 },
+  { name: "Blog", href: "/blogs", icon: NotebookPen },
 ];
 
 interface ThemeToggleProps {
@@ -84,7 +83,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
             className="nav-logo pointer-events-none absolute -left-[46px] -top-[21px] w-[150px] max-w-none transition-transform group-hover:scale-[1.03]"
           />
         </Link>
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {links.map(({ name, href, icon: Icon }) => (
             <Link key={name} href={href} aria-current={activeSection === href ? "page" : undefined} className={`relative inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
               <Icon size={15} aria-hidden="true" /> {name}

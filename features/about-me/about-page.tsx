@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import portrait from "@/src/assets/khin1.jpg";
+import { AchievementsPreview } from "@/src/components/HomePreviews";
 
 export function AboutPage() {
   return (
@@ -28,6 +29,7 @@ export function AboutPage() {
           <p className="eyebrow">Community</p><h2 className="mt-3 font-display text-3xl">Talkware</h2><p className="mt-3 max-w-3xl leading-relaxed text-textBody">Since December 2025, I&apos;ve contributed as a Coordinator, Event Owner, and Workflow Designer. One example is the Talkware June Meetup — Developer Productivity Hacks and Tools.</p>
         </div>
       </section>
+      <AchievementsPreview />
     </main>
   );
 }
