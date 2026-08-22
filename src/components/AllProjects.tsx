@@ -15,7 +15,7 @@ export default function AllProjects() {
   return (
     <main id="main-content" className="relative z-10">
       <section className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
-        <a href="#home" className="mb-7 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
+        <a href="/" className="mb-7 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
           <ArrowLeft size={17} /> Back home
         </a>
         <p className="eyebrow">Selected work / Archive</p>

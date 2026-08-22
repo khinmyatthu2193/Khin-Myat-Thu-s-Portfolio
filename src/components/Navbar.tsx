@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import logo from "../assets/my_logo.png";
 
 const links = [
-  { name: "About", href: "#about", icon: UserRound },
-  { name: "Skills", href: "#skills", icon: Code2 },
-  { name: "Projects", href: "#projects", icon: BriefcaseBusiness },
-  { name: "Achievements", href: "#achievements", icon: Award },
-  { name: "Learning Notes", href: "#blog", icon: NotebookPen },
+  { name: "About", href: "/about-me", icon: UserRound },
+  { name: "Skills", href: "/about-me#skills", icon: Code2 },
+  { name: "Projects", href: "/projects", icon: BriefcaseBusiness },
+  { name: "Achievements", href: "/achievements", icon: Award },
+  { name: "Learning Notes", href: "/about-me#blog", icon: NotebookPen },
 ];
 
 interface ThemeToggleProps {
@@ -35,10 +35,10 @@ function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
 export default function Navbar({ isHome = true }: { isHome?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection] = useState(() => typeof window === "undefined" ? "" : links.find(({ href }) => href.split("#")[0] === window.location.pathname)?.href ?? "");
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [theme, setTheme] = useState<"light" | "dark">(() =>
-    document.documentElement.classList.contains("light") ? "light" : "dark",
+    typeof document !== "undefined" && document.documentElement.classList.contains("light") ? "light" : "dark",
   );
 
   useEffect(() => {
@@ -47,23 +47,6 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
-
-  useEffect(() => {
-    const sections = links
-      .map(({ href }) => document.querySelector(href))
-      .filter((section): section is Element => section !== null);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActiveSection(`#${visible.target.id}`);
-      },
-      { rootMargin: "-25% 0px -60%", threshold: [0, 0.1, 0.5] },
-    );
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -91,7 +74,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
       scrolled && !open ? "border-b border-borderSoft bg-bg/80 backdrop-blur-xl" : ""
     }`}>
       <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Main navigation">
-        <a href="#home" className="group relative h-14 w-16 shrink-0 overflow-hidden" aria-label="Khin Myat Thu, home">
+        <a href="/" className="group relative h-14 w-16 shrink-0 overflow-hidden" aria-label="Khin Myat Thu, home">
           <img
             src={logo}
             alt=""
@@ -105,7 +88,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
               {activeSection === href && <span className="absolute -bottom-1 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-primary" />}
             </a>
           ))}
-          <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-primaryGlow focus-visible:outline-offset-2">
+          <a href="/contact-me" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-primaryGlow focus-visible:outline-offset-2">
             <Mail size={16} aria-hidden="true" /> Contact
           </a>
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
@@ -133,7 +116,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
                 <span className="ml-3 inline-flex items-center gap-3 text-textDim"><Icon className="shrink-0" size={26} aria-hidden="true" /> {name}</span>
               </a>
             ))}
-            <a href="#contact" onClick={() => setOpen(false)} className="mt-7 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
+            <a href="/contact-me" onClick={() => setOpen(false)} className="mt-7 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
               <Mail size={18} aria-hidden="true" /> Contact
             </a>
           </motion.div>

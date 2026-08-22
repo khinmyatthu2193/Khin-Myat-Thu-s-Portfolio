@@ -22,7 +22,7 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
     <main id="main-content" className="relative z-10">
       <article>
         <header className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
-          <a href="#/achievements" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
+          <a href="/achievements" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
             <ArrowLeft size={17} /> All achievements
           </a>
           <p className="eyebrow">{achievement.type} / {achievement.date}</p>

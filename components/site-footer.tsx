@@ -1,0 +1,2 @@
+import Link from "next/link";
+export function SiteFooter() { return <footer className="border-t border-line"><div className="shell flex flex-col gap-5 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} Khin Myat Thu. Built with care.</p><div className="flex gap-5"><Link href="https://github.com/khinmyatthu2193">GitHub</Link><Link href="https://www.linkedin.com/in/khin-myat-thu-837892352">LinkedIn</Link><Link href="/contact-me">Email</Link></div></div></footer>; }

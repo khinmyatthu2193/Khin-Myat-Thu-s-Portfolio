@@ -21,12 +21,12 @@ export default function Hero() {
 
           <div className="mt-7 max-w-3xl border-l border-primary/50 pl-6">
             <p className="max-w-[34rem] text-xl font-medium leading-relaxed text-textMain md:text-2xl">
-              Full-stack developer building practical web, mobile, and AI-powered products.
+              CS student turning ideas into practical web, mobile, and AI-powered products.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-textDim md:text-base">
-              Final-year Computer Science student at MIIT.
+              Final-year @ MIIT · Exploring full-stack development &amp; AI
             </p>
-            <a href="#projects" className="group mt-6 inline-flex min-h-14 items-center gap-3 rounded-full text-sm font-semibold text-textMain transition-colors hover:text-primary" aria-label="Explore selected projects">
+            <a href="/projects" className="group mt-6 inline-flex min-h-14 items-center gap-3 rounded-full text-sm font-semibold text-textMain transition-colors hover:text-primary" aria-label="Explore selected projects">
               <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg transition-transform group-hover:-rotate-6 group-hover:scale-[1.03]">
                 <ArrowDownRight size={23} aria-hidden="true" />
               </span>
@@ -35,7 +35,7 @@ export default function Hero() {
           </div>
 
           <div className="mt-7 flex flex-wrap gap-x-7 gap-y-3 text-sm">
-            <a className="text-link group" href="#contact">Contact <ArrowUpRight size={15} /></a>
+            <a className="text-link group" href="/contact-me">Contact <ArrowUpRight size={15} /></a>
             <a className="text-link group" href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a>
             <a className="text-link group" href="https://www.linkedin.com/in/khin-myat-thu-837892352" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a>
           </div>

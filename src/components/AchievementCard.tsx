@@ -36,7 +36,7 @@ export default function AchievementCard({ achievement, index }: { achievement: A
       transition={{ duration: 0.4, delay: Math.min(index * 0.06, 0.2) }}
       className="group"
     >
-      <a href={`#/achievements/${achievement.slug}`} className="block h-full" aria-label={`View ${achievement.title}`}>
+      <a href={`/achievements/${achievement.slug}`} className="block h-full" aria-label={`View ${achievement.title}`}>
         <div className="achievement-media relative aspect-[4/3] overflow-hidden rounded-2xl border border-borderSoft">
           <AchievementVisual achievement={achievement} />
         </div>

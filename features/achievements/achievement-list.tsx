@@ -1,0 +1,3 @@
+import { Trophy } from "lucide-react";
+import { achievements } from "./data";
+export function AchievementList(){return <div className="grid gap-5">{achievements.map((a)=><article key={a.title} className="card grid gap-5 sm:grid-cols-[56px_1fr_auto]"><div className="grid size-12 place-items-center rounded-full bg-lime/15 text-lime"><Trophy size={21}/></div><div><p className="text-xs uppercase tracking-[.16em] text-lime">{a.issuer}</p><h2 className="mt-2 font-display text-2xl font-semibold">{a.title}</h2><p className="mt-3 leading-7 text-muted">{a.detail}</p></div><span className="text-sm text-muted">{a.date}</span></article>)}</div>}

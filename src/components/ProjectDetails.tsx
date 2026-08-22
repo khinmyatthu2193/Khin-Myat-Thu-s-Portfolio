@@ -23,7 +23,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
     <main id="main-content" className="relative z-10">
       <article>
         <header className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
-          <a href="#/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
+          <a href="/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
             <ArrowLeft size={17} /> All projects
           </a>
           <p className="eyebrow">{project.category} / {project.date}</p>

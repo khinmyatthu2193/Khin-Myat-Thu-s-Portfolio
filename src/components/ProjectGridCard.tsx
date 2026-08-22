@@ -11,7 +11,7 @@ export default function ProjectGridCard({ project, index }: { project: Project; 
       transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.25) }}
       className="group"
     >
-      <a href={`#/projects/${project.slug}`} className="block" aria-label={`Open ${project.title} case study`}>
+      <a href={`/projects/${project.slug}`} className="block" aria-label={`Open ${project.title} case study`}>
         <div className="project-media aspect-[16/10] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard">
           <ProjectPreview project={project} index={index} />
         </div>

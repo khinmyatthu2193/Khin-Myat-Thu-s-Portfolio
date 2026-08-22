@@ -30,7 +30,7 @@ export default function Achievements() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <a href="#/achievements" className="inline-flex items-center gap-2 rounded-full border border-primary/40 px-6 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-bg">
+          <a href="/achievements" className="inline-flex items-center gap-2 rounded-full border border-primary/40 px-6 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-bg">
             View all achievements <ArrowUpRight size={17} />
           </a>
         </div>
