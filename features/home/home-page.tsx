@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Code2, Database, Smartphone } from "lucide-react";
 import Link from "next/link";
 import Hero from "@/src/components/Hero";
-import { AboutPreview, FeaturedProjects } from "@/src/components/HomePreviews";
+import { FeaturedProjects } from "@/src/components/HomePreviews";
 
 const stats = [["6+", "Projects built"], ["2×", "First-place wins"], ["Full-Stack + AI", "Focus"], ["2026", "Graduating"]];
 const expertise = [
@@ -45,8 +45,6 @@ export function HomePage() {
           </div>
         </motion.div>
       </section>
-
-      <AboutPreview />
 
       <section className="home-section !pt-10">
         <div className="rounded-3xl border border-primary/25 bg-primary/[0.07] px-7 py-12 text-center md:px-12 md:py-14">

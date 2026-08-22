@@ -50,17 +50,6 @@ export function FeaturedProjects() {
   );
 }
 
-export function AboutPreview() {
-  return (
-    <section className="home-section border-t border-borderSoft" aria-labelledby="about-preview-title">
-      <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid gap-7 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
-        <div><p className="eyebrow">About me</p><h2 id="about-preview-title" className="section-title mt-4">A little about me.</h2></div>
-        <div className="max-w-2xl lg:pt-3"><p className="text-lg leading-[1.7] text-textBody">I&apos;m Khin Myat Thu, a final-year Computer Science student at MIIT. I learn by turning ideas into things I can see, click, and use while growing toward full-stack development and exploring AI-powered products.</p><Link href="/about-me" className="text-link mt-6 font-semibold">More about me <ArrowUpRight size={16} /></Link></div>
-      </motion.div>
-    </section>
-  );
-}
-
 export function AchievementsPreview() {
   const selected = achievements.filter((achievement) => achievement.featured).slice(0, 3);
   return (
