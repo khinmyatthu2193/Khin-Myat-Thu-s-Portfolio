@@ -4,11 +4,11 @@ import { ArrowUpRight, Code2, Database, Smartphone } from "lucide-react";
 import Link from "next/link";
 import Hero from "@/src/components/Hero";
 
-const stats = [["6+", "Projects built"], ["2×", "First-place wins"], ["4", "Core technologies"], ["2026", "Graduating"]];
+const stats = [["8", "Projects represented"], ["2", "Team hackathon wins"], ["200 / 1,331", "Cursor hackathon selection"], ["Final year", "Computer Science at MIIT"]];
 const expertise = [
-  { title: "Frontend development", text: "Responsive, accessible interfaces built with React and TypeScript.", icon: Code2 },
-  { title: "Backend development", text: "Reliable APIs and data workflows with Django and PostgreSQL.", icon: Database },
-  { title: "Mobile & AI products", text: "Practical mobile experiences enhanced with Firebase and AI.", icon: Smartphone },
+  { title: "Web development", text: "Learning frontend and backend development through React, Next.js, Django, and real projects.", icon: Code2 },
+  { title: "Backend & data", text: "Exploring APIs, CRUD systems, databases, authentication, and real-time functionality.", icon: Database },
+  { title: "Mobile & AI", text: "Building with React Native and Firebase while becoming more curious about AI-powered products.", icon: Smartphone },
 ];
 
 export function HomePage() {
@@ -22,7 +22,7 @@ export function HomePage() {
       </section>
       <section className="section-shell">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className="text-center"><p className="eyebrow">Core expertise</p><h2 className="section-title mt-5">How I turn ideas into products.</h2></div>
+          <div className="text-center"><p className="eyebrow">Learning by building</p><h2 className="section-title mt-5">I&apos;m still becoming, but I&apos;m already building.</h2></div>
           <div className="mt-12 grid gap-5 md:grid-cols-3">{expertise.map(({ title, text, icon: Icon }) => <article key={title} className="rounded-2xl border border-borderSoft bg-bgCard/60 p-7"><div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary"><Icon size={19}/></div><h3 className="mt-6 font-display text-2xl">{title}</h3><p className="mt-3 leading-relaxed text-textBody">{text}</p></article>)}</div>
         </motion.div>
       </section>

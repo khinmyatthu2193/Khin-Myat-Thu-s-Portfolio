@@ -23,10 +23,10 @@ export default function Hero() {
 
           <div className="mt-7 max-w-3xl border-l border-primary/50 pl-6">
             <p className="max-w-[34rem] text-xl font-medium leading-relaxed text-textMain md:text-2xl">
-              CS student turning ideas into practical web, mobile, and AI-powered products.
+              Final-year Computer Science student building practical web, mobile, and AI-powered products while growing toward full-stack development.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-textDim md:text-base">
-              Final-year @ MIIT · Exploring full-stack development &amp; AI
+              I&apos;m still learning and experimenting — but I keep building.
             </p>
             <Link href="/projects" className="group mt-6 inline-flex min-h-14 items-center gap-3 rounded-full text-sm font-semibold text-textMain transition-colors hover:text-primary" aria-label="Explore selected projects">
               <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg transition-transform group-hover:-rotate-6 group-hover:scale-[1.03]">

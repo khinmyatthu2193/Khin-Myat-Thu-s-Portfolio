@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Check, Copy, Mail, MapPin } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 
-const contacts = [
-  { label: "Email", value: "khinmyatthu2193@gmail.com", href: "mailto:khinmyatthu2193@gmail.com", icon: Mail, copy: true },
+const contacts: Array<{ label: string; value: string; href?: string; icon: LucideIcon; copy?: boolean }> = [
+  { label: "Email", value: "Email address to be added", icon: Mail },
   { label: "Location", value: "Mandalay, Myanmar", icon: MapPin },
 ];
 
@@ -65,7 +66,7 @@ export default function Contact() {
           </div>
 
           <footer className="mt-20 flex flex-col gap-3 border-t border-borderSoft pt-7 text-xs uppercase tracking-[0.14em] text-textMuted sm:flex-row sm:justify-between">
-            <p>© 2026 Khin Myat Thu</p><p>Designed &amp; built with intention</p>
+            <p>© 2026 Khin Myat Thu</p><p>Just a girl full of dreams, walking toward them one commit at a time. 🌱</p>
           </footer>
         </motion.div>
       </div>
