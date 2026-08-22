@@ -102,7 +102,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
             <dd className="mt-2 line-clamp-2 text-sm leading-relaxed text-textDim">{project.challenge}</dd>
           </div>
           <div>
-            <dt className="label-sm text-primary">What I built</dt>
+            <dt className="label-sm text-primary">Project direction</dt>
             <dd className="mt-2 line-clamp-2 text-sm leading-relaxed text-textDim">{project.solution}</dd>
           </div>
           {project.role && (

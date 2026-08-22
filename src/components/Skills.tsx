@@ -3,36 +3,34 @@ import { Braces, Code2, Database, Smartphone, Sparkles } from "lucide-react";
 
 const skillGroups = [
   {
-    title: "Web development",
-    description: "Responsive, accessible products built from interface to backend.",
+    title: "Programming & web",
+    description: "Technologies I have used while learning to build for the web.",
     icon: Code2,
-    skills: ["React", "Django", "REST APIs", "Responsive UI"],
+    skills: ["JavaScript", "Python", "React", "Next.js", "Django", "HTML", "CSS"],
   },
   {
-    title: "Mobile products",
-    description: "Mobile-first experiences shaped around real user and business needs.",
+    title: "Mobile development",
+    description: "Tools I have explored through mobile application projects.",
     icon: Smartphone,
-    skills: ["React Native", "Firebase", "Authentication", "Real-time features"],
+    skills: ["React Native", "Expo", "Firebase"],
   },
   {
-    title: "Data & backend",
-    description: "Reliable application foundations and structured data workflows.",
+    title: "Backend & data",
+    description: "Backend, database, and application concepts I have worked with.",
     icon: Database,
-    skills: ["PostgreSQL", "MySQL", "WebSockets", "Django Channels"],
+    skills: ["Django", "Firebase", "Supabase", "PostgreSQL", "SQLite", "WebSockets", "REST APIs", "CRUD", "Authentication"],
   },
   {
-    title: "AI & product thinking",
-    description: "Practical AI features paired with clear product strategy.",
+    title: "AI & development tools",
+    description: "AI products and tools I am currently exploring as I learn.",
     icon: Sparkles,
-    skills: ["Gemini AI", "Recommendation systems", "Prototyping", "Problem solving"],
+    skills: ["Gemini AI", "AI-powered applications", "AI-assisted development", "Claude Code", "Cursor", "Git", "GitHub", "VS Code", "PowerShell", "CI/CD concepts"],
   },
 ];
 
 const languages = [
   { name: "Python", code: "PY" },
-  { name: "TypeScript", code: "TS" },
   { name: "JavaScript", code: "JS" },
-  { name: "SQL", code: "DB" },
 ];
 
 export default function Skills() {
@@ -51,12 +49,12 @@ export default function Skills() {
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
             <p className="max-w-md leading-relaxed text-textBody">
-              I combine full-stack engineering, product thinking, and emerging technology to turn ideas into useful experiences.
+              I&apos;m growing toward full-stack development by using projects to explore frontend, backend, mobile, databases, and AI.
             </p>
             <div className="border-l-2 border-primary/40 pl-5">
               <p className="label-sm text-primary">How I work</p>
               <p className="mt-2 text-sm leading-relaxed text-textBody">
-                Curious, collaborative, and focused on shipping clear, dependable products.
+                I learn by building, making mistakes, asking questions, and trying again.
               </p>
             </div>
           </div>
@@ -107,7 +105,7 @@ export default function Skills() {
             </div>
             <span className="ml-auto hidden h-px flex-1 bg-borderSoft sm:block" />
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-2">
             {languages.map((language, index) => (
               <motion.div
                 key={language.name}
