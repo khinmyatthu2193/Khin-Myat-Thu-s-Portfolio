@@ -26,7 +26,7 @@ npm run lint
 npm run build
 ```
 
-The production output is generated in `dist`.
+The project uses the Next.js App Router. Vercel detects the Next.js framework and manages the `.next` production output automatically; do not configure a custom `dist` output directory.
 
 ## Updating portfolio content
 
