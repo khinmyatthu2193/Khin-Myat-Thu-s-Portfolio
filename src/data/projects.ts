@@ -9,11 +9,12 @@ import brancyCart from "../assets/brancy_ss/cart.png";
 import brancyCheckout from "../assets/brancy_ss/checkout_page.png";
 import brancyInvoice from "../assets/brancy_ss/invoice.png";
 import brancyAdmin from "../assets/brancy_ss/django_administration.png";
+import type { AssetSource } from "@/lib/asset-url";
 
 export type ProjectMedia = {
   type: "image" | "video";
-  src?: string;
-  poster?: string;
+  src?: AssetSource;
+  poster?: AssetSource;
   alt: string;
 };
 

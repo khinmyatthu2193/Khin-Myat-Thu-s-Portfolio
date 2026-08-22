@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Project } from "../data/projects";
 import { ProjectPreview } from "./ProjectCard";
@@ -11,7 +12,7 @@ export default function ProjectGridCard({ project, index }: { project: Project; 
       transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.25) }}
       className="group"
     >
-      <a href={`/projects/${project.slug}`} className="block" aria-label={`Open ${project.title} case study`}>
+      <Link href={`/projects/${project.slug}`} className="block" aria-label={`Open ${project.title} case study`}>
         <div className="project-media aspect-[16/10] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard">
           <ProjectPreview project={project} index={index} />
         </div>
@@ -28,7 +29,7 @@ export default function ProjectGridCard({ project, index }: { project: Project; 
             View case study <ArrowUpRight size={16} />
           </span>
         </div>
-      </a>
+      </Link>
     </motion.article>
   );
 }

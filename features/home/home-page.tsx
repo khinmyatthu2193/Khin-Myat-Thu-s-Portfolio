@@ -1,8 +1,32 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code2, Database, Smartphone } from "lucide-react";
+import Link from "next/link";
 import Hero from "@/src/components/Hero";
-import ProjectCard from "@/src/components/ProjectCard";
-import Achievements from "@/src/components/Achievements";
-import { projects } from "@/src/data/projects";
-export function HomePage(){return <main id="main-content"><Hero/><section className="section-shell"><motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="grid gap-10 lg:grid-cols-[.72fr_1.28fr]"><div><p className="eyebrow">01 / About</p><h2 className="section-title mt-5">I build useful ideas into products people can trust.</h2></div><div className="lg:pt-7"><p className="max-w-3xl text-xl leading-[1.65] text-textBody md:text-2xl">I&apos;m a final-year Computer Science student at MIIT, focused on turning practical problems into thoughtful digital products.</p><a href="/about-me" className="text-link group mt-7">More about me <ArrowUpRight size={17}/></a></div></motion.div></section><section className="section-shell"><div className="mb-12 flex items-end justify-between"><div><p className="eyebrow">02 / Selected work</p><h2 className="section-title mt-5">Projects with purpose.</h2></div><a href="/projects" className="text-link hidden sm:inline-flex">View all projects <ArrowUpRight size={17}/></a></div>{projects.filter(p=>p.featured).slice(0,3).map((p,i)=><ProjectCard key={p.slug} project={p} index={i}/>)}</section><Achievements/></main>}
+
+const stats = [["6+", "Projects built"], ["2×", "First-place wins"], ["4", "Core technologies"], ["2026", "Graduating"]];
+const expertise = [
+  { title: "Frontend development", text: "Responsive, accessible interfaces built with React and TypeScript.", icon: Code2 },
+  { title: "Backend development", text: "Reliable APIs and data workflows with Django and PostgreSQL.", icon: Database },
+  { title: "Mobile & AI products", text: "Practical mobile experiences enhanced with Firebase and AI.", icon: Smartphone },
+];
+
+export function HomePage() {
+  return (
+    <main id="main-content">
+      <Hero />
+      <section className="section-shell pt-4">
+        <div className="grid overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/50 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map(([value, label]) => <div key={label} className="border-b border-borderSoft p-6 text-center last:border-0 sm:border-r lg:border-b-0"><p className="font-display text-4xl font-semibold text-primary">{value}</p><p className="mt-2 text-xs uppercase tracking-[0.14em] text-textMuted">{label}</p></div>)}
+        </div>
+      </section>
+      <section className="section-shell">
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div className="text-center"><p className="eyebrow">Core expertise</p><h2 className="section-title mt-5">How I turn ideas into products.</h2></div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">{expertise.map(({ title, text, icon: Icon }) => <article key={title} className="rounded-2xl border border-borderSoft bg-bgCard/60 p-7"><div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary"><Icon size={19}/></div><h3 className="mt-6 font-display text-2xl">{title}</h3><p className="mt-3 leading-relaxed text-textBody">{text}</p></article>)}</div>
+        </motion.div>
+      </section>
+      <section className="section-shell pt-0"><div className="rounded-3xl border border-primary/25 bg-primary/[0.07] px-7 py-14 text-center md:px-12"><p className="eyebrow">Let&apos;s build something together</p><h2 className="mx-auto mt-5 max-w-3xl font-display text-4xl md:text-5xl">Have an idea worth turning into a useful product?</h2><div className="mt-8 flex flex-wrap justify-center gap-4"><Link href="/contact-me" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-bg">Get in touch <ArrowUpRight size={17}/></Link><Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-borderMedium px-6 py-3 text-sm font-semibold">View projects</Link></div></div></section>
+    </main>
+  );
+}

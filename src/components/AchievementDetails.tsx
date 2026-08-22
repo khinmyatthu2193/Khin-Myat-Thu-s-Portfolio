@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Maximize2, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { assetUrl } from "@/lib/asset-url";
 import type { Achievement } from "../data/achievements";
 import { AchievementVisual } from "./AchievementCard";
 
@@ -22,9 +24,9 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
     <main id="main-content" className="relative z-10">
       <article>
         <header className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
-          <a href="/achievements" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
+          <Link href="/achievements" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
             <ArrowLeft size={17} /> All achievements
-          </a>
+          </Link>
           <p className="eyebrow">{achievement.type} / {achievement.date}</p>
           <h1 className="mt-5 max-w-5xl font-display text-5xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
             {achievement.title}
@@ -67,7 +69,7 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
             >
               {achievement.gallery.map((item, index) => (
                 <motion.figure
-                  key={item.src}
+                  key={assetUrl(item.src)}
                   variants={{
                     hidden: { opacity: 0, y: 20, rotateY: index % 2 === 0 ? -18 : 18, scale: 0.97 },
                     visible: { opacity: 1, y: 0, rotateY: 0, scale: 1 },
@@ -78,12 +80,12 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
                 >
                   <button
                     type="button"
-                    onClick={() => setActiveImage(item)}
+                    onClick={() => setActiveImage({ src: assetUrl(item.src), alt: item.alt })}
                     className={`${index === 0 ? "aspect-[16/8]" : "aspect-[4/3]"} relative block w-full cursor-zoom-in overflow-hidden bg-bgSoft`}
                     aria-label={`View full size: ${item.alt}`}
                   >
                     <img
-                      src={item.src}
+                      src={assetUrl(item.src)}
                       alt={item.alt}
                       loading="lazy"
                       className={`h-full w-full transition-transform duration-700 group-hover:scale-[1.025] ${index >= 4 ? "object-contain" : index === 0 ? "object-cover object-bottom" : "object-cover"}`}

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, MapPin } from "lucide-react";
+import Link from "next/link";
 import profile from "../assets/khin.jpg";
+import { assetUrl } from "@/lib/asset-url";
 
 export default function Hero() {
   return (
@@ -26,16 +28,16 @@ export default function Hero() {
             <p className="mt-3 text-sm leading-relaxed text-textDim md:text-base">
               Final-year @ MIIT · Exploring full-stack development &amp; AI
             </p>
-            <a href="/projects" className="group mt-6 inline-flex min-h-14 items-center gap-3 rounded-full text-sm font-semibold text-textMain transition-colors hover:text-primary" aria-label="Explore selected projects">
+            <Link href="/projects" className="group mt-6 inline-flex min-h-14 items-center gap-3 rounded-full text-sm font-semibold text-textMain transition-colors hover:text-primary" aria-label="Explore selected projects">
               <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg transition-transform group-hover:-rotate-6 group-hover:scale-[1.03]">
                 <ArrowDownRight size={23} aria-hidden="true" />
               </span>
               Explore projects
-            </a>
+            </Link>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-x-7 gap-y-3 text-sm">
-            <a className="text-link group" href="/contact-me">Contact <ArrowUpRight size={15} /></a>
+            <Link className="text-link group" href="/contact-me">Contact <ArrowUpRight size={15} /></Link>
             <a className="text-link group" href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a>
             <a className="text-link group" href="https://www.linkedin.com/in/khin-myat-thu-837892352" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={15} /></a>
           </div>
@@ -43,7 +45,7 @@ export default function Hero() {
 
         <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.15 }} className="relative mx-auto w-full max-w-[360px]">
           <div className="portrait-frame relative aspect-square overflow-hidden rounded-full border-2 border-primary/45 bg-bgCard p-1.5">
-            <img src={profile} alt="Portrait of Khin Myat Thu" width="480" height="480" fetchPriority="high" className="h-full w-full rounded-full object-cover object-top grayscale-[12%] transition duration-700 hover:scale-[1.025] hover:grayscale-0" />
+            <img src={assetUrl(profile)} alt="Portrait of Khin Myat Thu" width="480" height="480" fetchPriority="high" className="h-full w-full rounded-full object-cover object-top grayscale-[12%] transition duration-700 hover:scale-[1.025] hover:grayscale-0" />
           </div>
           <div className="absolute -bottom-4 -left-4 -z-10 h-full w-full rounded-full border border-primary/25" />
           <div className="absolute bottom-3 right-3 flex h-16 w-16 items-center justify-center rounded-full border border-primary/30 bg-bg font-display text-3xl italic text-primary shadow-lg">

@@ -1,14 +1,18 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Award, BriefcaseBusiness, Code2, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
+import { Award, BriefcaseBusiness, Code2, Home, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import logo from "../assets/my_logo.png";
+import { assetUrl } from "@/lib/asset-url";
 
 const links = [
+  { name: "Home", href: "/", icon: Home },
   { name: "About", href: "/about-me", icon: UserRound },
-  { name: "Skills", href: "/about-me#skills", icon: Code2 },
+  { name: "Skills", href: "/skills", icon: Code2 },
   { name: "Projects", href: "/projects", icon: BriefcaseBusiness },
   { name: "Achievements", href: "/achievements", icon: Award },
-  { name: "Learning Notes", href: "/about-me#blog", icon: NotebookPen },
+  { name: "Learning Notes", href: "/blogs", icon: NotebookPen },
 ];
 
 interface ThemeToggleProps {
@@ -33,13 +37,12 @@ function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
 }
 
 export default function Navbar({ isHome = true }: { isHome?: boolean }) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection] = useState(() => typeof window === "undefined" ? "" : links.find(({ href }) => href.split("#")[0] === window.location.pathname)?.href ?? "");
+  const activeSection = links.find(({ href }) => href.split("#")[0] === pathname)?.href ?? "";
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const [theme, setTheme] = useState<"light" | "dark">(() =>
-    typeof document !== "undefined" && document.documentElement.classList.contains("light") ? "light" : "dark",
-  );
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -74,23 +77,23 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
       scrolled && !open ? "border-b border-borderSoft bg-bg/80 backdrop-blur-xl" : ""
     }`}>
       <nav className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Main navigation">
-        <a href="/" className="group relative h-14 w-16 shrink-0 overflow-hidden" aria-label="Khin Myat Thu, home">
+        <Link href="/" className="group relative h-14 w-16 shrink-0 overflow-hidden" aria-label="Khin Myat Thu, home">
           <img
-            src={logo}
+            src={assetUrl(logo)}
             alt=""
             className="nav-logo pointer-events-none absolute -left-[46px] -top-[21px] w-[150px] max-w-none transition-transform group-hover:scale-[1.03]"
           />
-        </a>
+        </Link>
         <div className="hidden items-center gap-5 lg:flex">
           {links.map(({ name, href, icon: Icon }) => (
-            <a key={name} href={href} aria-current={activeSection === href ? "location" : undefined} className={`relative inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
+            <Link key={name} href={href} aria-current={activeSection === href ? "page" : undefined} className={`relative inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
               <Icon size={15} aria-hidden="true" /> {name}
               {activeSection === href && <span className="absolute -bottom-1 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-primary" />}
-            </a>
+            </Link>
           ))}
-          <a href="/contact-me" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-primaryGlow focus-visible:outline-offset-2">
+          <Link href="/contact-me" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-primaryGlow focus-visible:outline-offset-2">
             <Mail size={16} aria-hidden="true" /> Contact
-          </a>
+          </Link>
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </div>
         <div className="relative z-50 flex items-center gap-2 lg:hidden">
@@ -111,14 +114,14 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
           >
             <p className="eyebrow mb-7 shrink-0">Navigation</p>
             {links.map(({ name, href, icon: Icon }, index) => (
-              <a key={name} href={href} onClick={() => setOpen(false)} className="flex shrink-0 items-center border-t border-borderMedium py-4 font-display text-3xl sm:py-5 sm:text-4xl">
+              <Link key={name} href={href} onClick={() => setOpen(false)} className="flex shrink-0 items-center border-t border-borderMedium py-4 font-display text-3xl sm:py-5 sm:text-4xl">
                 <span className="w-12 shrink-0">0{index + 1}</span>
                 <span className="ml-3 inline-flex items-center gap-3 text-textDim"><Icon className="shrink-0" size={26} aria-hidden="true" /> {name}</span>
-              </a>
+              </Link>
             ))}
-            <a href="/contact-me" onClick={() => setOpen(false)} className="mt-7 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
+            <Link href="/contact-me" onClick={() => setOpen(false)} className="mt-7 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
               <Mail size={18} aria-hidden="true" /> Contact
-            </a>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

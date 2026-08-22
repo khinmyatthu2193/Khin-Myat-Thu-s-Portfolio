@@ -1,4 +1,0 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import type { Project } from "./data";
-export function ProjectCard({ project, index }: { project:Project; index:number }) { return <Link href={`/projects/${project.slug}`} className="group grid gap-5 border-t border-line py-9 transition-colors hover:border-lime md:grid-cols-[80px_1fr_1.2fr_auto] md:items-center"><span className="text-sm text-muted">0{index+1}</span><div><p className="mb-2 text-xs uppercase tracking-[.18em] text-lime">{project.category}</p><h3 className="font-display text-3xl font-semibold md:text-4xl">{project.title}</h3></div><p className="max-w-xl leading-7 text-muted">{project.description}</p><ArrowUpRight className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"/></Link>; }

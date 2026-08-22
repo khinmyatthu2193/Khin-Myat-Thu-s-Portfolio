@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { achievements } from "../data/achievements";
 import AchievementCard from "./AchievementCard";
@@ -17,9 +18,9 @@ export default function AllAchievements() {
   return (
     <main id="main-content" className="relative z-10">
       <section className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
-        <a href="/" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
+        <Link href="/" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
           <ArrowLeft size={17} /> Back home
-        </a>
+        </Link>
         <p className="eyebrow">Milestones / Archive</p>
         <div className="mt-5 grid gap-7 lg:grid-cols-[1fr_0.62fr] lg:items-end">
           <h1 className="section-title">All achievements.</h1>

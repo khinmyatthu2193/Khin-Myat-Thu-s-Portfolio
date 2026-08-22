@@ -1,2 +1,0 @@
-const stats=[["6+","Products built"],["2×","First-place wins"],["2026","Graduating CS"]];
-export function Stats(){return <div className="grid border-y border-line sm:grid-cols-3">{stats.map(([value,label])=><div className="px-7 py-8 sm:border-r sm:border-line" key={label}><strong className="font-display text-5xl text-lime">{value}</strong><p className="mt-2 text-sm text-muted">{label}</p></div>)}</div>}

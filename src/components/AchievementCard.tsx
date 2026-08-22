@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { assetUrl } from "@/lib/asset-url";
 import { ArrowUpRight, Award, Image as ImageIcon, Trophy } from "lucide-react";
 import type { Achievement } from "../data/achievements";
 
@@ -6,7 +8,7 @@ export function AchievementVisual({ achievement, fit = "cover" }: { achievement:
   if (achievement.image) {
     return (
       <img
-        src={achievement.image}
+        src={assetUrl(achievement.image)}
         alt={achievement.imageAlt ?? achievement.title}
         loading="lazy"
         className={`h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} transition duration-700 group-hover:scale-[1.025]`}
@@ -36,7 +38,7 @@ export default function AchievementCard({ achievement, index }: { achievement: A
       transition={{ duration: 0.4, delay: Math.min(index * 0.06, 0.2) }}
       className="group"
     >
-      <a href={`/achievements/${achievement.slug}`} className="block h-full" aria-label={`View ${achievement.title}`}>
+      <Link href={`/achievements/${achievement.slug}`} className="block h-full" aria-label={`View ${achievement.title}`}>
         <div className="achievement-media relative aspect-[4/3] overflow-hidden rounded-2xl border border-borderSoft">
           <AchievementVisual achievement={achievement} />
         </div>
@@ -54,7 +56,7 @@ export default function AchievementCard({ achievement, index }: { achievement: A
             View achievement <ArrowUpRight size={16} />
           </span>
         </div>
-      </a>
+      </Link>
     </motion.article>
   );
 }

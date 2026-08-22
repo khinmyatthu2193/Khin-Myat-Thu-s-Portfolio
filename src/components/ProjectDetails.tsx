@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Check, Maximize2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
+import Link from "next/link";
+import { assetUrl } from "@/lib/asset-url";
 import type { Project } from "../data/projects";
 import { ProjectPreview } from "./ProjectCard";
 
@@ -23,9 +25,9 @@ export default function ProjectDetails({ project }: { project: Project }) {
     <main id="main-content" className="relative z-10">
       <article>
         <header className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
-          <a href="/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
+          <Link href="/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
             <ArrowLeft size={17} /> All projects
-          </a>
+          </Link>
           <p className="eyebrow">{project.category} / {project.date}</p>
           {project.subtitle && <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-primary">{project.subtitle}</p>}
           <h1 className="mt-5 max-w-5xl font-display text-5xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
@@ -142,7 +144,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
           >
             {(project.gallery ?? [undefined, undefined]).map((media, index) => (
               <motion.figure
-                key={media?.src ?? index}
+                key={media?.src ? assetUrl(media.src) : index}
                 variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="group overflow-hidden rounded-2xl border border-borderSoft bg-bgCard transition-colors hover:border-primary/40"
@@ -150,7 +152,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
                 <button
                   type="button"
                   className="relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden text-left"
-                  onClick={() => media?.src && setActiveImage(media.src)}
+                  onClick={() => media?.src && setActiveImage(assetUrl(media.src))}
                   aria-label={media?.alt ? `Expand ${media.alt}` : "Expand screenshot"}
                   disabled={!media?.src}
                 >

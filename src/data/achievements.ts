@@ -6,9 +6,10 @@ import oneProjectAwardPhoto from "../assets/achievement_ss/OneProjectOneWeek5.jp
 import oneProjectGroupPhoto from "../assets/achievement_ss/OneProjectOneWeek6_gp_photo.jpg";
 import oneProjectWinnerCertificate from "../assets/achievement_ss/Winner.jpg";
 import oneProjectCertificate from "../assets/achievement_ss/Khin myat thu_OPOW_Hackathon_ Certificate.png";
+import type { AssetSource } from "@/lib/asset-url";
 
 export type AchievementImage = {
-  src: string;
+  src: AssetSource;
   alt: string;
 };
 
@@ -19,7 +20,7 @@ export type Achievement = {
   date: string;
   type: "Hackathon" | "Certificate" | "Others";
   description: string;
-  image?: string;
+  image?: AssetSource;
   imageAlt?: string;
   gallery?: AchievementImage[];
   credentialUrl?: string;

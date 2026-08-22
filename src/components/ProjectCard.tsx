@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Image as ImageIcon, Play } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import Link from "next/link";
 import type { Project } from "../data/projects";
+import { assetUrl } from "@/lib/asset-url";
 
 export function ProjectPreview({ project, index, fit = "cover" }: { project: Project; index: number; fit?: "cover" | "contain" }) {
   const { media } = project;
@@ -12,10 +14,10 @@ export function ProjectPreview({ project, index, fit = "cover" }: { project: Pro
         className="h-full w-full object-cover"
         controls
         preload="metadata"
-        poster={media.poster}
+        poster={media.poster ? assetUrl(media.poster) : undefined}
         aria-label={media.alt}
       >
-        <source src={media.src} />
+        <source src={assetUrl(media.src)} />
       </video>
     );
   }
@@ -24,7 +26,7 @@ export function ProjectPreview({ project, index, fit = "cover" }: { project: Pro
     return (
       <img
         className={`h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"}`}
-        src={media.src}
+        src={assetUrl(media.src)}
         alt={media.alt}
         loading="lazy"
       />
@@ -76,9 +78,9 @@ export default function ProjectCard({ project, index }: { project: Project; inde
       className="group grid gap-7 border-t border-borderMedium py-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-14 lg:py-16"
     >
       <div className={index % 2 ? "lg:order-2" : ""}>
-        <a href={`/projects/${project.slug}`} className="project-media block aspect-[16/10] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard" aria-label={`View ${project.title} case study`}>
+        <Link href={`/projects/${project.slug}`} className="project-media block aspect-[16/10] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard" aria-label={`View ${project.title} case study`}>
           <ProjectPreview project={project} index={index} />
-        </a>
+        </Link>
       </div>
 
       <div className={index % 2 ? "lg:order-1" : ""}>
@@ -91,7 +93,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
         </div>
         <p className="mb-3 text-xs uppercase tracking-[0.15em] text-primary">{project.date}</p>
         <h3 className="font-display text-3xl font-medium leading-tight transition-colors group-hover:text-primary md:text-4xl">
-          <a href={`/projects/${project.slug}`}>{project.title}</a>
+          <Link href={`/projects/${project.slug}`}>{project.title}</Link>
         </h3>
         <p className="mt-4 max-w-xl text-lg leading-relaxed text-textBody">{project.description}</p>
         <dl className="mt-6 grid gap-4 border-y border-borderSoft py-5 sm:grid-cols-2">
@@ -114,9 +116,9 @@ export default function ProjectCard({ project, index }: { project: Project; inde
           {project.technologies.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
         </div>
         <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <a href={`/projects/${project.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-textMain transition-colors hover:text-primary">
+          <Link href={`/projects/${project.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-textMain transition-colors hover:text-primary">
             View case study <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </a>
+          </Link>
           {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" className="text-link text-sm">Live demo <ArrowUpRight size={15} /></a>}
           {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="text-link text-sm"><FaGithub size={15} /> GitHub <ArrowUpRight size={14} /></a>}
         </div>
