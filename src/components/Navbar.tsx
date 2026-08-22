@@ -41,7 +41,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const activeSection = links.find(({ href }) => href.split("#")[0] === pathname)?.href ?? "";
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
