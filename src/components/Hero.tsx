@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDownToLine, ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowDownToLine, MapPin } from "lucide-react";
 import Link from "next/link";
 import profile from "../assets/khin.jpg";
 import { assetUrl } from "@/lib/asset-url";
@@ -14,31 +14,26 @@ export default function Hero() {
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" /> Open to opportunities
             </span>
             <span className="inline-flex items-center gap-1.5"><MapPin size={13} /> Mandalay, Myanmar</span>
-            <span className="font-semibold text-primary">2026 Building.</span>
           </div>
 
-          <h1 className="font-display text-[clamp(2.4rem,4.9vw,4.9rem)] font-medium leading-[0.92] tracking-[-0.045em]">
+          <h1 className="font-display text-[clamp(2.3rem,4.5vw,4.5rem)] font-medium leading-[0.94] tracking-[-0.04em]">
             <span className="text-gradient">Khin Myat</span>
             <span className="block text-gradient">Thu.</span>
           </h1>
 
-          <div className="mt-6 max-w-3xl border-l border-primary/50 pl-5 sm:pl-6">
-            <p className="max-w-[38rem] font-display text-[clamp(1.4rem,2.1vw,2.125rem)] font-medium leading-[1.25] tracking-[-0.015em] text-textMain">
-              Final-year Computer Science student and aspiring full-stack developer building practical web, mobile, and AI-powered products.
+          <div className="mt-6 max-w-[600px]">
+            <p className="text-[clamp(1.3125rem,2vw,2rem)] font-medium leading-[1.3] tracking-[-0.012em] text-textMain">
+              Final-year <span className="font-display italic">Computer Science</span> student and aspiring <span className="font-display italic text-primary">full-stack developer</span> building practical <span className="font-display italic text-primaryGlow">web and AI-powered products</span>.
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-textDim md:text-base">
-              I&apos;m still learning and experimenting — but I keep building.
+            <p className="mt-4 max-w-[580px] text-[1.0625rem] leading-relaxed text-textBody md:text-lg">
+              I enjoy turning ideas into useful, thoughtful digital experiences.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/projects" className="button-primary">View My Projects <ArrowUpRight size={17} aria-hidden="true" /></Link>
-              <Link href="/about-me" className="button-secondary">About Me</Link>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Link href="/projects" className="button-primary">View My Projects</Link>
+              <a className="button-secondary" href="/Khin_Myat_Thu_CV.pdf" download="Khin_Myat_Thu_CV.pdf">
+                Download CV <ArrowDownToLine size={16} aria-hidden="true" />
+              </a>
             </div>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-x-7 gap-y-3 text-sm">
-            <a className="text-link group" href="/Khin_Myat_Thu_CV.pdf" download="Khin_Myat_Thu_CV.pdf">Download CV <ArrowDownToLine size={15} aria-hidden="true" /></a>
-            <a className="text-link group" href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer">GitHub</a>
-            <a className="text-link group" href="https://www.linkedin.com/in/khin-myat-thu-837892352" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
         </motion.div>
 

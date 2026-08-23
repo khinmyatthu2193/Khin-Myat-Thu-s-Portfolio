@@ -1,7 +1,10 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowUpRight, Award } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import { useState } from "react";
 import { projects } from "../data/projects";
 import { achievements } from "../data/achievements";
 import { ProjectPreview } from "./ProjectCard";
@@ -10,6 +13,27 @@ const featuredSlugs = ["brancy", "climbio", "joyhub"];
 const featuredProjects = featuredSlugs
   .map((slug) => projects.find((project) => project.slug === slug))
   .filter((project): project is (typeof projects)[number] => Boolean(project));
+
+const featuredCategories: Record<string, string> = {
+  brancy: "Full-Stack Web · E-Commerce",
+  climbio: "Full-Stack Web · Business Management",
+  joyhub: "Frontend Web · EdTech",
+};
+
+function TechnologyTags({ technologies, projectTitle }: { technologies: string[]; projectTitle: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const visible = technologies.slice(0, 5);
+  const remaining = technologies.slice(5);
+  const tagClass = "rounded-full border border-primary/40 bg-primary/15 px-3.5 py-1.5 text-[13px] font-semibold leading-none text-primary";
+
+  return (
+    <div className="flex flex-wrap content-start gap-2.5">
+      {visible.map((technology) => <span key={technology} className={tagClass}>{technology}</span>)}
+      {expanded && remaining.map((technology) => <span key={technology} className={tagClass}>{technology}</span>)}
+      {remaining.length > 0 && <button type="button" onClick={() => setExpanded((current) => !current)} className={`${tagClass} cursor-pointer transition-colors hover:border-primary hover:bg-primary/20`} aria-expanded={expanded} aria-label={`${expanded ? "Hide" : "Show"} ${remaining.length} more technologies for ${projectTitle}`}>{expanded ? "Show less" : `+${remaining.length} more`}</button>}
+    </div>
+  );
+}
 
 function SectionHeader({ eyebrow, title, description, titleId }: { eyebrow: string; title: string; description?: string; titleId: string }) {
   return (
@@ -32,13 +56,16 @@ export function FeaturedProjects() {
           <motion.article key={project.slug} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/45 p-3 shadow-[0_14px_35px_rgb(0_0_0/0.06)] sm:p-4">
             <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} case study`} className="project-media block aspect-[16/10] shrink-0 overflow-hidden rounded-xl border border-borderSoft bg-bgCard"><ProjectPreview project={project} index={index} /></Link>
             <div className="flex flex-1 flex-col px-1 pb-1 pt-5">
-              <p className="label-sm text-primary">{project.category}</p>
+              <p className="label-sm min-h-8 text-primary">{featuredCategories[project.slug]}</p>
               <h3 className="mt-2 min-h-14 font-display text-2xl font-medium leading-tight"><Link href={`/projects/${project.slug}`} className="transition-colors hover:text-primary">{project.title}</Link></h3>
               <p className="mt-3 line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-textBody">{project.description}</p>
-              <div className="mt-4 flex min-h-[3.75rem] flex-wrap content-start gap-2">{project.technologies.slice(0, 4).map((technology) => <span key={technology} className="label-tag">{technology}</span>)}</div>
+              <div className="mt-4 min-h-[7.25rem]">
+                <p className="mb-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-textDim">Tech stack</p>
+                <TechnologyTags technologies={project.technologies} projectTitle={project.title} />
+              </div>
               <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-borderSoft pt-4 text-sm">
-                <Link href={`/projects/${project.slug}`} className="font-semibold text-textMain transition-colors hover:text-primary">View project</Link>
-                {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="text-link" aria-label={`Open ${project.title} on GitHub`}><FaGithub size={14} /> GitHub</a>}
+                {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-primary min-h-10 px-4 py-2" aria-label={`Open ${project.title} live project`}>View project</a>}
+                <a href={project.github} target="_blank" rel="noreferrer" className="button-secondary min-h-10 px-4 py-2" aria-label={`Open ${project.title} on GitHub`}><FaGithub size={15} aria-hidden="true" /> GitHub</a>
               </div>
             </div>
           </motion.article>
