@@ -65,9 +65,6 @@ export default function Contact() {
             </div>
           </div>
 
-          <footer className="mt-20 flex flex-col gap-3 border-t border-borderSoft pt-7 text-xs uppercase tracking-[0.14em] text-textMuted sm:flex-row sm:justify-between">
-            <p>© 2026 Khin Myat Thu</p><p>Just a girl full of dreams, walking toward them one commit at a time. 🌱</p>
-          </footer>
         </motion.div>
       </div>
     </section>

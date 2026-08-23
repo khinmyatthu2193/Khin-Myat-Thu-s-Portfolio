@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, Mail } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Hero from "@/src/components/Hero";
 import { FeaturedProjects } from "@/src/components/HomePreviews";
@@ -96,17 +95,6 @@ export function HomePage() {
           <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-textBody">I&apos;m open to internships, collaborations, and opportunities to build useful products and grow as a developer.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3"><Link href="/contact-me" className="button-primary">Get in touch <ArrowUpRight size={17} /></Link><Link href="/projects" className="button-secondary">View projects</Link></div>
         </div>
-        <footer className="mt-10 flex flex-col items-center gap-4 border-t border-borderSoft pt-6 text-center sm:flex-row sm:justify-between sm:text-left">
-          <div className="text-textMuted">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em]">© 2026 Khin Myat Thu</p>
-            <p className="mt-1.5 font-display text-sm italic tracking-wide text-textDim">Learning. Building. Growing.</p>
-          </div>
-          <div className="flex items-center gap-2" aria-label="Contact links">
-            <a href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-borderMedium text-textMuted transition-colors hover:border-primary hover:text-primary"><FaGithub size={15} aria-hidden="true" /></a>
-            <a href="https://www.linkedin.com/in/khin-myat-thu-837892352" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-borderMedium text-textMuted transition-colors hover:border-primary hover:text-primary"><FaLinkedin size={15} aria-hidden="true" /></a>
-            <Link href="/contact-me" aria-label="Email Khin Myat Thu" title="Email" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-borderMedium text-textMuted transition-colors hover:border-primary hover:text-primary"><Mail size={15} aria-hidden="true" /></Link>
-          </div>
-        </footer>
       </section>
     </main>
   );
