@@ -4,6 +4,7 @@ import brancyProduct from "../assets/brancy_ss/product.png";
 import brancyCart from "../assets/brancy_ss/cart.png";
 import brancyCheckout from "../assets/brancy_ss/checkout_page.png";
 import brancyAdmin from "../assets/brancy_ss/django_administration.png";
+import climbioHome from "../assets/climbio_ss/home.png";
 import type { AssetSource } from "@/lib/asset-url";
 
 export type ProjectMedia = { type: "image" | "video"; src?: AssetSource; poster?: AssetSource; alt: string };
@@ -44,7 +45,7 @@ export const projects: Project[] = [
     challenge: "Returning to an existing product meant understanding earlier decisions before deciding what to revisit.",
     solution: "Through Version 2, I rebuilt parts of the application and learned more about React Native and Firebase. Exact Version 2 changes will be added once confirmed.",
     github: "", technologies: ["React Native", "Firebase"],
-    media: { type: "image", alt: "Climbio mobile application" },
+    media: { type: "image", src: climbioHome, alt: "Climbio mobile application home screen" },
   },
   {
     slug: "brancy", title: "Brancy — Branded Cosmetics Online Shopping System", category: "Web", date: "Jun 2024 – Oct 2024", featured: true,
