@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, Code2, Database, Mail, Smartphone } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, ExternalLink, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import Hero from "@/src/components/Hero";
@@ -9,12 +9,30 @@ import { FeaturedProjects } from "@/src/components/HomePreviews";
 
 const stats = [["6+", "Projects Built"], ["Full-Stack + AI", "Focus"], ["2027", "Graduating"]];
 const expertise = [
-  { title: "Frontend Development", text: "Responsive, accessible interfaces built with modern web technologies.", technologies: ["React", "TypeScript", "Tailwind"], icon: Code2 },
-  { title: "Backend Development", text: "Reliable APIs, application logic, and structured data workflows.", technologies: ["Django", "REST APIs", "PostgreSQL"], icon: Database },
-  { title: "Mobile & AI Products", text: "Practical mobile experiences enhanced with cloud services and AI.", technologies: ["React Native", "Firebase", "AI APIs"], icon: Smartphone },
+  {
+    title: "Frontend",
+    text: "Building responsive and interactive web interfaces.",
+    technologies: ["React", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Vite"],
+    projects: [{ name: "Climbio 2.0", slug: "climbio" }, { name: "JoyHub", slug: "joyhub" }],
+  },
+  {
+    title: "Backend & Application Logic",
+    text: "Developing server-side features, business logic, and application workflows.",
+    technologies: ["Python", "Django", "Node.js", "Express", "Prisma"],
+    projects: [{ name: "Brancy", slug: "brancy" }, { name: "Climbio 2.0", slug: "climbio" }],
+  },
+  {
+    title: "Data & Web Services",
+    text: "Managing application data, authentication, persistence, and browser-based functionality.",
+    technologies: ["PostgreSQL", "Supabase", "SQLite", "Local Storage", "Web Audio API"],
+    projects: [{ name: "Brancy", slug: "brancy" }, { name: "Climbio 2.0", slug: "climbio" }, { name: "JoyHub", slug: "joyhub" }],
+  },
 ];
 
 export function HomePage() {
+  const reduceMotion = useReducedMotion();
+  const reveal = reduceMotion ? undefined : { opacity: 0.35, y: 28 };
+
   return (
     <main id="main-content">
       <Hero />
@@ -32,19 +50,43 @@ export function HomePage() {
       </section>
 
       <section className="home-section !pt-8 sm:!pt-10" aria-labelledby="expertise-title">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className="text-center"><p className="eyebrow">Core expertise</p><h2 id="expertise-title" className="section-title mt-4">How I turn ideas into products.</h2></div>
-          <div className="mt-9 grid gap-5 md:grid-cols-3">
-            {expertise.map(({ title, text, technologies, icon: Icon }) => (
-              <article key={title} className="group rounded-2xl border border-borderSoft bg-bgCard/60 p-6 transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/25 sm:p-7">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary"><Icon size={19} aria-hidden="true" /></div>
-                <h3 className="mt-5 font-display text-2xl">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-textBody">{text}</p>
-                <p className="mt-5 border-t border-borderSoft pt-4 text-xs font-medium uppercase tracking-[0.1em] text-textMuted">{technologies.join(" · ")}</p>
-              </article>
-            ))}
-          </div>
+        <motion.div initial={reduceMotion ? false : { opacity: 0.35, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }} className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div><p className="eyebrow">Technical capabilities</p><h2 id="expertise-title" className="section-title mt-4">Technologies I use to build real products.</h2></div>
+          <p className="max-w-2xl leading-relaxed text-textBody lg:justify-self-end">A practical stack developed through building full-stack, business management, e-commerce, and interactive web applications.</p>
         </motion.div>
+
+        <div className="mt-10 border-y border-borderMedium">
+          {expertise.map(({ title, text, technologies, projects }, index) => (
+            <motion.article
+              key={title}
+              initial={reveal}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.58, delay: reduceMotion ? 0 : 0.16 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="grid gap-6 border-b border-borderSoft py-8 last:border-b-0 lg:grid-cols-[0.8fr_1.15fr_0.75fr] lg:items-start lg:gap-10 lg:py-9"
+            >
+              <div>
+                <h3 className="font-display text-2xl font-medium text-textMain">{title}</h3>
+                <p className="mt-3 max-w-sm text-sm leading-relaxed text-textBody">{text}</p>
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                {technologies.map((technology) => <span key={technology} className="rounded-full border border-primary/35 bg-primary/15 px-3.5 py-1.5 text-[13px] font-semibold text-primary">{technology}</span>)}
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-textMuted">Project evidence</p>
+                <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm leading-relaxed text-textDim">
+                  <span>Used in</span>
+                  {projects.map((project, projectIndex) => (
+                    <span key={project.slug} className="inline-flex items-center gap-2">
+                      {projectIndex > 0 && <span>{projectIndex === projects.length - 1 ? "and" : ","}</span>}
+                      <Link href={`/projects/${project.slug}`} className="inline-flex items-center gap-1 font-semibold text-textMain transition-colors hover:text-primary">{project.name}<ExternalLink size={12} aria-hidden="true" /></Link>
+                    </span>
+                  ))}
+                </p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </section>
 
       <section className="home-section !pb-5 !pt-10 md:!pb-6">
