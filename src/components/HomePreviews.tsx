@@ -46,14 +46,19 @@ function SectionHeader({ eyebrow, title, description, titleId }: { eyebrow: stri
 
 export function FeaturedProjects() {
   return (
-    <section className="home-section scroll-mt-24 border-t border-borderSoft !pt-20 md:!pt-24" aria-labelledby="featured-projects-title">
-      <div className="grid gap-5 md:grid-cols-[1fr_0.8fr] md:items-end">
-        <div><p className="eyebrow">Featured work</p><h2 id="featured-projects-title" className="section-title mt-4">Projects I&apos;ve built.</h2></div>
-        <p className="max-w-xl leading-relaxed text-textBody md:justify-self-end">A selection of practical products shaped through learning, experimentation, and real project work.</p>
-      </div>
-      <div className="mt-9 grid auto-rows-fr gap-5 md:grid-cols-2 xl:grid-cols-3">
+    <motion.section initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.08 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="home-section scroll-mt-24 border-t border-borderSoft !pt-20 md:!pt-24 lg:!pt-28" aria-labelledby="featured-projects-title">
+      <header className="grid gap-6 md:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)] md:items-end md:gap-12 lg:gap-16">
+        <div className="min-w-0">
+          <motion.p initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="eyebrow">Featured work</motion.p>
+          <h2 id="featured-projects-title" className="mt-4 font-display text-[clamp(2.6rem,12vw,4rem)] font-medium leading-[0.98] tracking-[-0.035em] text-textMain md:mt-5 md:text-[clamp(3rem,5vw,5rem)]">
+            <motion.span className="block" initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>Projects I&apos;ve built.</motion.span>
+          </h2>
+        </div>
+        <motion.p initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.55, delay: 0.16, ease: [0.22, 1, 0.36, 1] }} className="max-w-[460px] leading-relaxed text-textBody md:justify-self-start md:pb-2">A selection of practical products shaped through learning, experimentation, and real project work.</motion.p>
+      </header>
+      <div className="mt-10 grid auto-rows-fr gap-5 md:mt-12 md:grid-cols-2 lg:mt-14 xl:grid-cols-3">
         {featuredProjects.map((project, index) => (
-          <motion.article key={project.slug} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/45 p-3 shadow-[0_14px_35px_rgb(0_0_0/0.06)] sm:p-4">
+          <motion.article key={project.slug} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -4 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.18 + index * 0.08, ease: [0.22, 1, 0.36, 1] }} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/45 p-3 shadow-[0_14px_35px_rgb(0_0_0/0.06)] transition-[border-color,box-shadow] duration-300 hover:border-primary/25 hover:shadow-[0_18px_38px_rgb(0_0_0/0.09)] sm:p-4">
             <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} case study`} className="project-media block aspect-[16/10] shrink-0 overflow-hidden rounded-xl border border-borderSoft bg-bgCard"><ProjectPreview project={project} index={index} /></Link>
             <div className="flex flex-1 flex-col px-1 pb-1 pt-5">
               <p className="label-sm min-h-8 text-primary">{featuredCategories[project.slug]}</p>
@@ -64,15 +69,15 @@ export function FeaturedProjects() {
                 <TechnologyTags technologies={project.technologies} projectTitle={project.title} />
               </div>
               <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-borderSoft pt-4 text-sm">
-                {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-primary min-h-10 px-4 py-2" aria-label={`Open ${project.title} live project`}>View project</a>}
+                {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-primary min-h-10 px-4 py-2" aria-label={`Open ${project.title} live project`}>View project <ArrowUpRight size={15} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>}
                 <a href={project.github} target="_blank" rel="noreferrer" className="button-secondary min-h-10 px-4 py-2" aria-label={`Open ${project.title} on GitHub`}><FaGithub size={15} aria-hidden="true" /> GitHub</a>
               </div>
             </div>
           </motion.article>
         ))}
       </div>
-      <div className="mt-9 flex justify-center"><Link href="/projects" className="button-secondary">View all projects</Link></div>
-    </section>
+      <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.38 }} className="mt-9 flex justify-center"><Link href="/projects" className="button-secondary">View all projects</Link></motion.div>
+    </motion.section>
   );
 }
 

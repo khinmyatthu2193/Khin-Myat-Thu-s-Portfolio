@@ -40,6 +40,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const activeSection = links.find(({ href }) => href.split("#")[0] === pathname)?.href ?? "";
+  const contactHref = pathname === "/" ? "#contact" : "/contact-me";
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
@@ -87,10 +88,10 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
           {links.map(({ name, href, icon: Icon }) => (
             <Link key={name} href={href} aria-current={activeSection === href ? "page" : undefined} className={`relative inline-flex items-center gap-1.5 text-sm transition-colors hover:text-textMain ${activeSection === href ? "text-primary" : "text-textDim"}`}>
               <Icon size={15} aria-hidden="true" /> {name}
-              {activeSection === href && <span className="absolute -bottom-1 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-primary" />}
+              {activeSection === href && <motion.span layoutId="active-navigation-underline" transition={{ type: "spring", stiffness: 380, damping: 34 }} className="absolute -bottom-1 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-primary" />}
             </Link>
           ))}
-          <Link href="/contact-me" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-primaryGlow focus-visible:outline-offset-2">
+          <Link href={contactHref} className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-primaryGlow focus-visible:outline-offset-2">
             <Mail size={16} aria-hidden="true" /> Contact
           </Link>
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
@@ -118,7 +119,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
                 <span className="ml-3 inline-flex items-center gap-3 text-textDim"><Icon className="shrink-0" size={26} aria-hidden="true" /> {name}</span>
               </Link>
             ))}
-            <Link href="/contact-me" onClick={() => setOpen(false)} className="mt-7 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
+            <Link href={contactHref} onClick={() => setOpen(false)} className="mt-7 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-3 text-primary">
               <Mail size={18} aria-hidden="true" /> Contact
             </Link>
           </motion.div>

@@ -1,13 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Hero from "@/src/components/Hero";
 import { FeaturedProjects } from "@/src/components/HomePreviews";
 
-const stats = [["6+", "Projects Built"], ["Full-Stack + AI", "Focus"], ["2027", "Graduating"]];
+const stats = [["6+", "Projects Built"], ["Full-Stack + AI", "Focus"], ["Product-Minded", "Approach"], ["2027", "Graduating"]];
 const contributions = [
   {
     word: "BUILD.",
@@ -36,19 +35,20 @@ export function HomePage() {
       <Hero />
       <FeaturedProjects />
 
-      <section className="home-section !pb-8 !pt-6 sm:!pb-10" aria-label="Portfolio highlights">
-        <div className="grid overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/50 sm:grid-cols-3">
-          {stats.map(([value, label]) => (
-            <div key={label} className="flex min-h-28 flex-col justify-center border-b border-borderSoft p-5 text-center last:border-0 sm:min-h-32 sm:border-b-0 sm:border-r sm:p-6">
+      <motion.section initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }} className="home-section !pb-8 !pt-6 sm:!pb-10" aria-label="Portfolio highlights">
+        <div className="grid overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/50 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map(([value, label], index) => (
+            <motion.div key={label} initial={reduceMotion ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.07 }} className={`flex min-h-28 flex-col justify-center p-5 text-center sm:min-h-32 sm:p-6 ${index < 3 ? "border-b border-borderSoft" : ""} ${index % 2 === 0 ? "sm:border-r" : ""} ${index >= 2 ? "sm:border-b-0" : ""} ${index < 3 ? "lg:border-b-0 lg:border-r" : "lg:border-r-0"}`}>
               <p className={`font-display font-semibold text-primary ${value.length > 6 ? "text-2xl md:text-3xl" : "text-4xl"}`}>{value}</p>
               <p className="mt-2 text-xs uppercase tracking-[0.14em] text-textMuted">{label}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       <motion.section
-        className="home-section !py-14 sm:!py-16"
+        id="contact"
+        className="home-section scroll-mt-20 !pb-16 !pt-14 sm:!pt-16 md:!pb-24"
         aria-labelledby="contribution-title"
         initial={reduceMotion ? false : { opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -88,13 +88,17 @@ export function HomePage() {
               {contributions.map((item, index) => {
                 const isActive = index === activeContribution;
                 return (
-                  <button
+                  <motion.button
                     key={item.word}
                     type="button"
                     aria-pressed={isActive}
                     onMouseEnter={() => setActiveContribution(index)}
                     onFocus={() => setActiveContribution(index)}
                     onClick={() => setActiveContribution(index)}
+                    initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.28 + index * 0.07, ease: [0.22, 1, 0.36, 1] }}
                     className={`group relative ml-5 py-0.5 text-left font-display text-[clamp(2.8rem,10vw,5.2rem)] font-medium leading-[0.98] tracking-[-0.055em] transition-colors duration-300 lg:text-[clamp(3.5rem,5.4vw,5.75rem)] ${isActive ? "italic text-primary" : "text-textDim hover:text-primary"}`}
                   >
                     {item.word}
@@ -102,7 +106,7 @@ export function HomePage() {
                       <motion.ellipse cx="150" cy="45" rx="146" ry="37" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" initial={false} animate={{ pathLength: isActive ? 1 : 0 }} transition={reduceMotion ? { duration: 0 } : { duration: 0.45, ease: "easeOut" }} />
                     </svg>
                     <span className="sr-only"> {isActive ? "selected" : "select"}</span>
-                  </button>
+                  </motion.button>
                 );
               })}
             </motion.div>
@@ -120,21 +124,13 @@ export function HomePage() {
           </div>
 
           <motion.div initial={reduceMotion ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="relative mt-10 grid gap-5 border-t border-borderSoft pt-6 text-xs uppercase tracking-[0.13em] text-textMuted sm:grid-cols-3 sm:items-end">
-            <p>Mandalay, Myanmar · Remote-friendly</p>
+            <p className="normal-case tracking-normal">Based in Mandalay, Myanmar · Open to remote, Yangon &amp; Mandalay opportunities.</p>
             <p className="hidden text-center sm:block">Move your cursor to explore</p>
             <Link href="/contact-me#contact" className="justify-self-start font-semibold text-textMain underline decoration-borderMedium underline-offset-4 transition-colors hover:text-primary sm:justify-self-end">Start a conversation ↗</Link>
           </motion.div>
         </div>
       </motion.section>
 
-      <section className="home-section !pb-5 !pt-10 md:!pb-6">
-        <div className="rounded-3xl border border-primary/25 bg-primary/[0.07] px-7 py-12 text-center md:px-12 md:py-14">
-          <p className="eyebrow">Let&apos;s build something together</p>
-          <h2 className="mx-auto mt-4 max-w-3xl font-display text-4xl leading-tight md:text-5xl">Let&apos;s build something meaningful.</h2>
-          <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-textBody">I&apos;m open to internships, collaborations, and opportunities to build useful products and grow as a developer.</p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3"><Link href="/contact-me" className="button-primary">Get in touch <ArrowUpRight size={17} /></Link><Link href="/projects" className="button-secondary">View projects</Link></div>
-        </div>
-      </section>
     </main>
   );
 }
