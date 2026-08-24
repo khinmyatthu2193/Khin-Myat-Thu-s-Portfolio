@@ -28,7 +28,7 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
             <ArrowLeft size={17} /> All achievements
           </Link>
           <p className="eyebrow">{achievement.type} / {achievement.date}</p>
-          <h1 className="mt-5 max-w-5xl font-display text-5xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 max-w-5xl font-display text-4xl font-medium leading-[1] tracking-[-0.035em] sm:text-5xl lg:text-6xl">
             {achievement.title}
           </h1>
           <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-textMuted">{achievement.issuer}</p>
@@ -40,7 +40,7 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
           </div>
           <div className="lg:pl-8">
             <p className="eyebrow">The milestone</p>
-            <p className="mt-5 font-display text-3xl leading-snug text-textMain md:text-4xl">{achievement.description}</p>
+            <p className="mt-5 font-display text-2xl leading-snug text-textMain md:text-3xl">{achievement.description}</p>
             {achievement.credentialUrl && (
               <a href={achievement.credentialUrl} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-bg">
                 View credential <ExternalLink size={16} />
@@ -54,7 +54,7 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
             <div className="mb-9 grid gap-5 md:grid-cols-[0.75fr_1.25fr] md:items-end">
               <div>
                 <p className="eyebrow">Event gallery</p>
-                <h2 className="mt-4 font-display text-4xl font-medium md:text-5xl">The winning moment.</h2>
+                <h2 className="mt-4 font-display text-3xl font-medium md:text-4xl">The winning moment.</h2>
               </div>
               <p className="max-w-2xl leading-relaxed text-textBody">
                 Team photos, award moments, and certificates from the One Project One Week Hackathon 2026.

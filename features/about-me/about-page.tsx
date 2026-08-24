@@ -1,30 +1,112 @@
 "use client";
-import { motion } from "framer-motion";
+
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import portrait from "@/src/assets/khin1.jpg";
-import { AchievementsPreview } from "@/src/components/HomePreviews";
+
+const ease = [0.22, 1, 0.36, 1] as const;
+const journey = [
+  ["2022", "Started my Computer Science journey", "Began studying Computer Science Engineering at MIIT and started exploring how software could be used to solve everyday problems."],
+  ["2024", "Started building real projects", "Moved beyond classroom concepts and began developing complete web applications, including Brancy and RecycleLink."],
+  ["2025", "Explored bigger ideas", "Expanded into mobile development, AI-powered experiences and hackathons through projects such as Climbio, Career Ladder and Future Harvest."],
+  ["2026", "Built, competed and shared", "Earned recognition through hackathons while also mentoring students and sharing practical lessons through a knowledge-sharing workshop."],
+  ["Now", "Still becoming", "Continuing to grow as a full-stack developer, explore useful AI and look for opportunities to build meaningful digital products."],
+];
+const curiosities = [
+  ["Sharing what I learn", "Mentoring, teaching, presenting and helping others feel more confident about getting started."],
+  ["Building useful things", "I enjoy taking an unfinished idea and shaping it into something people can understand and use."],
+  ["Exploring possibilities", "I’m naturally curious about unfamiliar technologies, new perspectives and different ways to solve practical problems."],
+  ["Outside technology", "Singing, listening to music, cooking and slowing down with a good cup of coffee."],
+];
+const achievements = [
+  ["1st Place", "AI for Climate-Resilient Agriculture Hackathon 2026", "UNDP Myanmar · Team ICONIC · March 2026"],
+  ["Winner", "One Project One Week Hackathon 2026", "Technortal · Team Strivo · May 25–31, 2026"],
+  ["2nd Place", "HackAtom — Science Festival Myanmar 2025", "November 2025"],
+  ["Selected Participant", "Cursor Myanmar AI Hackathon 2026", "Team Victorya · Selected among 200 participants from 1,331 applications"],
+];
+const growthStages = [
+  ["Learn", "Exploring new ideas and strengthening the foundations behind my work."],
+  ["Build", "Turning what I learn into practical products and working experiences."],
+  ["Share", "Supporting others and exchanging the lessons I gain along the way."],
+  ["Grow", "Improving through every project, challenge and collaboration."],
+];
+
+function SectionIntro({ label, title, text, id }: { label: string; title: string; text?: string; id: string }) {
+  return <div><p className="eyebrow">{label}</p><h2 id={id} className="mt-5 font-display text-[clamp(2rem,3.8vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-textMain">{title}</h2>{text && <p className="mt-5 max-w-xl leading-relaxed text-textBody">{text}</p>}</div>;
+}
 
 export function AboutPage() {
-  return (
-    <main id="main-content">
-      <section className="section-shell !pb-8 pt-28 md:!pb-10 md:pt-36">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[45%_45%_10%_10%] border border-primary/35 bg-bgCard">
-            <Image src={portrait} alt="Khin Myat Thu" fill className="object-cover object-top" sizes="(max-width: 1024px) 90vw, 32vw" />
+  const reduce = useReducedMotion();
+  const [activeJourney, setActiveJourney] = useState(0);
+  const [activeCuriosity, setActiveCuriosity] = useState(0);
+  const [activeGrowth, setActiveGrowth] = useState(3);
+  const reveal = reduce ? false : { opacity: 0, y: 28 };
+  const sectionMotion = { initial: reveal, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.1 }, transition: { duration: 0.72, ease } };
+
+  return <main id="main-content">
+    <section className="section-shell !pb-16 pt-28 md:!pb-24 md:pt-36" aria-labelledby="about-title">
+      <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+        <motion.div initial={reduce ? false : { opacity: 0, y: 24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.75, delay: 0.42, ease }} className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[45%_45%_10%_10%] border border-primary/35 bg-bgCard"><Image src={portrait} alt="Portrait of Khin Myat Thu" fill priority className="object-cover object-top" sizes="(max-width: 1024px) 90vw, 32vw" /></motion.div>
+        <div>
+          <motion.p initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="eyebrow">About me</motion.p>
+          <h1 id="about-title" className="mt-5 font-display text-[clamp(2.15rem,4.2vw,3.75rem)] font-medium leading-[1] tracking-[-0.035em]"><span className="block">Curious by nature.</span><span className="block italic text-primary">A builder by practice.</span></h1>
+          <motion.div initial={reveal} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.68, delay: 0.2, ease }} className="mt-7 max-w-2xl space-y-4 leading-[1.7] text-textBody"><p>I’m Khin Myat Thu, a final-year Computer Science student who learns best by turning ideas into working products. I enjoy exploring full-stack development, practical AI, and digital solutions that respond to real problems.</p><p>Beyond building, I enjoy sharing what I learn—whether through mentoring students, supporting hackathon teams, or speaking about the lessons I’ve gained along the way.</p></motion.div>
+          <motion.div initial={reveal} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.32, ease }} className="mt-8 grid gap-5 border-t border-borderSoft pt-6 sm:grid-cols-2"><div><p className="font-display text-lg">B.E. (Hons) in Computer Science Engineering</p><p className="mt-1 text-sm text-textMuted">Myanmar Institute of Information Technology · 2022–2027</p></div><div><p className="font-display text-lg">Diploma in English</p><p className="mt-1 text-sm text-textMuted">Mandalay University of Foreign Languages · 2023–2024</p></div></motion.div>
+        </div>
+      </div>
+    </section>
+
+    <motion.section {...sectionMotion} className="section-shell border-t border-borderSoft" aria-labelledby="journey-title">
+      <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><div className="lg:sticky lg:top-28 lg:self-start"><SectionIntro id="journey-title" label="My journey" title="Still learning. Still building." text="My path has grown through curiosity, practical projects, competitions, and the people I’ve had the chance to learn with and support." /><p aria-live="polite" className="mt-8 hidden font-display text-6xl text-primary/25 lg:block">{journey[activeJourney][0]}</p></div>
+        <div className="relative pl-8 sm:pl-12"><div aria-hidden="true" className="absolute bottom-0 left-[5px] top-2 w-px bg-borderMedium sm:left-[9px]" /><motion.div aria-hidden="true" initial={reduce ? false : { scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: reduce ? 0 : 1.1, ease }} className="absolute bottom-0 left-[5px] top-2 w-px origin-top bg-primary sm:left-[9px]" /><motion.span aria-hidden="true" animate={{ top: `${activeJourney * 24.2 + 1}%` }} transition={reduce ? { duration: 0 } : { duration: 0.4, ease }} className="absolute -left-0.5 h-3 w-3 rounded-full bg-primaryGlow shadow-[0_0_16px_rgb(var(--color-primary-glow)/0.85)] sm:left-[3px]" />
+          {journey.map(([year, title, text], index) => <motion.article key={year} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} onViewportEnter={() => setActiveJourney(index)} viewport={{ once: true, amount: 0.55 }} transition={{ duration: 0.65, ease }} className={`relative min-h-44 border-b border-borderSoft pb-10 pt-1 last:border-0 sm:min-h-48 ${activeJourney === index ? "opacity-100" : "opacity-60"}`}><span aria-hidden="true" className={`absolute -left-[2.15rem] top-2 h-2.5 w-2.5 rounded-full border sm:-left-[2.95rem] ${activeJourney === index ? "border-primary bg-primary" : "border-primary/45 bg-bg"}`} /><p className="font-display text-3xl text-primary sm:text-4xl">{year}</p><h3 className="mt-3 font-display text-xl sm:text-2xl">{title}</h3><p className="mt-3 max-w-2xl leading-relaxed text-textBody">{text}</p></motion.article>)}
+        </div></div>
+    </motion.section>
+
+    <motion.section {...sectionMotion} className="section-shell border-t border-borderSoft" aria-labelledby="curiosity-title">
+      <SectionIntro id="curiosity-title" label="Beyond the code" title="What keeps me curious." text="Technology is an important part of my life, but it isn’t the whole story." />
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20"><div role="group" aria-label="Things that keep me curious" className="border-y border-borderMedium">{curiosities.map(([title], index) => { const active = index === activeCuriosity; return <button key={title} type="button" aria-pressed={active} onMouseEnter={() => setActiveCuriosity(index)} onFocus={() => setActiveCuriosity(index)} onClick={() => setActiveCuriosity(index)} className={`group flex w-full items-center gap-4 border-b border-borderSoft py-5 text-left last:border-0 ${active ? "italic text-primary" : "text-textDim"}`}><span className={`h-2.5 w-2.5 rounded-full bg-primaryGlow ${active ? "opacity-100" : "opacity-30"}`} /><span className="font-display text-[clamp(1.35rem,3vw,2.1rem)] group-hover:text-primary">{title}</span><span className={`ml-auto h-px bg-primary transition-all ${active ? "w-12" : "w-4 opacity-30"}`} /></button>; })}</div><div aria-live="polite" className="min-h-40 border-l border-borderMedium pl-6 sm:min-h-32 sm:pl-8"><motion.p key={activeCuriosity} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="font-display text-xl leading-relaxed sm:text-2xl">{curiosities[activeCuriosity][1]}</motion.p></div></div>
+    </motion.section>
+
+    <motion.section initial={reduce ? false : { opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }} transition={{ duration: 0.72, ease }} className="section-shell border-t border-borderSoft" aria-labelledby="forward-title">
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-20">
+        <div>
+          <motion.p initial={reduce ? false : { opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease }} className="eyebrow">Looking forward</motion.p>
+          <h2 id="forward-title" className="mt-5 font-display text-[clamp(2rem,3.8vw,3.5rem)] font-medium leading-[1.04] tracking-[-0.03em] text-textMain">
+            <motion.span initial={reduce ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.08, ease }}>Growing with every </motion.span>
+            <motion.span initial={reduce ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.14, ease }} className="relative inline-block italic text-primary">project.<motion.span aria-hidden="true" initial={reduce ? false : { scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.4, ease }} className="absolute -bottom-1 left-0 h-px w-full origin-left bg-primary/65" /></motion.span>
+          </h2>
+        </div>
+        <div className="space-y-4 leading-relaxed text-textBody">
+          <motion.p initial={reduce ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.62, delay: 0.16, ease }}>I’m working toward becoming a stronger full-stack developer while gradually exploring AI and building products that solve practical problems.</motion.p>
+          <motion.p initial={reduce ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.62, delay: 0.23, ease }}>As I prepare to graduate in 2027, I’m open to internships, junior developer roles and meaningful collaborations—remotely or in Mandalay and Yangon.</motion.p>
+          <motion.p initial={reduce ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.62, delay: 0.3, ease }} className="text-sm font-semibold text-primary">Based in Mandalay, Myanmar · Open to remote, Yangon &amp; Mandalay opportunities.</motion.p>
+        </div>
+      </div>
+      <motion.div initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.34, ease }} className="mt-14">
+        <div className="relative py-6" role="group" aria-label="Growth journey stages">
+          <div aria-hidden="true" className="absolute left-[6%] right-[6%] top-1/2 h-px bg-borderMedium" />
+          <motion.div aria-hidden="true" initial={reduce ? false : { scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: reduce ? 0 : 1.6, delay: 0.4, ease }} className="absolute left-[6%] right-[6%] top-1/2 h-px origin-left bg-primary/35" />
+          <motion.div aria-hidden="true" animate={{ scaleX: activeGrowth / 3 }} transition={{ duration: reduce ? 0 : 0.45, ease }} className="absolute left-[6%] right-[6%] top-1/2 h-px origin-left bg-primary" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-x-[4%] top-1/2 grid -translate-y-1/2 grid-cols-4">
+            {growthStages.map(([word], index) => <div key={word} className="flex justify-center">{activeGrowth === index && <motion.span layoutId="growth-stage-node" transition={reduce ? { duration: 0 } : { duration: 0.42, ease }} className="h-2.5 w-2.5 rounded-full bg-primaryGlow shadow-[0_0_15px_rgb(var(--color-primary-glow)/0.85)]" />}</div>)}
           </div>
-          <div>
-            <p className="eyebrow">About me</p>
-            <h1 className="section-title mt-5">I&apos;m still becoming, but I&apos;m already building.</h1>
-            <p className="mt-8 text-xl leading-[1.65] text-textBody md:text-2xl">I&apos;m Khin Myat Thu, a final-year Computer Science student at the Myanmar Institute of Information Technology (MIIT).</p>
-            <div className="mt-6 max-w-2xl space-y-4 text-[15px] leading-[1.65] text-textDim sm:text-base">
-              <p>I <span className="font-display italic text-textMain">learn primarily by doing</span>—building projects, working with teammates, experimenting, and learning from mistakes. These experiences have strengthened my technical skills, teamwork, product thinking, problem solving, communication, and confidence to simply start.</p>
-              <p>I also enjoy <span className="font-display italic text-textMain">sharing what I learn</span> through mentoring students, helping with hackathon and assignment preparation, teaching, presenting, and participating in community activities.</p>
-              <p><span className="font-display italic text-textMain">Outside technology</span>, I enjoy singing, listening to music, cooking, and a good cup of coffee. I&apos;m naturally curious and enjoy turning interesting ideas into things people can actually see, click, and use.</p>
-            </div>
+          <div className="relative grid grid-cols-4 gap-1">
+            {growthStages.map(([word], index) => {
+              const active = activeGrowth === index;
+              return <motion.button key={word} type="button" aria-pressed={active} onMouseEnter={() => setActiveGrowth(index)} onFocus={() => setActiveGrowth(index)} onClick={() => setActiveGrowth(index)} initial={reduce ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} animate={{ y: active && !reduce ? -4 : 0 }} transition={{ opacity: { duration: reduce ? 0 : 0.3, delay: reduce ? 0 : 0.48 + index * 0.28 }, y: { duration: reduce ? 0 : 0.3, ease } }} className={`relative justify-self-center bg-bg px-1.5 py-2 font-display text-sm uppercase tracking-[0.06em] transition-[color,opacity,font-style] sm:px-3 sm:text-xl ${active ? "italic text-primary" : "text-textDim opacity-70 hover:opacity-100"}`}><span aria-hidden="true" className={`absolute inset-0 -z-10 rounded-full bg-primary/10 blur-md transition-opacity ${active ? "opacity-100" : "opacity-0"}`} />{word}<svg aria-hidden="true" viewBox="0 0 100 34" preserveAspectRatio="none" className={`pointer-events-none absolute -inset-x-1 inset-y-0 h-full w-[calc(100%+0.5rem)] text-primary transition-opacity ${active ? "opacity-65" : "opacity-0"}`}><motion.ellipse cx="50" cy="17" rx="47" ry="14" fill="none" stroke="currentColor" strokeWidth="1" initial={false} animate={{ pathLength: active ? 1 : 0 }} transition={{ duration: reduce ? 0 : 0.38, ease }} /></svg></motion.button>;
+            })}
           </div>
-        </motion.div>
-      </section>
-      <AchievementsPreview />
-    </main>
-  );
+        </div>
+        <div className="min-h-20 pt-5 text-center" aria-live="polite"><AnimatePresence mode="wait" initial={false}><motion.p key={activeGrowth} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: reduce ? 0 : 0.24, ease }} className="mx-auto max-w-2xl leading-relaxed text-textBody">{growthStages[activeGrowth][1]}</motion.p></AnimatePresence></div>
+      </motion.div>
+    </motion.section>
+
+    <motion.section {...sectionMotion} className="section-shell border-t border-borderSoft" aria-labelledby="recognition-title">
+      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end"><SectionIntro id="recognition-title" label="A few moments I’m grateful for" title="Recognition along the way." /><Link href="/achievements" className="text-link">View all achievements ↗</Link></div>
+      <div className="mt-10 border-y border-borderMedium">{achievements.map(([placement, event, detail], index) => <motion.article key={event} initial={reduce ? false : { opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} whileHover={reduce ? undefined : { x: 4 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} className="grid gap-3 border-b border-borderSoft py-6 last:border-0 md:grid-cols-[0.35fr_1fr_0.7fr] md:items-center md:gap-8"><p className="font-display text-xl italic text-primary sm:text-2xl">{placement}</p><h3 className="font-display text-lg sm:text-xl">{event}</h3><p className="text-sm text-textMuted md:text-right">{detail}</p></motion.article>)}</div>
+    </motion.section>
+  </main>;
 }

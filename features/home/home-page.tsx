@@ -65,7 +65,7 @@ export function HomePage() {
 
           <div className="relative mt-8 grid gap-8 lg:grid-cols-[0.72fr_1fr_0.7fr] lg:items-center lg:gap-10">
             <motion.div initial={reduceMotion ? false : { opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-              <h2 id="contribution-title" className="max-w-md font-display text-4xl font-medium leading-[1.04] tracking-[-0.035em] sm:text-5xl lg:text-6xl">What can we build together?</h2>
+              <h2 id="contribution-title" className="max-w-md font-display text-3xl font-medium leading-[1.05] tracking-[-0.035em] sm:text-4xl lg:text-5xl">What can we build together?</h2>
               <p className="mt-5 text-sm text-textBody sm:text-base">You need someone who can</p>
             </motion.div>
 

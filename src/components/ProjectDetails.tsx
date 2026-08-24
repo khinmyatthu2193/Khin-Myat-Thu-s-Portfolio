@@ -30,7 +30,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
           </Link>
           <p className="eyebrow">{project.category} / {project.date}</p>
           {project.subtitle && <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-primary">{project.subtitle}</p>}
-          <h1 className="mt-5 max-w-5xl font-display text-5xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 max-w-5xl font-display text-4xl font-medium leading-[1] tracking-[-0.035em] sm:text-5xl lg:text-6xl">
             {project.title}
           </h1>
           <p className="mt-7 max-w-3xl text-xl leading-relaxed text-textBody md:text-2xl">{project.description}</p>
@@ -58,7 +58,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
           <div className="mb-10 flex flex-col gap-5 border-b border-borderSoft pb-8 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="eyebrow">Project overview</p>
-              <h2 className="mt-4 max-w-xl font-display text-4xl leading-tight md:text-5xl">The idea behind the experience.</h2>
+              <h2 className="mt-4 max-w-xl font-display text-3xl leading-tight md:text-4xl">The idea behind the experience.</h2>
             </div>
             <div className="flex max-w-xl flex-wrap gap-2 md:justify-end">
               {project.technologies.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
@@ -107,7 +107,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
 
         {project.responsibilities && (
           <section className="section-shell grid gap-12 border-b border-borderSoft lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
-            <div><p className="eyebrow">What I owned</p><h2 className="mt-4 font-display text-4xl">Full-stack delivery.</h2></div>
+            <div><p className="eyebrow">What I owned</p><h2 className="mt-4 font-display text-3xl md:text-4xl">Full-stack delivery.</h2></div>
             <ul className="grid gap-3 sm:grid-cols-2">
               {project.responsibilities.map((item) => <li key={item} className="flex gap-3 rounded-xl border border-borderSoft bg-bgCard/60 p-4 text-textBody"><Check className="mt-0.5 shrink-0 text-primary" size={17} />{item}</li>)}
             </ul>
@@ -132,7 +132,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
           <div className="mb-10 flex items-end justify-between gap-6">
             <div>
               <p className="eyebrow">Product gallery</p>
-              <h2 className="mt-4 font-display text-4xl md:text-5xl">Screens and flow.</h2>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl">Screens and flow.</h2>
             </div>
           </div>
           <motion.div

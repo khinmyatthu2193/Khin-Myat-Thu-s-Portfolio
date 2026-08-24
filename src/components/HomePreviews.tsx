@@ -50,7 +50,7 @@ export function FeaturedProjects() {
       <header className="grid gap-6 md:grid-cols-[minmax(0,3fr)_minmax(280px,2fr)] md:items-end md:gap-12 lg:gap-16">
         <div className="min-w-0">
           <motion.p initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="eyebrow">Featured work</motion.p>
-          <h2 id="featured-projects-title" className="mt-4 font-display text-[clamp(2.6rem,12vw,4rem)] font-medium leading-[0.98] tracking-[-0.035em] text-textMain md:mt-5 md:text-[clamp(3rem,5vw,5rem)]">
+          <h2 id="featured-projects-title" className="mt-4 font-display text-[clamp(2.25rem,10vw,3.5rem)] font-medium leading-[1] tracking-[-0.035em] text-textMain md:mt-5 md:text-[clamp(2.75rem,4.5vw,4.25rem)]">
             <motion.span className="block" initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>Projects I&apos;ve built.</motion.span>
           </h2>
         </div>

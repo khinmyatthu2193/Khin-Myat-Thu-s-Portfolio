@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { BriefcaseBusiness, Code2, Home, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
+import { Award, BriefcaseBusiness, Code2, Home, Mail, Menu, Moon, NotebookPen, Sun, UserRound, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -10,6 +10,7 @@ const links = [
   { name: "Home", href: "/", icon: Home },
   { name: "About", href: "/about-me", icon: UserRound },
   { name: "Projects", href: "/projects", icon: BriefcaseBusiness },
+  { name: "Achievements", href: "/achievements", icon: Award },
   { name: "Skills", href: "/skills", icon: Code2 },
   { name: "Blog", href: "/blogs", icon: NotebookPen },
 ];

@@ -48,7 +48,7 @@ export default function Hero() {
             <span className="inline-flex items-center gap-1.5 normal-case tracking-normal"><MapPin size={13} /> Based in Mandalay, Myanmar · Open to remote, Yangon &amp; Mandalay opportunities.</span>
           </motion.div>
 
-          <h1 className="font-display text-[clamp(2.3rem,4.5vw,4.5rem)] font-medium leading-[0.94] tracking-[-0.04em]">
+          <h1 className="font-display text-[clamp(2.15rem,4vw,4rem)] font-medium leading-[0.98] tracking-[-0.04em]">
             {["Khin Myat", "Thu."].map((line, index) => <span key={line} className="block overflow-hidden"><motion.span className="block text-gradient" initial={reduceMotion ? false : { opacity: 0, y: "105%" }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.12 + index * 0.07, ease: [0.22, 1, 0.36, 1] }}>{line}</motion.span></span>)}
           </h1>
 
