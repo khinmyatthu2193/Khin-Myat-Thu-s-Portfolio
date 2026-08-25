@@ -10,9 +10,9 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const journey = [
   ["2022", "Started my Computer Science journey", "Began studying Computer Science Engineering at MIIT and started exploring how software could be used to solve everyday problems."],
   ["2024", "Started building real projects", "Moved beyond classroom concepts and began developing complete web applications, including Brancy and RecycleLink."],
-  ["2025", "Explored bigger ideas", "Expanded into mobile development, AI-powered experiences and hackathons through projects such as Climbio, Career Ladder and Future Harvest."],
-  ["2026", "Built, competed and shared", "Earned recognition through hackathons while also mentoring students and sharing practical lessons through a knowledge-sharing workshop."],
-  ["Now", "Still becoming", "Continuing to grow as a full-stack developer, explore useful AI and look for opportunities to build meaningful digital products."],
+  ["2025", "Explored bigger ideas", "Expanded into mobile development and AI-powered experiences through projects such as Climbio, Career Ladder, and Future Harvest."],
+  ["2026", "Built and refined real solutions", "Continued developing practical digital products while strengthening my experience in full-stack development, AI, teamwork, and presenting ideas."],
+  ["Now", "Still becoming", "Continuing to grow as a full-stack developer, explore useful AI, and look for opportunities to build meaningful digital products."],
 ];
 const curiosities = [
   ["Sharing what I learn", "Mentoring, teaching, presenting and helping others feel more confident about getting started."],
@@ -21,9 +21,9 @@ const curiosities = [
   ["Outside technology", "Singing, listening to music, cooking and slowing down with a good cup of coffee."],
 ];
 const achievements = [
-  ["1st Place", "AI for Climate-Resilient Agriculture Hackathon 2026", "UNDP Myanmar · Team ICONIC · March 2026"],
   ["Winner", "One Project One Week Hackathon 2026", "Technortal · Team Strivo · May 25–31, 2026"],
-  ["2nd Place", "HackAtom — Science Festival Myanmar 2025", "November 2025"],
+  ["Winner", "AI for Climate-Resilient Agriculture Hackathon 2026", "UNDP Myanmar · Team ICONIC · March 2026"],
+    ["2nd Place", "HackAtom — Science Festival Myanmar 2025", "November 2025"],
   ["Selected Participant", "Cursor Myanmar AI Hackathon 2026", "Team Victorya · Selected among 200 participants from 1,331 applications"],
 ];
 const growthStages = [
@@ -51,15 +51,15 @@ export function AboutPage() {
         <motion.div initial={reduce ? false : { opacity: 0, y: 24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.75, delay: 0.42, ease }} className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[45%_45%_10%_10%] border border-primary/35 bg-bgCard"><Image src={portrait} alt="Portrait of Khin Myat Thu" fill priority className="object-cover object-top" sizes="(max-width: 1024px) 90vw, 32vw" /></motion.div>
         <div>
           <motion.p initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="eyebrow">About me</motion.p>
-          <h1 id="about-title" className="mt-5 font-display text-[clamp(2.15rem,4.2vw,3.75rem)] font-medium leading-[1] tracking-[-0.035em]"><span className="block">Curious by nature.</span><span className="block italic text-primary">A builder by practice.</span></h1>
-          <motion.div initial={reveal} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.68, delay: 0.2, ease }} className="mt-7 max-w-2xl space-y-4 leading-[1.7] text-textBody"><p>I’m Khin Myat Thu, a final-year Computer Science student who learns best by turning ideas into working products. I enjoy exploring full-stack development, practical AI, and digital solutions that respond to real problems.</p><p>Beyond building, I enjoy sharing what I learn—whether through mentoring students, supporting hackathon teams, or speaking about the lessons I’ve gained along the way.</p></motion.div>
-          <motion.div initial={reveal} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.32, ease }} className="mt-8 grid gap-5 border-t border-borderSoft pt-6 sm:grid-cols-2"><div><p className="font-display text-lg">B.E. (Hons) in Computer Science Engineering</p><p className="mt-1 text-sm text-textMuted">Myanmar Institute of Information Technology · 2022–2027</p></div><div><p className="font-display text-lg">Diploma in English</p><p className="mt-1 text-sm text-textMuted">Mandalay University of Foreign Languages · 2023–2024</p></div></motion.div>
+          <h1 id="about-title" className="mt-5 font-display text-[clamp(2.15rem,4.2vw,3.75rem)] font-medium leading-[1] tracking-[-0.035em]"><span className="block">Learning by doing.</span><span className="block italic text-primary">Building what matters.</span></h1>
+          <motion.div initial={reveal} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.68, delay: 0.2, ease }} className="mt-7 max-w-2xl space-y-4 leading-[1.7] text-textBody"><p>I’m Khin Myat Thu, a final-year Computer Science student who learns best by turning ideas into working products. I enjoy exploring full-stack development, practical AI, and digital solutions that respond to real-world problems.</p><p>I’m always curious to learn something new, experiment with different technologies, and turn what I learn into something useful. For me, every project is an opportunity to grow, solve problems, and understand how technology can make a meaningful difference.</p></motion.div>
+          <motion.div initial={reveal} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.32, ease }} className="mt-8 border-t border-borderSoft" aria-label="Education"><div className="py-6"><p className="font-display text-lg">B.E. (Hons) in Computer Science Engineering</p><p className="mt-2 text-sm text-textMuted">Myanmar Institute of Information Technology</p><p className="mt-1 text-sm font-medium text-primary">2022–2027</p></div><div className="border-t border-borderSoft py-6"><p className="font-display text-lg">Diploma in English</p><p className="mt-2 text-sm text-textMuted">Mandalay University of Foreign Languages</p><p className="mt-1 text-sm font-medium text-primary">2023–2024</p></div></motion.div>
         </div>
       </div>
     </section>
 
     <motion.section {...sectionMotion} className="section-shell border-t border-borderSoft" aria-labelledby="journey-title">
-      <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><div className="lg:sticky lg:top-28 lg:self-start"><SectionIntro id="journey-title" label="My journey" title="Still learning. Still building." text="My path has grown through curiosity, practical projects, competitions, and the people I’ve had the chance to learn with and support." /><p aria-live="polite" className="mt-8 hidden font-display text-6xl text-primary/25 lg:block">{journey[activeJourney][0]}</p></div>
+      <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><div className="lg:self-center"><SectionIntro id="journey-title" label="My journey" title="Still learning. Still building." text="My path has grown through curiosity, practical projects, and a constant willingness to learn and try something new." /></div>
         <div className="relative pl-8 sm:pl-12"><div aria-hidden="true" className="absolute bottom-0 left-[5px] top-2 w-px bg-borderMedium sm:left-[9px]" /><motion.div aria-hidden="true" initial={reduce ? false : { scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: reduce ? 0 : 1.1, ease }} className="absolute bottom-0 left-[5px] top-2 w-px origin-top bg-primary sm:left-[9px]" /><motion.span aria-hidden="true" animate={{ top: `${activeJourney * 24.2 + 1}%` }} transition={reduce ? { duration: 0 } : { duration: 0.4, ease }} className="absolute -left-0.5 h-3 w-3 rounded-full bg-primaryGlow shadow-[0_0_16px_rgb(var(--color-primary-glow)/0.85)] sm:left-[3px]" />
           {journey.map(([year, title, text], index) => <motion.article key={year} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} onViewportEnter={() => setActiveJourney(index)} viewport={{ once: true, amount: 0.55 }} transition={{ duration: 0.65, ease }} className={`relative min-h-44 border-b border-borderSoft pb-10 pt-1 last:border-0 sm:min-h-48 ${activeJourney === index ? "opacity-100" : "opacity-60"}`}><span aria-hidden="true" className={`absolute -left-[2.15rem] top-2 h-2.5 w-2.5 rounded-full border sm:-left-[2.95rem] ${activeJourney === index ? "border-primary bg-primary" : "border-primary/45 bg-bg"}`} /><p className="font-display text-3xl text-primary sm:text-4xl">{year}</p><h3 className="mt-3 font-display text-xl sm:text-2xl">{title}</h3><p className="mt-3 max-w-2xl leading-relaxed text-textBody">{text}</p></motion.article>)}
         </div></div>
