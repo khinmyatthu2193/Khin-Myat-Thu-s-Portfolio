@@ -23,7 +23,7 @@ const curiosities = [
 const achievements = [
   ["Winner", "One Project One Week Hackathon 2026", "Technortal · Team Strivo · May 25–31, 2026"],
   ["Winner", "AI for Climate-Resilient Agriculture Hackathon 2026", "UNDP Myanmar · Team ICONIC · March 2026"],
-    ["2nd Place", "HackAtom — Science Festival Myanmar 2025", "November 2025"],
+  ["2nd Place", "HackAtom — Science Festival Myanmar 2025", "TenVoltTitan at NSPU · November 2025"],
   ["Selected Participant", "Cursor Myanmar AI Hackathon 2026", "Team Victorya · Selected among 200 participants from 1,331 applications"],
 ];
 const growthStages = [
@@ -87,17 +87,11 @@ export function AboutPage() {
         </div>
       </div>
       <motion.div initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.34, ease }} className="mt-14">
-        <div className="relative py-6" role="group" aria-label="Growth journey stages">
-          <div aria-hidden="true" className="absolute left-[6%] right-[6%] top-1/2 h-px bg-borderMedium" />
-          <motion.div aria-hidden="true" initial={reduce ? false : { scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: reduce ? 0 : 1.6, delay: 0.4, ease }} className="absolute left-[6%] right-[6%] top-1/2 h-px origin-left bg-primary/35" />
-          <motion.div aria-hidden="true" animate={{ scaleX: activeGrowth / 3 }} transition={{ duration: reduce ? 0 : 0.45, ease }} className="absolute left-[6%] right-[6%] top-1/2 h-px origin-left bg-primary" />
-          <div aria-hidden="true" className="pointer-events-none absolute inset-x-[4%] top-1/2 grid -translate-y-1/2 grid-cols-4">
-            {growthStages.map(([word], index) => <div key={word} className="flex justify-center">{activeGrowth === index && <motion.span layoutId="growth-stage-node" transition={reduce ? { duration: 0 } : { duration: 0.42, ease }} className="h-2.5 w-2.5 rounded-full bg-primaryGlow shadow-[0_0_15px_rgb(var(--color-primary-glow)/0.85)]" />}</div>)}
-          </div>
-          <div className="relative grid grid-cols-4 gap-1">
+        <div className="py-6" role="group" aria-label="Growth journey stages">
+          <div className="flex w-full items-center gap-2 sm:gap-3 lg:gap-5">
             {growthStages.map(([word], index) => {
               const active = activeGrowth === index;
-              return <motion.button key={word} type="button" aria-pressed={active} onMouseEnter={() => setActiveGrowth(index)} onFocus={() => setActiveGrowth(index)} onClick={() => setActiveGrowth(index)} initial={reduce ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} animate={{ y: active && !reduce ? -4 : 0 }} transition={{ opacity: { duration: reduce ? 0 : 0.3, delay: reduce ? 0 : 0.48 + index * 0.28 }, y: { duration: reduce ? 0 : 0.3, ease } }} className={`relative justify-self-center bg-bg px-1.5 py-2 font-display text-sm uppercase tracking-[0.06em] transition-[color,opacity,font-style] sm:px-3 sm:text-xl ${active ? "italic text-primary" : "text-textDim opacity-70 hover:opacity-100"}`}><span aria-hidden="true" className={`absolute inset-0 -z-10 rounded-full bg-primary/10 blur-md transition-opacity ${active ? "opacity-100" : "opacity-0"}`} />{word}<svg aria-hidden="true" viewBox="0 0 100 34" preserveAspectRatio="none" className={`pointer-events-none absolute -inset-x-1 inset-y-0 h-full w-[calc(100%+0.5rem)] text-primary transition-opacity ${active ? "opacity-65" : "opacity-0"}`}><motion.ellipse cx="50" cy="17" rx="47" ry="14" fill="none" stroke="currentColor" strokeWidth="1" initial={false} animate={{ pathLength: active ? 1 : 0 }} transition={{ duration: reduce ? 0 : 0.38, ease }} /></svg></motion.button>;
+              return <div key={word} className="contents">{index > 0 && <motion.span aria-hidden="true" initial={reduce ? false : { scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : 0.35 + index * 0.12, ease }} className="h-px min-w-3 flex-1 origin-left bg-primary/45 sm:min-w-8" />}<motion.button type="button" aria-pressed={active} onMouseEnter={() => setActiveGrowth(index)} onFocus={() => setActiveGrowth(index)} onClick={() => setActiveGrowth(index)} initial={reduce ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: reduce ? 0 : 0.3, delay: reduce ? 0 : 0.42 + index * 0.16 }} className={`inline-flex h-9 shrink-0 items-center bg-transparent p-0 font-display text-[0.7rem] uppercase tracking-[0.06em] transition-[color,opacity,font-style] sm:text-sm lg:text-xl ${active ? "italic text-primary" : "text-textDim opacity-75 hover:text-primary hover:opacity-100"}`}>{word === "Grow" ? <span className="rounded-full border border-primary/65 bg-transparent px-2.5 py-1 sm:px-3">{word}</span> : <span className="bg-transparent px-0.5 sm:px-1">{word}</span>}</motion.button></div>;
             })}
           </div>
         </div>
