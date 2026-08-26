@@ -5,7 +5,7 @@ import "@/src/index.css";
 
 export const metadata: Metadata = {
   metadataBase: SITE_URL,
-  title: { default: "Khin Myat Thu — Aspiring Full-Stack Developer", template: "%s — Khin Myat Thu" },
+  title: { default: "Khin Myat Thu | Developer Portfolio", template: "%s | Khin Myat Thu" },
   description: "Portfolio of Khin Myat Thu, a final-year Computer Science student building web, mobile, and AI-powered products.",
   applicationName: SITE_NAME,
   authors: [{ name: "Khin Myat Thu", url: SITE_URL }],
