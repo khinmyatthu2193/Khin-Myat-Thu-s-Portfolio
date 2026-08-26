@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Image as ImageIcon, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "../data/projects";
 import { assetUrl } from "@/lib/asset-url";
 
-export function ProjectPreview({ project, index, fit = "cover" }: { project: Project; index: number; fit?: "cover" | "contain" }) {
+export function ProjectPreview({ project, index, fit }: { project: Project; index: number; fit?: "cover" | "contain" }) {
   const { media } = project;
+  const imageFit = fit ?? media.fit ?? "cover";
 
   if (media.type === "video" && media.src) {
     return (
@@ -24,46 +26,31 @@ export function ProjectPreview({ project, index, fit = "cover" }: { project: Pro
 
   if (media.type === "image" && media.src) {
     return (
-      <img
-        className={`h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"}`}
-        src={assetUrl(media.src)}
+      <Image
+        className={imageFit === "contain" ? "object-contain" : "object-cover"}
+        src={media.src}
         alt={media.alt}
-        loading="lazy"
+        fill
+        sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 700px"
+        placeholder={typeof media.src === "string" ? "empty" : "blur"}
       />
     );
   }
 
   return (
-    <div className={`project-preview project-preview-${(index % 3) + 1}`} role="img" aria-label={media.alt}>
-      <div className="project-browser">
-        <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-2">
-          <i /><i /><i />
-          <span className="ml-2 h-1.5 w-24 rounded-full bg-white/10" />
-        </div>
-        <div className="grid flex-1 grid-cols-[0.32fr_1fr] gap-2 p-3">
-          <div className="rounded-md bg-white/[0.055] p-2">
-            <span className="mb-2 block h-2 w-3/4 rounded-full bg-white/15" />
-            <span className="mb-1 block h-1.5 rounded-full bg-white/[0.08]" />
-            <span className="block h-1.5 w-4/5 rounded-full bg-white/[0.08]" />
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-md bg-primary/20" />
-            <div className="rounded-md bg-white/[0.07]" />
-            <div className="col-span-2 rounded-md bg-white/[0.055]" />
-          </div>
-        </div>
-      </div>
-      <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full border border-white/10 bg-black/35 px-3 py-2 text-xs font-medium text-white backdrop-blur-md">
-        {media.type === "video" ? <Play size={13} fill="currentColor" /> : <ImageIcon size={13} />}
-        {media.type === "video" ? "Demo video" : "Product preview"}
-      </div>
-      {media.type === "video" && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white shadow-2xl backdrop-blur-md">
-            <Play className="ml-1" size={23} fill="currentColor" />
+    <div className={`project-cover project-cover-${(index % 4) + 1}`} role="img" aria-label={media.alt}>
+      <div className="project-cover-orbit" aria-hidden="true" />
+      <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8">
+        <span className="w-fit rounded-full border border-white/15 bg-black/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
+          {project.category}
+        </span>
+        <div>
+          <span className="mb-3 block h-px w-12 bg-white/45" />
+          <span className="block max-w-[85%] font-display text-2xl font-medium leading-tight text-white sm:text-3xl">
+            {project.title}
           </span>
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -91,7 +78,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
             {project.category}
           </span>
         </div>
-        <p className="mb-3 text-xs uppercase tracking-[0.15em] text-primary">{project.date}</p>
+        <p className="mb-3 text-xs uppercase tracking-[0.15em] text-primary">{project.status}{project.date ? ` / ${project.date}` : ""}</p>
         <h3 className="font-display text-3xl font-medium leading-tight transition-colors group-hover:text-primary md:text-4xl">
           <Link href={`/projects/${project.slug}`}>{project.title}</Link>
         </h3>

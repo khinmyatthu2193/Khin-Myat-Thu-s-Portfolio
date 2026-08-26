@@ -28,7 +28,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
           <Link href="/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
             <ArrowLeft size={17} /> All projects
           </Link>
-          <p className="eyebrow">{project.category} / {project.date}</p>
+          <p className="eyebrow">{project.category} / {project.status}{project.date ? ` / ${project.date}` : ""}</p>
           {project.subtitle && <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-primary">{project.subtitle}</p>}
           <h1 className="mt-5 max-w-5xl font-display text-4xl font-medium leading-[1] tracking-[-0.035em] sm:text-5xl lg:text-6xl">
             {project.title}
@@ -128,7 +128,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
           </section>
         )}
 
-        <section className="section-shell">
+        {project.gallery && project.gallery.length > 0 && <section className="section-shell">
           <div className="mb-10 flex items-end justify-between gap-6">
             <div>
               <p className="eyebrow">Product gallery</p>
@@ -142,9 +142,9 @@ export default function ProjectDetails({ project }: { project: Project }) {
             viewport={{ once: true, margin: "-80px" }}
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
           >
-            {(project.gallery ?? [undefined, undefined]).map((media, index) => (
+            {project.gallery.map((media, index) => (
               <motion.figure
-                key={media?.src ? assetUrl(media.src) : index}
+                key={media.alt}
                 variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="group overflow-hidden rounded-2xl border border-borderSoft bg-bgCard transition-colors hover:border-primary/40"
@@ -152,18 +152,18 @@ export default function ProjectDetails({ project }: { project: Project }) {
                 <button
                   type="button"
                   className="relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden text-left"
-                  onClick={() => media?.src && setActiveImage(assetUrl(media.src))}
-                  aria-label={media?.alt ? `Expand ${media.alt}` : "Expand screenshot"}
-                  disabled={!media?.src}
+                  onClick={() => media.src && setActiveImage(assetUrl(media.src))}
+                  aria-label={`Expand ${media.alt}`}
+                  disabled={!media.src}
                 >
-                  <ProjectPreview project={{ ...project, media: media ?? { ...project.media, type: "image", src: undefined } }} index={index + 1} fit="contain" />
-                  {media?.src && <span className="absolute right-4 top-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white opacity-0 backdrop-blur-md transition-all group-hover:translate-y-0 group-hover:opacity-100"><Maximize2 size={16} /></span>}
+                  <ProjectPreview project={{ ...project, media }} index={index + 1} fit="contain" />
+                  {media.src && <span className="absolute right-4 top-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white opacity-0 backdrop-blur-md transition-all group-hover:translate-y-0 group-hover:opacity-100"><Maximize2 size={16} /></span>}
                 </button>
-                {media?.alt && <figcaption className="flex items-center justify-between border-t border-borderSoft px-4 py-3 text-sm text-textDim"><span>{media.alt}</span><span className="text-xs text-primary">0{index + 1}</span></figcaption>}
+                <figcaption className="flex items-center justify-between border-t border-borderSoft px-4 py-3 text-sm text-textDim"><span>{media.alt}</span><span className="text-xs text-primary">0{index + 1}</span></figcaption>
               </motion.figure>
             ))}
           </motion.div>
-        </section>
+        </section>}
 
         {(project.stack || project.highlights || project.challenges) && (
           <section className="section-shell grid gap-12 border-t border-borderSoft lg:grid-cols-3">
