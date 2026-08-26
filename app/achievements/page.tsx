@@ -1,2 +1,10 @@
 import { AchievementsPage } from "@/features/achievements/achievements-page";
-export const metadata={title:"Achievements"}; export default function Page(){return <AchievementsPage/>}
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Achievements",
+  description: "Explore Khin Myat Thu's hackathon achievements, certificates, and selected technology community milestones.",
+  path: "/achievements",
+});
+
+export default function Page(){return <AchievementsPage/>}

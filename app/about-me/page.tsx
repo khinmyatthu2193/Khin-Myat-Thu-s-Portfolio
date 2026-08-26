@@ -1,2 +1,10 @@
 import { AboutPage } from "@/features/about-me/about-page";
-export const metadata={title:"About me"}; export default function Page(){return <AboutPage/>}
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "About Me",
+  description: "Learn about Khin Myat Thu, a final-year Computer Science student in Mandalay pursuing full-stack development opportunities.",
+  path: "/about-me",
+});
+
+export default function Page(){return <AboutPage/>}
