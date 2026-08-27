@@ -18,20 +18,20 @@ export default function ProjectGridCard({ project, index }: { project: Project; 
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.28, delay: Math.min(index * 0.035, 0.18) }}
-      className="project-archive-card group flex h-full flex-col overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/65"
+      className="project-archive-card group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/65"
     >
       <Link href={`/projects/${project.slug}`} className="project-card-media relative block aspect-[16/10] overflow-hidden bg-bgSoft" aria-label={`View ${project.title} project details`}>
         <ProjectPreview project={project} index={index} />
       </Link>
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
+      <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
         <div className="flex flex-wrap gap-2">
           <span className="project-meta-pill">{project.category}</span>
           <span className="project-meta-pill">{project.status}</span>
           {project.date && <span className="project-meta-pill">{project.date}</span>}
         </div>
 
-        <h2 className="mt-4 font-display text-2xl font-medium leading-tight tracking-[-0.02em] transition-colors group-hover:text-primary sm:text-[1.75rem]">
+        <h2 className="mt-4 break-words font-display text-[clamp(1.3125rem,calc(1.25rem+0.25vw),1.375rem)] font-medium leading-[1.15] tracking-[-0.02em] transition-colors group-hover:text-primary">
           <Link href={`/projects/${project.slug}`}>{project.title}</Link>
         </h2>
         <p className="mt-3 line-clamp-3 leading-relaxed text-textBody">{project.description}</p>

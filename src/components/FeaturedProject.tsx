@@ -43,16 +43,16 @@ export default function FeaturedProject({ project }: { project: Project }) {
           )}
         </div>
 
-        <div className="py-1 sm:py-3">
-          <p className="eyebrow">Featured project</p>
+        <div className="min-w-0 py-1 sm:py-3">
+          <p className="eyebrow !text-[0.6875rem]">Featured project</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <span className="project-meta-pill">{project.category}</span>
             <span className="project-meta-pill">{project.status}</span>
           </div>
-          <h2 className="mt-5 font-display text-4xl font-medium leading-[1.05] tracking-[-0.03em] sm:text-5xl">
+          <h2 className="mt-4 font-display text-[clamp(1.75rem,calc(1.55rem+0.9vw),2rem)] font-medium leading-[1.08] tracking-[-0.03em]">
             {project.title}
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-textBody sm:text-lg">{project.description}</p>
+          <p className="mt-4 text-base leading-relaxed text-textBody sm:text-lg">{project.description}</p>
 
           <dl className="mt-6 grid gap-4 border-y border-borderSoft py-5 sm:grid-cols-2">
             {project.projectType && <div><dt className="text-xs font-semibold uppercase tracking-[0.13em] text-textMuted">Project type</dt><dd className="mt-1.5 text-sm font-medium text-textMain">{project.projectType}</dd></div>}
