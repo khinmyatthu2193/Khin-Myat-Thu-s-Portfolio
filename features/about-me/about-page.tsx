@@ -15,10 +15,10 @@ const journey = [
   ["Now", "Still becoming", "Continuing to grow as a full-stack developer, explore useful AI, and look for opportunities to build meaningful digital products."],
 ];
 const curiosities = [
-  ["Sharing what I learn", "I enjoy turning what I discover into clear notes, presentations, and meaningful conversations with others."],
-  ["Building useful things", "I enjoy taking an unfinished idea and shaping it into something people can understand and use."],
-  ["Exploring possibilities", "I’m naturally curious about unfamiliar technologies, new perspectives and different ways to solve practical problems."],
-  ["Outside technology", "Singing, listening to music, cooking and slowing down with a good cup of coffee."],
+  ["Sharing what I learn", "I love turning things I discover into simple notes, presentations, and conversations that might help someone else too."],
+  ["Building useful things", "I enjoy taking an idea that’s still rough and turning it into something real, useful, and easy for people to understand."],
+  ["Exploring possibilities", "I’m always curious about unfamiliar technologies, new perspectives, and different ways of solving everyday problems."],
+  ["Beyond the screen", "Singing, getting lost in good music, cooking something I love, and finding a little quiet with a good cup of coffee."],
 ];
 const achievements = [
   ["Winner", "One Project One Week Hackathon 2026", "Technortal · Team Strivo · May 25–31, 2026"],
