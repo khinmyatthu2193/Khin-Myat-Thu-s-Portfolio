@@ -4,9 +4,12 @@ import brancyProduct from "../assets/brancy_ss/product.png";
 import brancyCart from "../assets/brancy_ss/cart.png";
 import brancyCheckout from "../assets/brancy_ss/checkout_page.png";
 import brancyAdmin from "../assets/brancy_ss/django_administration.png";
+import climbioLanding from "../assets/climbio_ss/landing_page.png";
 import climbioDashboard from "../assets/climbio_ss/dashboard.png";
-import climbioInventory from "../assets/climbio_ss/Inventory.png";
-import climbioAdvisor from "../assets/climbio_ss/AI_advisor1.png";
+import climbioProducts from "../assets/climbio_ss/Product_list.png";
+import climbioInvoices from "../assets/climbio_ss/invoice1.png";
+import climbioPublicStore from "../assets/climbio_ss/Public_Store.png";
+import climbioChat from "../assets/climbio_ss/AI_chatbot.png";
 import type { AssetSource } from "@/lib/asset-url";
 
 export type ProjectMedia = { type: "image" | "video"; src?: AssetSource; poster?: AssetSource; alt: string; fit?: "cover" | "contain" };
@@ -51,10 +54,13 @@ export const projects: Project[] = [
     role: "Full-stack developer for Version 2",
     github: "https://github.com/khinmyatthu2193/Climbio-2.0", liveUrl: "https://climbio-2-0.vercel.app",
     technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "TanStack Query", "Recharts", "Node.js", "Express", "Prisma", "PostgreSQL", "Supabase Storage"],
-    media: { type: "image", src: climbioDashboard, alt: "Climbio 2.0 business dashboard with sales, inventory, and revenue summaries", fit: "contain" },
+    media: { type: "image", src: climbioLanding, alt: "Climbio 2.0 business management platform landing page", fit: "contain" },
     gallery: [
-      { type: "image", src: climbioInventory, alt: "Climbio 2.0 inventory management screen", fit: "contain" },
-      { type: "image", src: climbioAdvisor, alt: "Climbio 2.0 AI business advisor overview", fit: "contain" },
+      { type: "image", src: climbioDashboard, alt: "Climbio 2.0 business overview dashboard", fit: "contain" },
+      { type: "image", src: climbioProducts, alt: "Climbio 2.0 product and inventory management", fit: "contain" },
+      { type: "image", src: climbioInvoices, alt: "Climbio 2.0 invoice management workspace", fit: "contain" },
+      { type: "image", src: climbioPublicStore, alt: "Climbio 2.0 public store management and sharing", fit: "contain" },
+      { type: "image", src: climbioChat, alt: "Climbio 2.0 AI chat providing business guidance in Myanmar language", fit: "contain" },
     ],
   },
   {
