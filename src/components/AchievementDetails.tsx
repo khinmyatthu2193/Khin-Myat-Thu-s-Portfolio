@@ -109,7 +109,7 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
       <AnimatePresence>
         {activeImage && (
           <motion.div
-            className="fixed inset-0 z-[999] overflow-y-auto bg-black/90 p-4 backdrop-blur-md sm:p-8"
+            className="fixed inset-x-0 bottom-0 top-20 z-[999] overflow-y-auto bg-black/90 p-4 backdrop-blur-md sm:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -118,20 +118,20 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
             aria-modal="true"
             aria-label="Expanded achievement image"
           >
-            <div className="flex min-h-full items-center justify-center py-12">
+            <div className="flex min-h-full items-center justify-center">
               <motion.figure
-                className="max-w-6xl"
+                className="flex max-h-[calc(100dvh-7rem)] max-w-full flex-col items-center sm:max-h-[calc(100dvh-9rem)] sm:max-w-6xl"
                 initial={{ opacity: 0, scale: 0.95, y: 18 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.25 }}
                 onClick={(event) => event.stopPropagation()}
               >
-                <img src={activeImage.src} alt={activeImage.alt} className="max-h-[80dvh] max-w-full rounded-xl object-contain shadow-2xl" />
+                <img src={activeImage.src} alt={activeImage.alt} className="min-h-0 max-h-[calc(100dvh-10rem)] w-auto max-w-full rounded-xl object-contain shadow-2xl sm:max-h-[calc(100dvh-12rem)]" />
                 <figcaption className="mx-auto mt-4 max-w-3xl text-center text-sm leading-relaxed text-white/75">{activeImage.alt}</figcaption>
               </motion.figure>
             </div>
-            <button type="button" onClick={() => setActiveImage(null)} className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20" aria-label="Close expanded image">
+            <button type="button" onClick={() => setActiveImage(null)} className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white transition-colors hover:bg-black/80 sm:right-5 sm:top-5" aria-label="Close expanded image">
               <X size={20} />
             </button>
           </motion.div>

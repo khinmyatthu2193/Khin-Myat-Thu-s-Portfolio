@@ -178,7 +178,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
       <AnimatePresence>
         {activeImage && (
           <motion.div
-            className="fixed inset-0 z-[999] overflow-y-auto bg-black/90 p-4 backdrop-blur-md sm:p-8"
+            className="fixed inset-x-0 bottom-0 top-20 z-[999] overflow-y-auto bg-black/90 p-4 backdrop-blur-md sm:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -187,11 +187,11 @@ export default function ProjectDetails({ project }: { project: Project }) {
             aria-modal="true"
             aria-label="Expanded project screenshot"
           >
-            <div className="flex min-h-full w-full items-start justify-center py-14 sm:py-10">
+            <div className="flex min-h-full w-full items-center justify-center">
               <motion.img
                 src={activeImage}
                 alt="Expanded project screen"
-                className="h-auto max-h-[calc(100dvh-7rem)] max-w-full rounded-xl object-contain shadow-2xl"
+                className="h-auto w-auto max-h-[calc(100dvh-7rem)] max-w-full rounded-xl object-contain shadow-2xl sm:max-h-[calc(100dvh-9rem)]"
                 initial={{ opacity: 0, scale: 0.94, y: 16 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96 }}
@@ -199,7 +199,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
                 onClick={(event) => event.stopPropagation()}
               />
             </div>
-            <button type="button" onClick={() => setActiveImage(null)} className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20" aria-label="Close screenshot">
+            <button type="button" onClick={() => setActiveImage(null)} className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white transition-colors hover:bg-black/80 sm:right-5 sm:top-5" aria-label="Close screenshot">
               <X size={20} />
             </button>
           </motion.div>
