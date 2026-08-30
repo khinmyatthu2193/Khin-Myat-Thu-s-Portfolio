@@ -4,12 +4,25 @@ import brancyProduct from "../assets/brancy_ss/product.png";
 import brancyCart from "../assets/brancy_ss/cart.png";
 import brancyCheckout from "../assets/brancy_ss/checkout_page.png";
 import brancyAdmin from "../assets/brancy_ss/django_administration.png";
+import brancyAccount from "../assets/brancy_ss/account_details.png";
+import brancyBrands from "../assets/brancy_ss/brand_page.png";
+import brancyCreateAccount from "../assets/brancy_ss/customer_create_account_page.png";
+import brancyLogin from "../assets/brancy_ss/customer_login_page.png";
+import brancyLogout from "../assets/brancy_ss/customer_logout_page.png";
+import brancyInvoice from "../assets/brancy_ss/invoice.png";
 import climbioLanding from "../assets/climbio_ss/landing_page.png";
 import climbioDashboard from "../assets/climbio_ss/dashboard.png";
+import climbioOverview from "../assets/climbio_ss/overview.png";
 import climbioProducts from "../assets/climbio_ss/Product_list.png";
+import climbioInventory from "../assets/climbio_ss/Inventory.png";
 import climbioInvoices from "../assets/climbio_ss/invoice1.png";
 import climbioPublicStore from "../assets/climbio_ss/Public_Store.png";
+import climbioCustomerStore from "../assets/climbio_ss/storeview_fromcustomer.png";
 import climbioChat from "../assets/climbio_ss/AI_chatbot.png";
+import climbioAdvisor from "../assets/climbio_ss/AI_advisor1.png";
+import climbioPromptGallery from "../assets/climbio_ss/prompt_gallary.png";
+import climbioSettings from "../assets/climbio_ss/Setting.png";
+import climbioAdminDashboard from "../assets/climbio_ss/admin_dashboard.png";
 import type { AssetSource } from "@/lib/asset-url";
 
 export type ProjectMedia = { type: "image" | "video"; src?: AssetSource; poster?: AssetSource; alt: string; fit?: "cover" | "contain" };
@@ -57,10 +70,17 @@ export const projects: Project[] = [
     media: { type: "image", src: climbioLanding, alt: "Climbio 2.0 business management platform landing page", fit: "contain" },
     gallery: [
       { type: "image", src: climbioDashboard, alt: "Climbio 2.0 business overview dashboard", fit: "contain" },
+      { type: "image", src: climbioOverview, alt: "Climbio 2.0 analytics overview", fit: "contain" },
       { type: "image", src: climbioProducts, alt: "Climbio 2.0 product and inventory management", fit: "contain" },
+      { type: "image", src: climbioInventory, alt: "Climbio 2.0 inventory workspace", fit: "contain" },
       { type: "image", src: climbioInvoices, alt: "Climbio 2.0 invoice management workspace", fit: "contain" },
       { type: "image", src: climbioPublicStore, alt: "Climbio 2.0 public store management and sharing", fit: "contain" },
+      { type: "image", src: climbioCustomerStore, alt: "Climbio 2.0 customer storefront", fit: "contain" },
       { type: "image", src: climbioChat, alt: "Climbio 2.0 AI chat providing business guidance in Myanmar language", fit: "contain" },
+      { type: "image", src: climbioAdvisor, alt: "Climbio 2.0 AI business advisor", fit: "contain" },
+      { type: "image", src: climbioPromptGallery, alt: "Climbio 2.0 AI prompt gallery", fit: "contain" },
+      { type: "image", src: climbioSettings, alt: "Climbio 2.0 business settings", fit: "contain" },
+      { type: "image", src: climbioAdminDashboard, alt: "Climbio 2.0 administration dashboard", fit: "contain" },
     ],
   },
   {
@@ -79,6 +99,12 @@ export const projects: Project[] = [
       { type: "image", src: brancyCart, alt: "Brancy shopping cart" },
       { type: "image", src: brancyCheckout, alt: "Brancy checkout" },
       { type: "image", src: brancyAdmin, alt: "Brancy Django administration" },
+      { type: "image", src: brancyAccount, alt: "Brancy customer account details" },
+      { type: "image", src: brancyBrands, alt: "Brancy cosmetics brands" },
+      { type: "image", src: brancyCreateAccount, alt: "Brancy customer registration" },
+      { type: "image", src: brancyLogin, alt: "Brancy customer login" },
+      { type: "image", src: brancyLogout, alt: "Brancy customer logout" },
+      { type: "image", src: brancyInvoice, alt: "Brancy order invoice" },
     ],
   },
   {

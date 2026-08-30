@@ -136,7 +136,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
             </div>
           </div>
           <motion.div
-            className="grid gap-6 md:grid-cols-2"
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
