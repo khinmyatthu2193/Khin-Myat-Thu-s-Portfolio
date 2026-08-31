@@ -99,7 +99,7 @@ export function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.28 + index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                    className={`group relative ml-5 py-0.5 text-left font-display text-[clamp(2.8rem,10vw,5.2rem)] font-medium leading-[0.98] tracking-[-0.055em] transition-colors duration-300 lg:text-[clamp(3.5rem,5.4vw,5.75rem)] ${isActive ? "italic text-primary" : "text-textDim hover:text-primary"}`}
+                    className={`group relative ml-5 py-0.5 text-left font-display text-[clamp(2.25rem,5vw,4.25rem)] font-medium leading-[0.98] tracking-[-0.055em] transition-colors duration-300 ${isActive ? "italic text-primary" : "text-textDim hover:text-primary"}`}
                   >
                     {item.word}
                     <svg aria-hidden="true" viewBox="0 0 300 90" preserveAspectRatio="none" className={`pointer-events-none absolute -inset-x-3 -inset-y-1 h-[calc(100%+0.5rem)] w-[calc(100%+1.5rem)] overflow-visible transition-opacity duration-300 ${isActive ? "opacity-70" : "opacity-0"}`}>
