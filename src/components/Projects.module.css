@@ -1,0 +1,22 @@
+.projects :global(.project-archive-card) {
+  box-shadow: 0 4px 16px rgb(0 0 0 / .035);
+}
+
+.projects :global(.project-archive-card:hover) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgb(var(--color-primary) / .07);
+}
+
+.projects :global(.featured-project) {
+  box-shadow: 0 8px 28px rgb(0 0 0 / .04);
+}
+
+.projects :global(.featured-project-frame) {
+  box-shadow: none;
+}
+
+.projects :global(.project-meta-pill) {
+  padding: .25rem .5rem;
+  font-size: 11px;
+  letter-spacing: 0;
+}
