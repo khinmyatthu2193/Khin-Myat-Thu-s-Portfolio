@@ -28,7 +28,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
           <Link href="/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
             <ArrowLeft size={17} /> All projects
           </Link>
-          <p className="eyebrow">{project.category} / {project.status}{project.date ? ` / ${project.date}` : ""}</p>
+          <p className="eyebrow">{[project.category, project.status, project.date].filter(Boolean).join(" / ")}</p>
           {project.subtitle && <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-primary">{project.subtitle}</p>}
           <h1 className="mt-5 max-w-5xl font-display text-4xl font-medium leading-[1] tracking-[-0.035em] sm:text-5xl lg:text-6xl">
             {project.title}

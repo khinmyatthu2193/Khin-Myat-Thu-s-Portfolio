@@ -1,19 +1,33 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
-import { projects } from "../data/projects";
+import { projects, type Project } from "../data/projects";
 import styles from "./Projects.module.css";
 import FeaturedProject from "./FeaturedProject";
 import ProjectGridCard from "./ProjectGridCard";
 
 const featuredProject = projects.find((project) => project.featured);
 const archiveProjects = projects.filter((project) => !project.featured);
-const filters = ["All", ...Array.from(new Set(archiveProjects.map((project) => project.category)))] as const;
+const filterCategory = (project: Project) => project.projectType === "MIIT special project" || project.status === "Academic Project" ? "Academic" : project.category === "Innovation" ? "Experiments" : project.category;
+const filters = ["All", ...Array.from(new Set(archiveProjects.map(filterCategory)))];
+type SortOrder = "newest" | "oldest" | "title";
+
+function compareProjects(a: Project, b: Project, order: SortOrder) {
+  if (order === "title") return a.title.localeCompare(b.title);
+  // Undated projects stay last in both chronological views.
+  if (!a.sortDate || !b.sortDate) return a.sortDate ? -1 : b.sortDate ? 1 : a.title.localeCompare(b.title);
+  // Compare date precision as supplied, without parsing locale-dependent labels.
+  const comparison = a.sortDate.localeCompare(b.sortDate);
+  return (order === "newest" ? -comparison : comparison) || a.title.localeCompare(b.title);
+}
 
 export default function AllProjects() {
   const [activeFilter, setActiveFilter] = useState<string>("All");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
   const visibleProjects = useMemo(
-    () => activeFilter === "All" ? archiveProjects : archiveProjects.filter((project) => project.category === activeFilter),
-    [activeFilter],
+    () => archiveProjects
+      .filter((project) => activeFilter === "All" || filterCategory(project) === activeFilter)
+      .sort((a, b) => compareProjects(a, b, sortOrder)),
+    [activeFilter, sortOrder],
   );
 
   return (
@@ -46,22 +60,32 @@ export default function AllProjects() {
           </p>
         </div>
 
-        <div className="mt-4 flex max-w-full flex-wrap gap-2 border-b border-borderSoft pb-4" aria-label="Filter projects">
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              type="button"
-              onClick={() => setActiveFilter(filter)}
-              aria-pressed={activeFilter === filter}
-              className={`min-h-11 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                activeFilter === filter
-                  ? "border-primary bg-primary text-bg"
-                  : "border-borderMedium bg-bgCard/45 text-textDim hover:border-primary hover:text-primary"
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
+        <div className="mt-4 flex min-w-0 flex-col gap-3 border-b border-borderSoft pb-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+          <div className="flex max-w-full gap-2 overflow-x-auto pb-1" role="group" aria-label="Filter projects">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setActiveFilter(filter)}
+                aria-pressed={activeFilter === filter}
+                className={`min-h-11 shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                  activeFilter === filter
+                    ? "border-primary bg-primary text-bg"
+                    : "border-borderMedium bg-bgCard/45 text-textDim hover:border-primary hover:text-primary"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+          <label className="flex shrink-0 items-center gap-2 text-sm text-textMuted">
+            Sort
+            <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value as SortOrder)} className="min-h-11 rounded-xl border border-borderSoft bg-bgCard px-3 py-2 text-sm text-textMain">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="title">A–Z</option>
+            </select>
+          </label>
         </div>
 
         <motion.div layout className="mt-5 grid min-h-[22rem] grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">

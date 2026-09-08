@@ -34,11 +34,13 @@ export default function FeaturedProject({ project }: { project: Project }) {
           <p className="eyebrow !text-[0.6875rem]">Featured project</p>
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium text-textMuted">{project.category}</span>
-            <span className="project-meta-pill">{project.status}</span>
+            {project.status && <span className="project-meta-pill">{project.status}</span>}
+            {project.date && <span className="text-[11px] text-textMuted">{project.date}</span>}
           </div>
           <h2 className="mt-3 font-display text-[clamp(1.75rem,calc(1.55rem+0.9vw),2rem)] font-medium leading-[1.08] tracking-[-0.03em]">
             {project.title}
           </h2>
+          {project.role && <p className="mt-2 text-xs leading-relaxed text-textMuted">{project.role}</p>}
           <p className="mt-3 text-[15px] leading-relaxed text-textBody">{project.description}</p>
 
           <div className="mt-4 flex flex-wrap gap-1.5" aria-label={`${project.title} technology stack`}>

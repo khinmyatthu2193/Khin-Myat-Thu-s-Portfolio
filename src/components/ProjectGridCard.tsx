@@ -24,15 +24,17 @@ export default function ProjectGridCard({ project, index }: { project: Project; 
         <ProjectPreview project={project} index={index} fit="cover" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 420px" />
       </Link>
 
-      <div className="flex min-w-0 flex-1 flex-col p-3.5">
+      <div className="flex min-w-0 flex-1 flex-col p-[18px]">
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-[11px] font-medium text-textMuted">{project.category}</span>
-          <span className="project-meta-pill">{project.status}</span>
+          {project.status && <span className="project-meta-pill">{project.status}</span>}
+          {project.date && <span className="text-[11px] text-textMuted">{project.date}</span>}
         </div>
 
         <h2 className="mt-2 line-clamp-2 break-words font-display text-xl font-medium leading-[1.1] tracking-[-0.02em] transition-colors group-hover:text-primary">
           <Link href={`/projects/${project.slug}`}>{project.title}</Link>
         </h2>
+        {project.projectType && <p className="mt-1.5 text-xs leading-relaxed text-textMuted">{project.projectType}{project.role === "Team member" ? " · Team" : project.role === "Team 08 member" ? " · Team 08" : ""}</p>}
         <p className="mt-1.5 line-clamp-2 text-sm leading-5 text-textBody">{project.description}</p>
 
         {technologies.length > 0 && (
