@@ -1,3 +1,10 @@
+import climbioShowcase from "../assets/Climbio.png";
+import foundoraShowcase from "../assets/Foundora.png";
+import joyhubShowcase from "../assets/JoyHub.png";
+import recyclelinkShowcase from "../assets/RecycleLink.png";
+import maymayShowcase from "../assets/MayMay's Latt Swel.png";
+import laptopRentalShowcase from "../assets/UniversityLaptopRentalManagementSystem.png";
+import chosenOneShowcase from "../assets/TheChosenOne.png";
 import brancyHome from "../assets/brancy_ss/home_page.png";
 import brancyCategories from "../assets/brancy_ss/product_categories_page.png";
 import brancyProduct from "../assets/brancy_ss/product.png";
@@ -10,7 +17,6 @@ import brancyCreateAccount from "../assets/brancy_ss/customer_create_account_pag
 import brancyLogin from "../assets/brancy_ss/customer_login_page.png";
 import brancyLogout from "../assets/brancy_ss/customer_logout_page.png";
 import brancyInvoice from "../assets/brancy_ss/invoice.png";
-import climbioLanding from "../assets/climbio_ss/landing_page.png";
 import climbioDashboard from "../assets/climbio_ss/dashboard.png";
 import climbioOverview from "../assets/climbio_ss/overview.png";
 import climbioProducts from "../assets/climbio_ss/Product_list.png";
@@ -44,7 +50,7 @@ export const projects: Project[] = [
     challenge: "Finding a compatible co-founder requires trust, but sharing personal details and early startup ideas too soon can feel risky.",
     solution: "The current product direction focuses on privacy-first discovery and gradual information sharing. AI co-founder agents remain a future idea, not a completed feature.",
     github: "", technologies: ["Product thinking", "Privacy", "Founder discovery"],
-    media: { type: "image", alt: "Foundora privacy-first co-founder discovery concept" },
+    media: { type: "image", src: foundoraShowcase, alt: "Foundora co-founder platform showcase" },
   },
   {
     slug: "joyhub", title: "JoyHub", category: "Web", status: "Completed", featured: false,
@@ -55,7 +61,7 @@ export const projects: Project[] = [
     solution: "Question cards, student selection, a spin wheel, answer checking, celebration moments, explanations, and motivational messages make the activity more interactive.",
     github: "https://github.com/khinmyatthu2193/JoyHub", liveUrl: "https://joy-hub-xi.vercel.app", technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "Local Storage", "Web Audio API"],
     highlights: ["Teacher-created MCQ questions", "Question cards and spin wheel", "Interactive answer checking", "Celebration animation for correct answers", "Explanations and motivational quotes for wrong answers", "Local storage with no authentication required"],
-    media: { type: "image", alt: "JoyHub interactive classroom quiz platform" },
+    media: { type: "image", src: joyhubShowcase, alt: "JoyHub interactive learning platform showcase" },
   },
   {
     slug: "climbio", title: "Climbio 2.0", category: "Web", status: "In Development", featured: true,
@@ -67,7 +73,7 @@ export const projects: Project[] = [
     role: "Full-stack developer for Version 2",
     github: "https://github.com/khinmyatthu2193/Climbio-2.0", liveUrl: "https://climbio-2-0.vercel.app",
     technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "TanStack Query", "Recharts", "Node.js", "Express", "Prisma", "PostgreSQL", "Supabase Storage"],
-    media: { type: "image", src: climbioLanding, alt: "Climbio 2.0 business management platform landing page", fit: "contain" },
+    media: { type: "image", src: climbioShowcase, alt: "Climbio web application showcase" },
     gallery: [
       { type: "image", src: climbioDashboard, alt: "Climbio 2.0 business overview dashboard", fit: "contain" },
       { type: "image", src: climbioOverview, alt: "Climbio 2.0 analytics overview", fit: "contain" },
@@ -113,7 +119,7 @@ export const projects: Project[] = [
     overview: "RecycleLink was a learning opportunity focused on Django and real-time web communication.",
     challenge: "The project explored how a recycling-focused application could benefit from timely updates.",
     solution: "I explored WebSocket-based real-time functionality within a Django application. Additional product details are still to be confirmed.",
-    github: "", technologies: ["Django", "WebSockets"], media: { type: "image", alt: "RecycleLink recycling-focused application" },
+    github: "", technologies: ["Django", "WebSockets"], media: { type: "image", src: recyclelinkShowcase, alt: "RecycleLink project showcase" },
   },
   {
     slug: "maymays-lett-swal", title: "MayMay's Lett Swal", category: "Web", status: "Prototype", featured: false,
@@ -121,7 +127,7 @@ export const projects: Project[] = [
     overview: "A personal project shaped by food, memory, and the comfort of recipes worth keeping close.",
     challenge: "Meaningful home recipes can be easy to lose or difficult to revisit in a simple way.",
     solution: "The project keeps the idea of returning to familiar recipes warm and approachable. Technical details will be added once confirmed.",
-    github: "", technologies: [], media: { type: "image", alt: "MayMay's Lett Swal recipe project" },
+    github: "", technologies: [], media: { type: "image", src: maymayShowcase, alt: "MayMay's Lett Swal cooking application showcase" },
   },
   {
     slug: "university-laptop-rental", title: "University Laptop Rental Management System", category: "Web", status: "Academic Project", featured: false,
@@ -129,7 +135,7 @@ export const projects: Project[] = [
     overview: "A university-focused management system created around a practical campus process.",
     challenge: "The project considers how a laptop rental process can be represented in a management system.",
     solution: "Implementation details and verified features will be added once confirmed.",
-    github: "", technologies: [], media: { type: "image", alt: "University Laptop Rental Management System" },
+    github: "", technologies: [], media: { type: "image", src: laptopRentalShowcase, alt: "University Laptop Rental Management System showcase" },
   },
   {
     slug: "the-chosen-one", title: "The Chosen One", category: "Innovation", status: "Prototype", featured: false,
@@ -137,6 +143,6 @@ export const projects: Project[] = [
     overview: "The Chosen One is part of my learning-by-building journey through the VibeCode Tour.",
     challenge: "The project context, audience, and problem statement still need confirmation.",
     solution: "Verified implementation details and technologies will be added after reviewing the project repository.",
-    github: "", technologies: [], media: { type: "image", alt: "The Chosen One VibeCode Tour project" },
+    github: "", technologies: [], media: { type: "image", src: chosenOneShowcase, alt: "The Chosen One application showcase" },
   },
 ];
