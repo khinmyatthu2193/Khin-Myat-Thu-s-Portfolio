@@ -6,7 +6,7 @@ import FeaturedProject from "./FeaturedProject";
 import ProjectGridCard from "./ProjectGridCard";
 
 const featuredProject = projects.find((project) => project.featured);
-const archiveProjects = projects.filter((project) => !project.featured);
+const archiveProjects = projects;
 const filterCategory = (project: Project) => project.projectType === "MIIT special project" || project.status === "Academic Project" ? "Academic" : project.category;
 const filters = ["All", ...Array.from(new Set(archiveProjects.map(filterCategory)))];
 type SortOrder = "newest" | "oldest" | "title";
