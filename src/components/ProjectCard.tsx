@@ -6,7 +6,7 @@ import Link from "next/link";
 import type { Project } from "../data/projects";
 import { assetUrl } from "@/lib/asset-url";
 
-export function ProjectPreview({ project, index, fit }: { project: Project; index: number; fit?: "cover" | "contain" }) {
+export function ProjectPreview({ project, index, fit, sizes = "(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 700px" }: { project: Project; index: number; fit?: "cover" | "contain"; sizes?: string }) {
   const { media } = project;
   const imageFit = fit ?? media.fit ?? "cover";
 
@@ -31,7 +31,7 @@ export function ProjectPreview({ project, index, fit }: { project: Project; inde
         src={media.src}
         alt={media.alt}
         fill
-        sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 700px"
+        sizes={sizes}
         placeholder={typeof media.src === "string" ? "empty" : "blur"}
       />
     );
@@ -65,7 +65,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
       className="group grid gap-7 border-t border-borderMedium py-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-14 lg:py-16"
     >
       <div className={index % 2 ? "lg:order-2" : ""}>
-        <Link href={`/projects/${project.slug}`} className="project-media block aspect-[16/10] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard" aria-label={`View ${project.title} case study`}>
+        <Link href={`/projects/${project.slug}`} className="project-media block aspect-[16/9] overflow-hidden rounded-2xl border border-borderSoft bg-bgCard" aria-label={`View ${project.title} case study`}>
           <ProjectPreview project={project} index={index} />
         </Link>
       </div>

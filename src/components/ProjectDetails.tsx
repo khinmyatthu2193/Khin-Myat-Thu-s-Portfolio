@@ -49,8 +49,8 @@ export default function ProjectDetails({ project }: { project: Project }) {
         </header>
 
         <section className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
-          <div className="project-media aspect-[16/9] min-h-[280px] overflow-hidden rounded-3xl border border-borderSoft bg-[#f5eeee]">
-            <ProjectPreview project={project} index={0} fit="contain" />
+          <div className="project-media aspect-[16/9] overflow-hidden rounded-3xl border border-borderSoft bg-[#f5eeee]">
+            <ProjectPreview project={project} index={0} fit="contain" sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), (max-width: 1399px) calc(100vw - 96px), 1304px" />
           </div>
         </section>
 

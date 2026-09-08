@@ -59,7 +59,7 @@ export function FeaturedProjects() {
       <div className="mt-10 grid auto-rows-fr gap-5 md:mt-12 md:grid-cols-2 lg:mt-14 xl:grid-cols-3">
         {featuredProjects.map((project, index) => (
           <motion.article key={project.slug} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -4 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.18 + index * 0.08, ease: [0.22, 1, 0.36, 1] }} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-borderSoft bg-bgCard/45 p-3 shadow-[0_14px_35px_rgb(0_0_0/0.06)] transition-[border-color,box-shadow] duration-300 hover:border-primary/25 hover:shadow-[0_18px_38px_rgb(0_0_0/0.09)] sm:p-4">
-            <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} case study`} className="project-media block aspect-[16/10] shrink-0 overflow-hidden rounded-xl border border-borderSoft bg-bgCard"><ProjectPreview project={project} index={index} /></Link>
+            <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} case study`} className="project-media block aspect-[16/9] shrink-0 overflow-hidden rounded-xl border border-borderSoft bg-bgCard"><ProjectPreview project={project} index={index} /></Link>
             <div className="flex flex-1 flex-col px-1 pb-1 pt-5">
               <p className="label-sm min-h-8 text-primary">{featuredCategories[project.slug]}</p>
               <h3 className="mt-2 min-h-14 font-display text-2xl font-medium leading-tight"><Link href={`/projects/${project.slug}`} className="transition-colors hover:text-primary">{project.title}</Link></h3>
