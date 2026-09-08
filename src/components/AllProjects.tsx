@@ -7,7 +7,7 @@ import ProjectGridCard from "./ProjectGridCard";
 
 const featuredProject = projects.find((project) => project.featured);
 const archiveProjects = projects.filter((project) => !project.featured);
-const filterCategory = (project: Project) => project.projectType === "MIIT special project" || project.status === "Academic Project" ? "Academic" : project.category === "Innovation" ? "Experiments" : project.category;
+const filterCategory = (project: Project) => project.projectType === "MIIT special project" || project.status === "Academic Project" ? "Academic" : project.category;
 const filters = ["All", ...Array.from(new Set(archiveProjects.map(filterCategory)))];
 type SortOrder = "newest" | "oldest" | "title";
 
@@ -53,7 +53,7 @@ export default function AllProjects() {
       <section className="section-shell !max-w-[1280px] !pt-0">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-[clamp(1.625rem,calc(1.4rem+0.7vw),1.875rem)] font-medium leading-[1.1] tracking-[-0.025em]">More work and experiments.</h2>
+            <h2 className="font-display text-[clamp(1.625rem,calc(1.4rem+0.7vw),1.875rem)] font-medium leading-[1.1] tracking-[-0.025em]">More projects.</h2>
           </div>
           <p className="text-sm text-textMuted" aria-live="polite">
             {visibleProjects.length} {visibleProjects.length === 1 ? "project" : "projects"}

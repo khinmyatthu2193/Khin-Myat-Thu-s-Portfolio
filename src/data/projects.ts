@@ -157,7 +157,7 @@ export const projects: Project[] = [
     github: "", technologies: [], media: { type: "image", src: laptopRentalShowcase, alt: "University Laptop Rental Management System showcase" },
   },
   {
-    slug: "the-chosen-one", sortDate: "2026-07", date: "Jul 2026", title: "The Chosen One", category: "Innovation", status: "Prototype", featured: false,
+    slug: "the-chosen-one", sortDate: "2026-07", date: "Jul 2026", title: "The Chosen One", category: "Innovation", featured: false,
     projectType: "Vibe Code Tour team project", role: "Team 08 member",
     description: "A project created during the VibeCode Tour while exploring how quickly an idea can move toward a working experience.",
     overview: "The Chosen One was created by Team 08 during the Vibe Code Tour as a collaborative project exploring how quickly an idea can move toward a working experience.",
