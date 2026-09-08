@@ -1,3 +1,4 @@
+import climbioMobileShowcase from "../assets/climbio_mobile.png";
 import laternShowcase from "../assets/Latern.png";
 import climbioShowcase from "../assets/Climbio.png";
 import foundoraShowcase from "../assets/Foundora.png";
@@ -46,6 +47,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "climbio-mobile", sortDate: "2025-06", date: "Jun 2025 – Oct 2025", title: "Climbio v1", category: "Mobile", status: "Completed", featured: false,
+    subtitle: "Smart Business Toolkits for MSMEs",
+    description: "A full-stack mobile application built with React Native and Firebase to help MSMEs manage product catalogs, customer conversations, feedback, and follow-ups more easily.",
+    overview: "Climbio v1 was completed as a MIIT special team project from June to October 2025, with a focus on improving digital adoption for MSMEs. Climbio v2 followed in August 2026 as a newer version and rebuild of the original mobile application, around ten months after v1.",
+    challenge: "Small businesses need accessible digital tools to organize their products, communicate with customers, and maintain customer relationships.",
+    solution: "MiniCatalog supports creating and managing product catalogs. Smart Inbox brings customer conversations and feedback together, while follow-up tools, customer feedback, and referral-related features support ongoing customer relationships.",
+    projectType: "Full-stack mobile application",
+    role: "Team member — MIIT special project",
+    github: "", technologies: ["React Native", "Firebase"],
+    highlights: ["MiniCatalog: create and manage product catalogs", "Smart Inbox: customer conversations and feedback", "Follow-up tools for customer relationships", "Customer feedback and referral-related features", "Digital adoption for MSMEs"],
+    media: { type: "image", src: climbioMobileShowcase, alt: "Climbio Mobile business toolkit showing a sales dashboard, recent orders, and product inventory" },
+  },
+  {
     slug: "latern", sortDate: "2026-03", date: "Mar 2026", title: "Latern", category: "Mobile", status: "Completed", featured: false,
     subtitle: "Career Mapping App",
     description: "An Android career-mapping app designed to help people explore paths that match their interests and strengths through guided questions and saved career matches.",
@@ -81,7 +95,7 @@ export const projects: Project[] = [
   {
     slug: "climbio", sortDate: "2026-08", date: "Aug 2026", title: "Climbio 2.0", category: "Web", status: "In Development", featured: true,
     description: "A smart business management platform for Myanmar SMEs, featuring inventory and product management, invoice workflows, sales dashboards, public storefronts, shop approval controls, and an AI advisor that analyses real business data.",
-    overview: "The original Climbio – Smart Business Toolkits for MSMEs was completed as a MIIT special team project from Jun 2025 to Oct 2025. Climbio v2 was showcased at the MIIT 2026 Project Show in Aug 2026. For v2, I led the team and implemented most of the application.",
+    overview: "Climbio 2.0 continues the original Climbio project. Version 1 was a completed MIIT special team project built with React Native and Firebase from June to October 2025 to improve digital adoption for MSMEs. Version 2 followed in August 2026 as a rebuild of the original mobile application, around ten months after v1, and was showcased at the MIIT 2026 Project Show. I led the team and implemented most of Version 2.",
     challenge: "Returning to an existing product meant understanding earlier decisions before deciding what to revisit.",
     solution: "Version 2 brings the core business workflows into a full-stack web application with a secure API, public storefronts, reporting, and data-informed AI guidance.",
     projectType: "MIIT 2026 Project Show team project",
