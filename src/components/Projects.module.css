@@ -1,14 +1,188 @@
-.projects :global(.project-archive-card) {
-  box-shadow: 0 4px 16px rgb(0 0 0 / .035);
+@property --project-border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
-.projects :global(.project-archive-card:hover) {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgb(var(--color-primary) / .07);
+.projects {
+  --project-highlight: 212 182 106;
 }
 
+:global(:root.light) .projects {
+  --project-highlight: 184 149 72;
+  color: rgb(var(--color-text-main));
+  background: radial-gradient(ellipse 650px 500px at 85% 180px, rgb(var(--color-primary) / .08), transparent 75%), rgb(var(--color-bg));
+}
+
+:global(:root.light) .projects :global(.project-archive-card),
+:global(:root.light) .projects :global(.featured-project) {
+  background-color: rgb(var(--color-bg-card));
+}
+
+:global(:root.light) .projects :global(.project-archive-card:not(:hover):not(:focus-within)) {
+  border-color: rgb(var(--color-surface-border));
+}
+
+:global(:root.light) .projects :global(.featured-project:not(:hover):not(:focus-within)) {
+  border-color: rgb(var(--color-primary) / .14);
+  box-shadow: 0 16px 50px rgb(var(--color-primary) / .05);
+}
+
+:global(:root.light) .projects button[aria-pressed="true"] {
+  color: white;
+}
+
+:global(:root.light) .projects button[aria-pressed="true"]:hover {
+  background-color: rgb(var(--color-primary-glow));
+  border-color: rgb(var(--color-primary-glow));
+}
+
+:global(:root.light) .projects button[aria-pressed="false"] {
+  background-color: rgb(var(--color-bg-card));
+}
+
+:global(:root.light) .projects button[aria-pressed="false"]:not(:hover),
+:global(:root.light) .projects select {
+  border-color: rgb(var(--color-surface-border));
+}
+
+.projects :global(.project-archive-card),
 .projects :global(.featured-project) {
-  box-shadow: 0 8px 28px rgb(0 0 0 / .04);
+  border-width: 2px;
+  border-color: rgb(var(--color-primary) / .28);
+  box-shadow: 0 4px 16px rgb(0 0 0 / .035);
+  transition: translate 480ms cubic-bezier(.23, 1, .32, 1), border-color 480ms ease, box-shadow 480ms ease;
+}
+
+.projects :global(.project-archive-card)::before,
+.projects :global(.featured-project)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 3px;
+  background: conic-gradient(from var(--project-border-angle), transparent 0deg 70deg, rgb(var(--project-highlight) / .75) 90deg, transparent 110deg 250deg, rgb(var(--project-highlight) / .55) 270deg, transparent 290deg 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  animation: project-border-turn 4.8s linear infinite paused;
+  transition: opacity 480ms cubic-bezier(.23, 1, .32, 1);
+}
+
+.projects :global(.project-card-action)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: inherit;
+}
+
+.projects :global(.project-archive-card:focus-within),
+.projects :global(.featured-project:focus-within) {
+  border-color: rgb(var(--color-primary) / .65);
+  box-shadow: 0 12px 28px rgb(var(--color-primary) / .1);
+}
+
+.projects :global(.project-archive-card:has(.project-card-action:focus-visible)) {
+  outline: 2px solid rgb(var(--color-primary));
+  outline-offset: 4px;
+}
+
+.projects :global(.project-card-media img),
+.projects :global(.featured-project-frame img) {
+  transition: transform 500ms cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Keep native video controls above the stretched detail link. */
+.projects :global(.project-card-media video) {
+  position: relative;
+  z-index: 20;
+}
+
+.projects :global(.project-image-badge) {
+  border: 1px solid rgb(255 255 255 / .25);
+  border-radius: 999px;
+  background: rgb(20 40 22 / .82);
+  padding: .3rem .6rem;
+  color: white;
+  font-size: .6875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  transition: translate 480ms cubic-bezier(.23, 1, .32, 1), background-color 420ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects :global(.project-archive-card:hover),
+  .projects :global(.featured-project:hover) {
+    transform: none;
+    translate: 0 -3px;
+    border-color: rgb(var(--color-primary) / .6);
+    box-shadow: 0 6px 13px rgb(var(--color-primary) / .08), 0 20px 28px rgb(var(--color-primary) / .06);
+  }
+
+  .projects :global(.project-archive-card:hover)::before,
+  .projects :global(.featured-project:hover)::before {
+    opacity: 1;
+    animation-play-state: running;
+  }
+
+  .projects :global(.project-archive-card:hover .project-card-media img),
+  .projects :global(.featured-project:hover .featured-project-frame img) {
+    transform: scale(1.025);
+  }
+
+  .projects :global(.project-archive-card:hover .project-image-badge) {
+    translate: 0 -2px;
+    background-color: rgb(20 40 22 / .92);
+  }
+}
+
+.projects :global(.project-card-action svg),
+.projects :global(.featured-action svg) {
+  transition: transform 480ms cubic-bezier(.23, 1, .32, 1);
+}
+
+.projects :global(.project-card-action:focus-visible svg),
+.projects :global(.featured-action:focus-visible svg) {
+  transform: translateX(3px);
+}
+
+@keyframes project-border-turn {
+  to { --project-border-angle: 360deg; }
+}
+
+@media (hover: none) {
+  .projects :global(.project-archive-card:hover),
+  .projects :global(.project-archive-card:hover .project-card-media img),
+  .projects :global(.project-archive-card:hover .project-card-action svg),
+  .projects :global(.featured-project:hover .featured-project-frame img),
+  .projects :global(.featured-project:hover .featured-action svg) {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects :global(.project-archive-card),
+  .projects :global(.featured-project),
+  .projects :global(.project-image-badge) {
+    translate: none !important;
+    scale: none !important;
+  }
+
+  .projects :global(.project-archive-card)::before,
+  .projects :global(.featured-project)::before {
+    animation: none !important;
+  }
+}
+
+.projects :global(.featured-project:hover .featured-project-frame) {
+  transform: none;
 }
 
 .projects :global(.featured-project-frame) {
