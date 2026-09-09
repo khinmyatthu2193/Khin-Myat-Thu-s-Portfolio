@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     index: true, follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
-  icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }] },
+  icons: { icon: [{ url: "/k_load.png", type: "image/png" }] },
 };
 
 export const viewport: Viewport = {
