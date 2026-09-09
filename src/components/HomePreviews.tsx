@@ -24,13 +24,13 @@ function TechnologyTags({ technologies, projectTitle }: { technologies: string[]
   const [expanded, setExpanded] = useState(false);
   const visible = technologies.slice(0, 5);
   const remaining = technologies.slice(5);
-  const tagClass = "rounded-full border border-primary/40 bg-primary/15 px-3.5 py-1.5 text-[13px] font-semibold leading-none text-primary";
+  const tagClass = "project-tech-chip";
 
   return (
     <div className="flex flex-wrap content-start gap-2.5">
       {visible.map((technology) => <span key={technology} className={tagClass}>{technology}</span>)}
       {expanded && remaining.map((technology) => <span key={technology} className={tagClass}>{technology}</span>)}
-      {remaining.length > 0 && <button type="button" onClick={() => setExpanded((current) => !current)} className={`${tagClass} cursor-pointer transition-colors hover:border-primary hover:bg-primary/20`} aria-expanded={expanded} aria-label={`${expanded ? "Hide" : "Show"} ${remaining.length} more technologies for ${projectTitle}`}>{expanded ? "Show less" : `+${remaining.length} more`}</button>}
+      {remaining.length > 0 && <button type="button" onClick={() => setExpanded((current) => !current)} className={`${tagClass} project-tech-chip-more cursor-pointer`} aria-expanded={expanded} aria-label={`${expanded ? "Hide" : "Show"} ${remaining.length} more technologies for ${projectTitle}`}>{expanded ? "Show less" : `+${remaining.length} more`}</button>}
     </div>
   );
 }
