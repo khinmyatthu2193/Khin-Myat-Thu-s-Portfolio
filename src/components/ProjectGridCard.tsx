@@ -30,8 +30,8 @@ export default function ProjectGridCard({ project, index }: { project: Project; 
       <div className="project-card-media relative block aspect-[16/9] shrink-0 overflow-hidden bg-bgSoft">
         <ProjectPreview project={project} index={index} fit="cover" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 420px" />
         <div className="pointer-events-none absolute inset-x-3 top-3 flex items-start justify-between gap-2">
-          <span className="project-image-badge">{project.category}</span>
           {project.status === "In Development" && <span className="project-image-badge">In development</span>}
+          <span className="project-image-badge ml-auto">{project.category}</span>
         </div>
       </div>
 

@@ -4,11 +4,11 @@ import { projects, type Project } from "../data/projects";
 import styles from "./Projects.module.css";
 import FeaturedProject from "./FeaturedProject";
 import ProjectGridCard from "./ProjectGridCard";
+import ProjectSort, { type SortOrder } from "./ProjectSort";
 
 const featuredProject = projects.find((project) => project.featured);
 const archiveProjects = projects.filter((project) => project.slug !== featuredProject?.slug);
 const filters = ["All", "Web", "Mobile", "AI"];
-type SortOrder = "newest" | "oldest" | "title";
 
 function compareProjects(a: Project, b: Project, order: SortOrder) {
   if (order === "title") return a.title.localeCompare(b.title);
@@ -77,14 +77,7 @@ export default function AllProjects() {
               </button>
             ))}
           </div>
-          <label className="flex shrink-0 items-center gap-2 text-sm text-textMuted">
-            Sort
-            <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value as SortOrder)} className="min-h-11 rounded-xl border border-borderSoft bg-bgCard px-3 py-2 text-sm text-textMain">
-              <option value="newest">Newest first</option>
-              <option value="oldest">Oldest first</option>
-              <option value="title">A–Z</option>
-            </select>
-          </label>
+          <ProjectSort value={sortOrder} onChange={setSortOrder} />
         </div>
 
         <motion.div layout className="mt-6 grid min-h-[22rem] grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">

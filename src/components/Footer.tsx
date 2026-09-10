@@ -41,8 +41,8 @@ export default function Footer() {
   return (
     <footer ref={footerRef} className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center gap-4 border-t border-borderSoft px-5 py-6 text-center sm:flex-row sm:justify-between sm:px-8 sm:text-left lg:px-12">
       <div
-        className="pointer-events-none fixed right-4 z-40 transition-[bottom] duration-[350ms] ease-out [--edge:16px] sm:right-7 sm:[--edge:28px] motion-reduce:transition-none"
-        style={{ bottom: `min(calc(var(--edge) + ${footerNearby ? footerHeight : 0}px), calc(100dvh - 60px))` }}
+        className="pointer-events-none fixed right-4 z-40 transition-[bottom] duration-[350ms] ease-out [--edge:max(16px,env(safe-area-inset-bottom))] [--footer-lift:0] sm:right-7 sm:[--edge:28px] sm:[--footer-lift:1] motion-reduce:transition-none"
+        style={{ bottom: `min(calc(var(--edge) + ${footerNearby ? footerHeight : 0}px * var(--footer-lift)), calc(100dvh - 60px))` }}
       >
         <button
           type="button"
