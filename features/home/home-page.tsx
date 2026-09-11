@@ -48,14 +48,14 @@ export function HomePage() {
 
       <motion.section
         id="contact"
-        className="home-section scroll-mt-20 !pb-16 !pt-14 sm:!pt-16 md:!pb-24"
+        className="home-section scroll-mt-20 !pb-0 !pt-14 sm:!pt-16"
         aria-labelledby="contribution-title"
         initial={reduceMotion ? false : { opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="relative overflow-hidden border-y border-borderMedium py-8 sm:py-10 lg:py-12">
+        <div className="relative overflow-hidden border-t border-borderMedium py-8 sm:py-10 lg:py-12">
           <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
 
           <motion.div initial={reduceMotion ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }} className="relative flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-primary sm:text-xs">
