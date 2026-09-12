@@ -43,6 +43,11 @@ export type Project = {
   projectType?: string; role?: string; responsibilities?: string[]; customerFeatures?: string[];
   adminFeatures?: string[]; stack?: { label: string; items: string[] }[]; highlights?: string[];
   challenges?: string[]; gallery?: ProjectMedia[];
+  overviewTitle?: string; outcome?: string;
+  features?: { title: string; description: string }[];
+  featuredWorkflows?: { title: string; description: string; media: ProjectMedia }[];
+  technicalHighlights?: { title: string; description: string }[];
+  learnings?: string[];
 };
 
 export const projects: Project[] = [
@@ -55,7 +60,13 @@ export const projects: Project[] = [
     projectType: "Full-stack mobile application",
     role: "Team member — MIIT special project",
     github: "https://github.com/khinmyatthu2193/Climbio-MSME-Smart-Business-Toolkit", technologies: ["React Native", "Firebase", "Expo", "TypeScript", "Appwrite Storage"],
-    highlights: ["Product catalog creation and image uploads", "Customer record management", "Smart Inbox with live Firestore order updates", "Customer follow-up reminders", "Text-to-speech accessibility support"],
+    features: [
+      { title: "Product catalog", description: "Product catalog creation and image uploads" },
+      { title: "Customer records", description: "Customer record management" },
+      { title: "Smart Inbox", description: "Smart Inbox with live Firestore order updates" },
+      { title: "Follow-up reminders", description: "Customer follow-up reminders" },
+      { title: "Accessible audio", description: "Text-to-speech accessibility support" },
+    ],
     media: { type: "image", src: climbioMobileShowcase, alt: "Climbio Mobile business toolkit showing a sales dashboard, recent orders, and product inventory" },
   },
   {
@@ -65,6 +76,11 @@ export const projects: Project[] = [
     challenge: "Choosing a career direction involves connecting personal interests and strengths with possible paths.",
     solution: "The app design uses guided questions, career match results, and a saved-results view to help users explore and revisit possible career paths.",
     projectType: "Android application",
+    features: [
+      { title: "Guided discovery", description: "Explore career paths through questions about interests and strengths." },
+      { title: "Career matches", description: "Review career match results to explore possible directions." },
+      { title: "Saved results", description: "Revisit saved career matches when planning next steps." },
+    ],
     github: "", technologies: ["Kotlin", "Android", "MVVM"],
     media: { type: "image", src: laternShowcase, alt: "Latern career mapping app with guided career discovery and saved career matches" },
   },
@@ -74,10 +90,20 @@ export const projects: Project[] = [
     description: "A privacy-first co-founder platform with anonymous discovery, mutual matching, identity reveal, and AI-assisted compatibility and startup proposals.",
     overview: "Foundora helps entrepreneurs explore potential partnerships before revealing their identities and organize shared startup plans.",
     challenge: "Finding a compatible co-founder requires trust, but sharing personal details and early startup ideas too soon can feel risky.",
-    solution: "The current code uses Supabase for authentication, matching, messages, and workspaces. Server functions call OpenRouter for compatibility explanations and startup proposals when configured; compatibility scores are calculated deterministically.",
+    solution: "Anonymous discovery, mutual matching, and consent-based identity reveal let founders explore partnerships before sharing personal details.",
+    technicalHighlights: [
+      { title: "Shared platform services", description: "Supabase supports authentication, matching, messages, and workspaces." },
+      { title: "Scores and AI explanations", description: "Compatibility scores are deterministic. Server functions call OpenRouter for explanations and startup proposals when configured." },
+    ],
     github: "https://github.com/khinmyatthu2193/foundora-found-co", technologies: ["React", "TypeScript", "TanStack Start", "Tailwind CSS", "Supabase", "OpenRouter"],
     media: { type: "image", src: foundoraShowcase, alt: "Foundora co-founder platform showcase" },
-    highlights: ["Anonymous founder discovery and mutual matching", "Chat and mutual-consent identity reveal", "Deterministic compatibility scores with AI-generated explanations", "AI-assisted startup proposals", "Shared startup workspaces"],
+    features: [
+      { title: "Anonymous discovery", description: "Anonymous founder discovery and mutual matching" },
+      { title: "Private conversations", description: "Chat and mutual-consent identity reveal" },
+      { title: "Compatibility", description: "Deterministic compatibility scores with AI-generated explanations" },
+      { title: "Startup proposals", description: "AI-assisted startup proposals" },
+      { title: "Shared workspaces", description: "Shared startup workspaces" },
+    ],
   },
   {
     slug: "joyhub", sortDate: "2026-07-17", date: "Jul 17, 2026", title: "JoyHub: Classroom Engagement Platform", category: "Web", status: "In Development", featured: false,
@@ -87,13 +113,20 @@ export const projects: Project[] = [
     challenge: "Classroom quizzes can feel repetitive and may not encourage every student to participate.",
     solution: "Question cards, student selection, a spin wheel, answer checking, celebration moments, explanations, and motivational messages make the activity more interactive.",
     github: "https://github.com/khinmyatthu2193/JoyHub", liveUrl: "https://joy-hub-xi.vercel.app/", technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "Local Storage", "Web Audio API"],
-    highlights: ["Teacher-created MCQ questions", "Question cards and spin wheel", "Interactive answer checking", "Celebration animation for correct answers", "Explanations and motivational quotes for wrong answers", "Local storage with no authentication required"],
+    features: [
+      { title: "Quiz creation", description: "Teacher-created MCQ questions" },
+      { title: "Classroom participation", description: "Question cards and spin wheel" },
+      { title: "Answer checking", description: "Interactive answer checking" },
+      { title: "Celebrations", description: "Celebration animation for correct answers" },
+      { title: "Learning feedback", description: "Explanations and motivational quotes for wrong answers" },
+      { title: "Saved progress", description: "Local storage with no authentication required" },
+    ],
     media: { type: "image", src: joyhubShowcase, alt: "JoyHub interactive learning platform showcase" },
   },
   {
     slug: "climbio", sortDate: "2026-08", date: "Aug 2026", title: "Climbio 2.0: SME Business Management Platform", category: "Web", status: "In Development", featured: true,
     description: "A smart business management platform for Myanmar SMEs, featuring inventory and product management, invoice workflows, sales dashboards, public storefronts, shop approval controls, and an AI advisor that analyses real business data.",
-    overview: "Climbio 2.0 continues the original Climbio project. Version 1 was a completed MIIT special team project built with React Native and Firebase from June to October 2025 to improve digital adoption for MSMEs. Version 2 followed in August 2026 as a rebuild of the original mobile application, around ten months after v1, and was showcased at the MIIT 2026 Project Show. I led the team and implemented most of Version 2.",
+    overview: "Climbio 2.0 continues the original Climbio project. Version 1 was a completed MIIT special team project built with React Native and Firebase from June to October 2025 to improve digital adoption for MSMEs. Version 2 followed in August 2026 as a rebuild of the original mobile application, around ten months after v1, and was showcased at the MIIT 2026 Project Show.",
     challenge: "Returning to an existing product meant understanding earlier decisions before deciding what to revisit.",
     solution: "Version 2 brings the core business workflows into a full-stack web application with a secure API, public storefronts, reporting, and data-informed AI guidance.",
     projectType: "MIIT 2026 Project Show team project",
@@ -101,6 +134,21 @@ export const projects: Project[] = [
     github: "https://github.com/khinmyatthu2193/Climbio-2.0", liveUrl: "https://climbio-2-0.vercel.app",
     technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "TanStack Query", "Recharts", "Node.js", "Express", "Prisma", "PostgreSQL", "Supabase Storage"],
     media: { type: "image", src: climbioShowcase, alt: "Climbio web application showcase" },
+    responsibilities: ["Led the Version 2 team", "Implemented most of the Version 2 rebuild"],
+    features: [
+      { title: "Inventory & products", description: "Manage product records and stock in a shared business workspace." },
+      { title: "Invoices", description: "Handle invoice workflows alongside business records." },
+      { title: "Sales reporting", description: "Review business activity through dashboards and analytics." },
+      { title: "Public storefronts", description: "Share a customer-facing store for the business." },
+      { title: "Shop approval", description: "Control shop approvals through administration tools." },
+      { title: "AI advisor", description: "Get business guidance informed by real business data." },
+    ],
+    featuredWorkflows: [
+      { title: "Understand business activity", description: "The overview dashboard brings sales reporting into the business workspace.", media: { type: "image", src: climbioDashboard, alt: "Climbio 2.0 business overview dashboard" } },
+      { title: "Keep products organized", description: "Product and inventory management support the shop's day-to-day business workflows.", media: { type: "image", src: climbioProducts, alt: "Climbio 2.0 product and inventory management" } },
+      { title: "Bring the shop online", description: "Customers can browse the business through its public storefront.", media: { type: "image", src: climbioCustomerStore, alt: "Climbio 2.0 customer storefront" } },
+      { title: "Ask for business guidance", description: "The AI advisor analyses real business data to provide guidance in Myanmar language.", media: { type: "image", src: climbioChat, alt: "Climbio 2.0 AI chat providing business guidance in Myanmar language" } },
+    ],
     gallery: [
       { type: "image", src: climbioDashboard, alt: "Climbio 2.0 business overview dashboard", fit: "contain" },
       { type: "image", src: climbioOverview, alt: "Climbio 2.0 analytics overview", fit: "contain" },
@@ -126,6 +174,12 @@ export const projects: Project[] = [
     github: "https://github.com/khinmyatthu2193/brancy-branded-cosmetics-onlineshopping-system", liveUrl: "https://brancy-branded-cosmetics-onlineshop.vercel.app",
     technologies: ["Python", "Django", "JavaScript", "HTML & CSS", "SQLite"],
     media: { type: "image", src: brancyShowcase, alt: "Brancy branded cosmetics online shopping showcase" },
+    featuredWorkflows: [
+      { title: "Discover cosmetics", description: "Category browsing helps customers explore the product catalog.", media: { type: "image", src: brancyCategories, alt: "Brancy product categories" } },
+      { title: "Review a shopping cart", description: "Customers can review their selected products before checkout.", media: { type: "image", src: brancyCart, alt: "Brancy shopping cart" } },
+      { title: "Complete checkout", description: "The checkout screen connects product selection with the ordering workflow.", media: { type: "image", src: brancyCheckout, alt: "Brancy checkout" } },
+      { title: "Administer the catalog", description: "Django administration supports product, inventory, customer, and order management.", media: { type: "image", src: brancyAdmin, alt: "Brancy Django administration" } },
+    ],
     gallery: [
       { type: "image", src: brancyHome, alt: "Brancy homepage" },
       { type: "image", src: brancyCategories, alt: "Brancy product categories" },
@@ -140,6 +194,14 @@ export const projects: Project[] = [
       { type: "image", src: brancyLogout, alt: "Brancy customer logout" },
       { type: "image", src: brancyInvoice, alt: "Brancy order invoice" },
     ],
+    features: [
+      { title: "Customer accounts", description: "Register and sign in to a customer account." },
+      { title: "Product discovery", description: "Browse categories and detailed product information." },
+      { title: "Shopping & checkout", description: "Manage a cart and wishlist, then proceed to checkout." },
+      { title: "Order tracking", description: "Review order status and history." },
+      { title: "Recommendations", description: "Find product recommendations based on skin type." },
+      { title: "Administration", description: "Manage product listings, inventory, customer data, and orders." },
+    ],
     customerFeatures: ["Account registration and login", "Product categories and detailed product information", "Cart, wishlist, and checkout", "Order status and history", "Skin-type product recommendations"],
     adminFeatures: ["Product listings and inventory management", "Customer data and order management"],
     responsibilities: ["Developed frontend pages with HTML, CSS, and JavaScript", "Implemented Django backend functionality", "Designed the database structure", "Built authentication and shopping features"],
@@ -153,18 +215,36 @@ export const projects: Project[] = [
     challenge: "People and businesses need a way to find recycling suppliers, sell reusable materials, and discover recycled products.",
     solution: "The platform combines searchable product listings, checkout, supplier lookup, and community resources. Django Channels and WebSockets support supplier notifications.",
     github: "https://github.com/khinmyatthu2193/RecycleLink-EcoCommerce-Platform", technologies: ["Django", "Python", "SQLite", "Django Channels", "WebSockets", "JavaScript", "HTML & CSS", "NLTK"], media: { type: "image", src: recyclelinkShowcase, alt: "RecycleLink project showcase" },
-    highlights: ["English and Burmese interfaces", "Product categories, search, and filtering", "Cart, wishlist, checkout, and order history", "Supplier directory and nearest-supplier lookup", "Community posts, recycling videos, and chatbot", "WebSocket supplier notifications"],
+    features: [
+      { title: "Bilingual access", description: "English and Burmese interfaces" },
+      { title: "Product discovery", description: "Product categories, search, and filtering" },
+      { title: "Shopping workflows", description: "Cart, wishlist, checkout, and order history" },
+      { title: "Supplier discovery", description: "Supplier directory and nearest-supplier lookup" },
+      { title: "Community resources", description: "Community posts, recycling videos, and chatbot" },
+      { title: "Live notifications", description: "WebSocket supplier notifications" },
+    ],
   },
   {
     slug: "maymays-lett-swal", sortDate: "2026-07-03", date: "Jul 3, 2026", title: "May May’s Latt Swal: Cooking Assistant Web App", category: "Web", status: "Needs Update", featured: false,
     projectType: "Personal project",
     description: "A Myanmar-language cooking assistant that suggests dishes and finds recipes by available ingredients and cooking time.",
-    overview: "May May?s Latt Swal helps users decide what to cook and browse Myanmar recipes with step-by-step instructions.",
+    overview: "May May's Latt Swal helps users decide what to cook and browse Myanmar recipes with step-by-step instructions.",
     challenge: "Choosing a meal requires finding recipes that fit the ingredients and cooking time available.",
-    solution: "A local JavaScript agent detects suggestion or ingredient-search intent, ranks recipes by ingredient overlap and cooking time, and formats results through a recipe skill. The current app uses local JSON data without an external AI API.",
+    solution: "Recipe suggestions and ingredient search help users find meals that fit their available ingredients and cooking time.",
+    technicalHighlights: [
+      { title: "Local recipe matching", description: "A JavaScript agent detects suggestion or ingredient-search intent and ranks recipes by ingredient overlap and cooking time." },
+      { title: "Local data, no external AI API", description: "A recipe skill formats the results using local JSON recipe data." },
+    ],
     github: "https://github.com/khinmyatthu2193/May_Mays_Latt_Swal-Cooking-Assistant-Web-App", technologies: ["React", "JavaScript", "Vite", "Tailwind CSS", "Lucide React", "JSON"], media: { type: "image", src: maymayShowcase, alt: "MayMay's Lett Swal cooking application showcase" },
     liveUrl: "https://may-mays-latt-swal-cooking-assistan-two.vercel.app/",
-    highlights: ["Random meal suggestions", "Ingredient-based recipe search", "Cooking-time filters", "Step-by-step cooking instructions", "Searchable recipe library with category filters", "YouTube and TikTok recipe search links"],
+    features: [
+      { title: "Meal inspiration", description: "Random meal suggestions" },
+      { title: "Ingredient search", description: "Ingredient-based recipe search" },
+      { title: "Time filters", description: "Cooking-time filters" },
+      { title: "Cooking instructions", description: "Step-by-step cooking instructions" },
+      { title: "Recipe library", description: "Searchable recipe library with category filters" },
+      { title: "Video recipes", description: "YouTube and TikTok recipe search links" },
+    ],
   },
   {
     slug: "university-laptop-rental", sortDate: "2025-12", date: "Dec 2025 – Apr 2026", title: "UniKit: University Laptop Rental Management System", category: "Web", status: "Completed", featured: false,
@@ -174,7 +254,14 @@ export const projects: Project[] = [
     challenge: "Paper files and spreadsheets make laptop availability, rental approvals, expected returns, and maintenance difficult to track.",
     solution: "Management accounts can register or import records, assign available laptops, prevent duplicate active assignments, process returns, and track overdue assignments and repairs.",
     github: "https://github.com/khinmyatthu2193/university-laptop-rental-management-system", technologies: ["Django", "Python", "SQLite", "Bootstrap", "JavaScript", "HTML & CSS", "pandas", "openpyxl"], media: { type: "image", src: laptopRentalShowcase, alt: "University Laptop Rental Management System showcase" },
-    highlights: ["Management staff authentication", "Student, staff, and laptop inventory records", "Laptop assignments and duplicate-assignment prevention", "Returns, overdue tracking, and repair records", "Excel imports for students, staff, and laptops", "Dashboard summaries and audit log page"],
+    features: [
+      { title: "Staff access", description: "Management staff authentication" },
+      { title: "Inventory & records", description: "Student, staff, and laptop inventory records" },
+      { title: "Laptop assignments", description: "Laptop assignments and duplicate-assignment prevention" },
+      { title: "Returns & repairs", description: "Returns, overdue tracking, and repair records" },
+      { title: "Excel imports", description: "Excel imports for students, staff, and laptops" },
+      { title: "Management overview", description: "Dashboard summaries and audit log page" },
+    ],
   },
   {
     slug: "the-chosen-one", sortDate: "2026-07", date: "Jul 2026", title: "The Chosen One: Truth or Dare Party Game", category: "Web", featured: false,
@@ -185,7 +272,14 @@ export const projects: Project[] = [
     solution: "Players place their fingers on the screen for random selection, choose Truth or Dare, reveal a challenge, and vote on the result. The game supports offline installation as a PWA and click-to-add players on desktop.",
     github: "https://github.com/vibe-code-tours/team-08-app", liveUrl: "https://vibecode.tours/team-08-app/",
     technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Motion", "Web Audio API", "vite-plugin-pwa"],
-    highlights: ["Multi-touch player selection with no consecutive repeat winner", "Truth, Dare, or Random choice", "Challenge packs and difficulty settings", "Group voting and celebration effects", "Burmese interface", "Installable, offline-capable PWA"],
+    features: [
+      { title: "Player selection", description: "Multi-touch player selection with no consecutive repeat winner" },
+      { title: "Challenge choice", description: "Truth, Dare, or Random choice" },
+      { title: "Game settings", description: "Challenge packs and difficulty settings" },
+      { title: "Group voting", description: "Group voting and celebration effects" },
+      { title: "Burmese interface", description: "Burmese interface" },
+      { title: "Offline play", description: "Installable, offline-capable PWA" },
+    ],
     media: { type: "image", src: chosenOneShowcase, alt: "The Chosen One application showcase" },
   },
 ];
