@@ -1,210 +1,135 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Check, Maximize2, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { FaGithub } from "react-icons/fa";
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft, ArrowUpRight, Maximize2, X } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { assetUrl } from "@/lib/asset-url";
-import type { Project } from "../data/projects";
+import type { Project, ProjectMedia } from "../data/projects";
 import { ProjectPreview } from "./ProjectCard";
+import styles from "./ProjectDetails.module.css";
+
+function Section({ id, label, title, children }: { id: string; label: string; title: string; children: ReactNode }) {
+  return <section className={styles.section} aria-labelledby={id}>
+    <div className={styles.sectionHeading}><p className="eyebrow">{label}</p><h2 id={id}>{title}</h2></div>
+    {children}
+  </section>;
+}
+
+function Actions({ project, back = false }: { project: Project; back?: boolean }) {
+  return <div className={styles.actions}>
+    {project.github && <a className="button-primary" href={project.github} target="_blank" rel="noreferrer">View repository <ArrowUpRight size={16} aria-hidden="true" /></a>}
+    {project.liveUrl && <a className="button-secondary" href={project.liveUrl} target="_blank" rel="noreferrer">Live demo <ArrowUpRight size={16} aria-hidden="true" /></a>}
+    {back && <Link href="/projects" className="button-secondary">Back to Projects <ArrowLeft size={16} aria-hidden="true" /></Link>}
+  </div>;
+}
+
+const technologyGroups: Record<string, string[]> = {
+  Frontend: ["React", "TypeScript", "JavaScript", "HTML & CSS", "TanStack Start"],
+  Mobile: ["React Native", "Expo", "Kotlin", "Android"],
+  "UI & animation": ["Tailwind CSS", "Bootstrap", "Framer Motion", "Motion", "Recharts", "Lucide React"],
+  Backend: ["Node.js", "Express", "Python", "Django", "Django Channels"],
+  "Data & storage": ["Prisma", "PostgreSQL", "SQLite", "Firebase", "Supabase", "Supabase Storage", "Appwrite Storage", "Local Storage", "JSON"],
+  "State & architecture": ["Zustand", "TanStack Query", "MVVM"],
+  "APIs & libraries": ["OpenRouter", "WebSockets", "Web Audio API", "NLTK", "pandas", "openpyxl"],
+  Tooling: ["Vite", "vite-plugin-pwa"],
+};
+
+function getStack(project: Project) {
+  const explicit = (project.stack ?? []).filter(group => group.items.length);
+  const assigned = new Set(explicit.flatMap(group => group.items));
+  const remaining = project.technologies.filter(tech => !assigned.has(tech));
+  const grouped = Object.entries(technologyGroups).map(([label, technologies]) => ({ label, items: remaining.filter(tech => technologies.includes(tech)) })).filter(group => group.items.length);
+  const known = new Set(grouped.flatMap(group => group.items));
+  const other = remaining.filter(tech => !known.has(tech));
+  return [...explicit, ...grouped, ...(other.length ? [{ label: "Other technologies", items: other }] : [])];
+}
 
 export default function ProjectDetails({ project }: { project: Project }) {
-  const [activeImage, setActiveImage] = useState<string | null>(null);
-
+  const [activeImage, setActiveImage] = useState<ProjectMedia | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     if (!activeImage) return;
-    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setActiveImage(null);
+    const element = dialog.current;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    element?.showModal();
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", closeOnEscape);
     return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", closeOnEscape);
+      element?.close();
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus();
     };
   }, [activeImage]);
 
-  return (
-    <main id="main-content" className="relative z-10">
-      <article>
-        <header className="section-shell pb-10 pt-28 md:pb-14 md:pt-36">
-          <Link href="/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-textDim transition-colors hover:text-primary">
-            <ArrowLeft size={17} /> All projects
-          </Link>
-          <p className="eyebrow">{[project.category, project.status, project.date].filter(Boolean).join(" / ")}</p>
-          {project.subtitle && <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-primary">{project.subtitle}</p>}
-          <h1 className="mt-5 max-w-5xl font-display text-4xl font-medium leading-[1] tracking-[-0.035em] sm:text-5xl lg:text-6xl">
-            {project.title}
-          </h1>
-          <p className="mt-7 max-w-3xl text-xl leading-relaxed text-textBody md:text-2xl">{project.description}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            {project.github && (
-              <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-bg">
-                <FaGithub size={17} /> View repository <ArrowUpRight size={16} />
-              </a>
-            )}
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-borderMedium px-5 py-3 text-sm font-semibold">
-                Live demo <ArrowUpRight size={16} />
-              </a>
-            )}
-          </div>
-        </header>
+  const stack = getStack(project);
+  const workflows = (project.featuredWorkflows ?? []).filter(item => item.media.src);
+  const featuredSources = new Set(workflows.map(item => assetUrl(item.media.src!)));
+  const gallery = (project.gallery ?? []).filter(media => media.src && !featuredSources.has(assetUrl(media.src)) && (!project.media.src || assetUrl(media.src) !== assetUrl(project.media.src)));
+  const features = project.features?.length ? project.features : [
+    ...(project.highlights ?? []).map(description => ({ title: "", description })),
+    ...(project.customerFeatures ?? []).map(description => ({ title: "Customer experience", description })),
+    ...(project.adminFeatures ?? []).map(description => ({ title: "Administration", description })),
+  ];
+  const snapshot = [
+    { label: "My role", value: project.role }, { label: "Project type", value: project.projectType },
+    { label: "Timeline", value: project.date }, { label: "Status", value: project.status },
+  ].filter(item => item.value);
+  const narrative = [{ title: "The problem", description: project.challenge }, { title: "The approach", description: project.solution }, { title: "The result", description: project.outcome }].filter(item => item.description);
 
-        <section className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
-          <div className="project-media aspect-[16/9] overflow-hidden rounded-3xl border border-borderSoft bg-[#f5eeee]">
-            <ProjectPreview project={project} index={0} fit="contain" sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), (max-width: 1399px) calc(100vw - 96px), 1304px" />
-          </div>
-        </section>
+  function mediaFigure(media: ProjectMedia, hero = false) {
+    if (!media.src) return <div className={styles.placeholder}><ProjectPreview project={{ ...project, media }} index={0} /></div>;
+    if (media.type === "video") return <figure className={styles.figure}><video controls preload="metadata" poster={media.poster ? assetUrl(media.poster) : undefined} aria-label={media.alt} src={assetUrl(media.src)} /><figcaption>{media.alt}</figcaption></figure>;
+    const portrait = typeof media.src !== "string" && media.src.height > media.src.width;
+    return <figure className={`${styles.figure} ${portrait ? styles.portrait : ""}`}>
+      <button type="button" onClick={() => setActiveImage(media)} aria-label={`Expand ${media.alt}`} className={styles.imageButton}>
+        {typeof media.src === "string" ?
+          // String assets have no intrinsic dimensions; native sizing preserves their ratio.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={media.src} alt={media.alt} loading={hero ? "eager" : "lazy"} /> :
+          <Image src={media.src} alt={media.alt} preload={hero} sizes={hero ? "(max-width: 767px) 100vw, 900px" : "(max-width: 767px) 100vw, 720px"} />}
+        <span className={styles.expand}><Maximize2 size={15} aria-hidden="true" /><span>Expand</span></span>
+      </button>
+      <figcaption>{media.alt}</figcaption>
+    </figure>;
+  }
 
-        <section className="section-shell border-b border-borderSoft">
-          <div className="mb-10 flex flex-col gap-5 border-b border-borderSoft pb-8 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="eyebrow">Project overview</p>
-              <h2 className="mt-4 max-w-xl font-display text-3xl leading-tight md:text-4xl">The idea behind the experience.</h2>
-            </div>
-            <div className="flex max-w-xl flex-wrap gap-2 md:justify-end">
-              {project.technologies.map((tech) => <span key={tech} className="label-tag">{tech}</span>)}
-            </div>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl border border-borderSoft bg-bgCard/60 p-7 md:p-9"
-            >
-              <p className="font-display text-2xl leading-relaxed text-textMain md:text-3xl">{project.overview}</p>
-              {(project.projectType || project.role) && (
-                <dl className="mt-8 grid gap-5 border-t border-borderSoft pt-7 sm:grid-cols-2">
-                  {project.projectType && <div><dt className="label-sm text-primary">Project type</dt><dd className="mt-2 text-sm leading-relaxed text-textMain">{project.projectType}</dd></div>}
-                  {project.role && <div><dt className="label-sm text-primary">My role</dt><dd className="mt-2 text-sm leading-relaxed text-textMain">{project.role}</dd></div>}
-                </dl>
-              )}
-            </motion.div>
-
-            <div className="grid gap-4">
-              {[
-                { number: "01", title: "The challenge", copy: project.challenge },
-                { number: "02", title: "The solution", copy: project.solution },
-              ].map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, x: 18 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08 }}
-                  className="group grid gap-5 rounded-2xl border border-borderSoft bg-bgCard/40 p-6 transition-colors hover:border-primary/30 hover:bg-bgCard/70 sm:grid-cols-[auto_1fr] md:p-7"
-                >
-                  <span className="font-display text-2xl text-primary/70">{item.number}</span>
-                  <div>
-                    <h3 className="label-sm text-primary">{item.title}</h3>
-                    <p className="mt-3 max-w-xl leading-relaxed text-textBody">{item.copy}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {project.responsibilities && (
-          <section className="section-shell grid gap-12 border-b border-borderSoft lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
-            <div><p className="eyebrow">What I owned</p><h2 className="mt-4 font-display text-3xl md:text-4xl">Full-stack delivery.</h2></div>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {project.responsibilities.map((item) => <li key={item} className="flex gap-3 rounded-xl border border-borderSoft bg-bgCard/60 p-4 text-textBody"><Check className="mt-0.5 shrink-0 text-primary" size={17} />{item}</li>)}
-            </ul>
-          </section>
-        )}
-
-        {(project.customerFeatures || project.adminFeatures) && (
-          <section className="section-shell border-b border-borderSoft">
-            <p className="eyebrow">Key features</p>
-            <div className="mt-8 grid gap-8 lg:grid-cols-2">
-              {[{ title: "Customer experience", items: project.customerFeatures }, { title: "Administration", items: project.adminFeatures }].map(({ title, items }) => items && (
-                <div key={title} className="rounded-2xl border border-borderSoft bg-bgCard/60 p-7">
-                  <h2 className="font-display text-3xl">{title}</h2>
-                  <ul className="mt-6 grid gap-3">{items.map((item) => <li key={item} className="flex gap-3 text-textBody"><Check className="mt-0.5 shrink-0 text-primary" size={17} />{item}</li>)}</ul>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {project.gallery && project.gallery.length > 0 && <section className="section-shell">
-          <div className="mb-10 flex items-end justify-between gap-6">
-            <div>
-              <p className="eyebrow">Product gallery</p>
-              <h2 className="mt-4 font-display text-3xl md:text-4xl">Screens and flow.</h2>
-            </div>
-          </div>
-          <motion.div
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
-          >
-            {project.gallery.map((media, index) => (
-              <motion.figure
-                key={media.alt}
-                variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="group overflow-hidden rounded-2xl border border-borderSoft bg-bgCard transition-colors hover:border-primary/40"
-              >
-                <button
-                  type="button"
-                  className="relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden text-left"
-                  onClick={() => media.src && setActiveImage(assetUrl(media.src))}
-                  aria-label={`Expand ${media.alt}`}
-                  disabled={!media.src}
-                >
-                  <ProjectPreview project={{ ...project, media }} index={index + 1} fit="contain" />
-                  {media.src && <span className="absolute right-4 top-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white opacity-0 backdrop-blur-md transition-all group-hover:translate-y-0 group-hover:opacity-100"><Maximize2 size={16} /></span>}
-                </button>
-                <figcaption className="flex items-center justify-between border-t border-borderSoft px-4 py-3 text-sm text-textDim"><span>{media.alt}</span><span className="text-xs text-primary">0{index + 1}</span></figcaption>
-              </motion.figure>
-            ))}
-          </motion.div>
-        </section>}
-
-        {(project.stack || project.highlights || project.challenges) && (
-          <section className="section-shell grid gap-12 border-t border-borderSoft lg:grid-cols-3">
-            {project.stack && <div><p className="eyebrow">Technology stack</p><div className="mt-6 space-y-5">{project.stack.map((group) => <div key={group.label}><h3 className="text-sm font-semibold text-textMain">{group.label}</h3><p className="mt-1 text-textBody">{group.items.join(" · ")}</p></div>)}</div></div>}
-            {project.highlights && <div><p className="eyebrow">Development highlights</p><ul className="mt-6 space-y-3">{project.highlights.map((item) => <li key={item} className="flex gap-3 text-textBody"><Check className="mt-0.5 shrink-0 text-primary" size={17} />{item}</li>)}</ul></div>}
-            {project.challenges && <div><p className="eyebrow">Challenges & learning</p><ul className="mt-6 space-y-3">{project.challenges.map((item) => <li key={item} className="flex gap-3 text-textBody"><span className="text-primary">—</span>{item}</li>)}</ul></div>}
-          </section>
-        )}
-
-      </article>
-
-      <AnimatePresence>
-        {activeImage && (
-          <motion.div
-            className="fixed inset-x-0 bottom-0 top-20 z-[999] overflow-y-auto bg-black/90 p-4 backdrop-blur-md sm:p-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveImage(null)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Expanded project screenshot"
-          >
-            <div className="flex min-h-full w-full items-center justify-center">
-              <motion.img
-                src={activeImage}
-                alt="Expanded project screen"
-                className="h-auto w-auto max-h-[calc(100dvh-7rem)] max-w-full rounded-xl object-contain shadow-2xl sm:max-h-[calc(100dvh-9rem)]"
-                initial={{ opacity: 0, scale: 0.94, y: 16 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.25 }}
-                onClick={(event) => event.stopPropagation()}
-              />
-            </div>
-            <button type="button" onClick={() => setActiveImage(null)} className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white transition-colors hover:bg-black/80 sm:right-5 sm:top-5" aria-label="Close screenshot">
-              <X size={20} />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </main>
-  );
+  return <main id="main-content" className={styles.page}>
+    <article>
+      <header className={styles.hero}>
+        <Link href="/projects" className="text-link mb-7 w-fit text-sm"><ArrowLeft size={16} aria-hidden="true" /> Back to Projects</Link>
+        <p className="eyebrow">{[project.category, project.date].filter(Boolean).join(" / ")}</p>
+        <h1>{project.title}</h1>
+        {project.subtitle && <p className="mt-3 font-medium text-primary">{project.subtitle}</p>}
+        <p className={styles.description}>{project.description}</p>
+        <Actions project={project} />
+        {(project.role || project.projectType) && <div className={styles.quickFacts}>
+          {project.role && <p><span>My role</span>{project.role}</p>}
+          {project.projectType && <p><span>Type</span>{project.projectType}</p>}
+        </div>}
+      </header>
+      <div className={styles.heroVisual}>{mediaFigure(project.media, true)}</div>
+      {snapshot.length > 0 && <section className={styles.snapshot} aria-labelledby="snapshot"><h2 id="snapshot" className="eyebrow">Project Snapshot</h2><dl>{snapshot.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl></section>}
+      {!!project.responsibilities?.length && <Section id="contribution" label="My contribution" title="What I worked on.">
+        <ol className={styles.contributions}>{project.responsibilities.map((item, index) => <li className={styles.card} key={item}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>)}</ol>
+      </Section>}
+      {stack.length > 0 && <Section id="tech-stack" label="Tech stack" title="Built with."><div className={styles.stack}>{stack.map(group => <div key={group.label}><h3>{group.label}</h3><ul>{group.items.map(tech => <li className="project-tech-chip" key={tech}>{tech}</li>)}</ul></div>)}</div></Section>}
+      {project.overview && <Section id="overview" label="Project overview" title={project.overviewTitle ?? project.title.split(":")[0]}><p className={styles.prose}>{project.overview}</p></Section>}
+      {narrative.length > 0 && <Section id="approach" label="Problem & approach" title="From need to implementation."><div className={styles.contributions}>{narrative.map(item => <div className={styles.card} key={item.title}><h3>{item.title}</h3><p>{item.description}</p></div>)}</div></Section>}
+      {features.length > 0 && <Section id="features" label="Key features" title="Core capabilities."><ul className={styles.grid}>{features.map((item, index) => <li className={styles.card} key={item.description}>{item.title ? <h3>{item.title}</h3> : <span className={styles.number}>{String(index + 1).padStart(2, "0")}</span>}<p>{item.description}</p></li>)}</ul></Section>}
+      {workflows.length > 0 && <Section id="workflows" label="Featured workflows" title="A closer look at the product."><div className={styles.workflows}>{workflows.map((item, index) => <div className={styles.workflow} key={item.title}><div className={styles.workflowCopy}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.description}</p></div>{mediaFigure(item.media)}</div>)}</div></Section>}
+      {gallery.length > 0 && <Section id="gallery" label="More screens" title="Explore the details."><div className={styles.gallery}>{gallery.map(media => <div key={assetUrl(media.src!)}>{mediaFigure(media)}</div>)}</div></Section>}
+      {!!project.technicalHighlights?.length && <Section id="technical" label="Technical highlights" title="Engineering decisions."><div className={styles.grid}>{project.technicalHighlights.map(item => <div className={styles.card} key={item.title}><h3>{item.title}</h3><p>{item.description}</p></div>)}</div></Section>}
+      {!!(project.challenges?.length || project.learnings?.length) && <Section id="learnings" label="Challenges & learnings" title="Lessons from the build."><ul className={styles.contributions}>{[...(project.challenges ?? []), ...(project.learnings ?? [])].map(item => <li className={styles.card} key={item}>{item}</li>)}</ul></Section>}
+      <section className={styles.cta} aria-labelledby="explore"><p className="eyebrow">Continue exploring</p><h2 id="explore">Explore the project.</h2><p>Continue through the available project links or explore more of my work.</p><Actions project={project} back /></section>
+    </article>
+    <dialog ref={dialog} className={styles.dialog} aria-label={activeImage?.alt ?? "Expanded project screenshot"} onCancel={() => setActiveImage(null)} onKeyDown={event => { if (event.key === "Tab") { event.preventDefault(); event.currentTarget.querySelector<HTMLButtonElement>("button")?.focus(); } }} onClick={event => { if (event.target === event.currentTarget) setActiveImage(null); }}>
+      <button type="button" className={styles.close} onClick={() => setActiveImage(null)} aria-label="Close screenshot" autoFocus><X size={22} /></button>
+      {activeImage?.src && <>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={assetUrl(activeImage.src)} alt={activeImage.alt} />
+        <p>{activeImage.alt}</p>
+      </>}
+    </dialog>
+  </main>;
 }
