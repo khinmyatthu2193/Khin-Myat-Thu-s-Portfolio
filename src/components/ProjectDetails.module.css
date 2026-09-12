@@ -6,8 +6,7 @@
 .page p, .page li { line-height: 1.7; }
 .description { max-width: 760px; margin-top: 20px; color: rgb(var(--color-text-body)); font-size: 17px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-.quickFacts { display: flex; flex-wrap: wrap; gap: 16px 40px; margin-top: 24px; font-size: 14px; }
-.quickFacts span { display: block; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: rgb(var(--color-text-dim)); }
+.heroContext { margin-top: 20px; max-width: 760px; font-size: 14px; color: rgb(var(--color-text-dim)); }
 .heroVisual { max-width: 900px; margin: 32px auto 0; }
 .figure { overflow: hidden; border: 1px solid rgb(var(--color-border) / .14); border-radius: 18px; background: rgb(var(--color-bg-card)); }
 .imageButton { position: relative; display: block; width: 100%; cursor: zoom-in; }

@@ -17,6 +17,7 @@ function Section({ id, label, title, children }: { id: string; label: string; ti
 }
 
 function Actions({ project, back = false }: { project: Project; back?: boolean }) {
+  if (!project.github && !project.liveUrl && !back) return null;
   return <div className={styles.actions}>
     {project.github && <a className="button-primary" href={project.github} target="_blank" rel="noreferrer">View repository <ArrowUpRight size={16} aria-hidden="true" /></a>}
     {project.liveUrl && <a className="button-secondary" href={project.liveUrl} target="_blank" rel="noreferrer">Live demo <ArrowUpRight size={16} aria-hidden="true" /></a>}
@@ -71,10 +72,16 @@ export default function ProjectDetails({ project }: { project: Project }) {
     ...(project.customerFeatures ?? []).map(description => ({ title: "Customer experience", description })),
     ...(project.adminFeatures ?? []).map(description => ({ title: "Administration", description })),
   ];
+  // Each metadata field has one presentation owner. Dates belong to the eyebrow;
+  // type and short context belong to the hero; ownership belongs to the snapshot.
+  const heroContext = [...new Set([project.projectType, project.event, project.context].filter(Boolean))];
   const snapshot = [
-    { label: "My role", value: project.role }, { label: "Project type", value: project.projectType },
-    { label: "Timeline", value: project.date }, { label: "Status", value: project.status },
-  ].filter(item => item.value);
+    { label: "Role", value: project.role }, { label: "Team", value: project.teamType },
+    { label: "Status", value: project.status }, { label: "Course", value: project.course },
+  ].filter(item => item.value && !heroContext.includes(item.value) && item.value !== project.date);
+  const responsibilities = [...new Set(project.responsibilities ?? [])].filter(item =>
+    item.trim() && item.trim().toLowerCase() !== project.role?.trim().toLowerCase()
+  );
   const narrative = [{ title: "The problem", description: project.challenge }, { title: "The approach", description: project.solution }, { title: "The result", description: project.outcome }].filter(item => item.description);
 
   function mediaFigure(media: ProjectMedia, hero = false) {
@@ -103,15 +110,12 @@ export default function ProjectDetails({ project }: { project: Project }) {
         {project.subtitle && <p className="mt-3 font-medium text-primary">{project.subtitle}</p>}
         <p className={styles.description}>{project.description}</p>
         <Actions project={project} />
-        {(project.role || project.projectType) && <div className={styles.quickFacts}>
-          {project.role && <p><span>My role</span>{project.role}</p>}
-          {project.projectType && <p><span>Type</span>{project.projectType}</p>}
-        </div>}
+        {heroContext.length > 0 && <p className={styles.heroContext}>{heroContext.join(" \u00b7 ")}</p>}
       </header>
       <div className={styles.heroVisual}>{mediaFigure(project.media, true)}</div>
       {snapshot.length > 0 && <section className={styles.snapshot} aria-labelledby="snapshot"><h2 id="snapshot" className="eyebrow">Project Snapshot</h2><dl>{snapshot.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl></section>}
-      {!!project.responsibilities?.length && <Section id="contribution" label="My contribution" title="What I worked on.">
-        <ol className={styles.contributions}>{project.responsibilities.map((item, index) => <li className={styles.card} key={item}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>)}</ol>
+      {responsibilities.length > 0 && <Section id="contribution" label="My contribution" title="What I worked on.">
+        <ol className={styles.contributions}>{responsibilities.map((item, index) => <li className={styles.card} key={item}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>)}</ol>
       </Section>}
       {stack.length > 0 && <Section id="tech-stack" label="Tech stack" title="Built with."><div className={styles.stack}>{stack.map(group => <div key={group.label}><h3>{group.label}</h3><ul>{group.items.map(tech => <li className="project-tech-chip" key={tech}>{tech}</li>)}</ul></div>)}</div></Section>}
       {project.overview && <Section id="overview" label="Project overview" title={project.overviewTitle ?? project.title.split(":")[0]}><p className={styles.prose}>{project.overview}</p></Section>}

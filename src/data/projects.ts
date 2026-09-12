@@ -38,9 +38,9 @@ export type ProjectMedia = { type: "image" | "video"; src?: AssetSource; poster?
 export type Project = {
   slug: string; title: string; category: "Web" | "Mobile" | "AI" | "Innovation"; date?: string; sortDate?: string;
   status?: "Completed" | "In Development" | "Academic Project" | "Prototype" | "Ongoing" | "Needs Update";
-  description: string; overview: string; challenge: string; solution: string; github: string;
+  description: string; overview?: string; challenge: string; solution: string; github: string;
   liveUrl?: string; technologies: string[]; featured: boolean; media: ProjectMedia; subtitle?: string;
-  projectType?: string; role?: string; responsibilities?: string[]; customerFeatures?: string[];
+  projectType?: string; event?: string; context?: string; course?: string; teamType?: string; role?: string; responsibilities?: string[]; customerFeatures?: string[];
   adminFeatures?: string[]; stack?: { label: string; items: string[] }[]; highlights?: string[];
   challenges?: string[]; gallery?: ProjectMedia[];
   overviewTitle?: string; outcome?: string;
@@ -54,11 +54,11 @@ export const projects: Project[] = [
   {
     slug: "climbio-mobile", sortDate: "2025-06", date: "Jun 2025 – Oct 2025", title: "Climbio v1: MSME Business Toolkit App", category: "Mobile", status: "Completed", featured: false,
     description: "A mobile business toolkit for MSMEs to manage product catalogs, customer records, orders, and follow-up reminders.",
-    overview: "Climbio v1 was completed as a MIIT special team project from June to October 2025, with a focus on improving digital adoption for MSMEs. Climbio v2 followed in August 2026 as a newer version and rebuild of the original mobile application, around ten months after v1.",
+    overview: "Climbio began with a focus on improving digital adoption for MSMEs. A web rebuild followed around ten months later as Climbio 2.0.",
     challenge: "Small businesses need accessible digital tools to organize their products, communicate with customers, and maintain customer relationships.",
     solution: "MiniCatalog stores product records in Firebase and uploads product images to Appwrite Storage. Smart Inbox displays customer orders, while customer records and follow-up reminders are stored in Firestore.",
-    projectType: "Full-stack mobile application",
-    role: "Team member — MIIT special project",
+    projectType: "Full-stack mobile application", context: "MIIT special project", teamType: "Team project",
+    role: "Team member",
     github: "https://github.com/khinmyatthu2193/Climbio-MSME-Smart-Business-Toolkit", technologies: ["React Native", "Firebase", "Expo", "TypeScript", "Appwrite Storage"],
     features: [
       { title: "Product catalog", description: "Product catalog creation and image uploads" },
@@ -86,9 +86,8 @@ export const projects: Project[] = [
   },
   {
     slug: "foundora", sortDate: "2026-08", date: "Aug 2026", title: "Foundora: Co-Founder Matching Platform", category: "AI", featured: false,
-    projectType: "Hackathon project", role: "Team member",
+    projectType: "Web application", context: "Hackathon project", teamType: "Team project", role: "Team member",
     description: "A privacy-first co-founder platform with anonymous discovery, mutual matching, identity reveal, and AI-assisted compatibility and startup proposals.",
-    overview: "Foundora helps entrepreneurs explore potential partnerships before revealing their identities and organize shared startup plans.",
     challenge: "Finding a compatible co-founder requires trust, but sharing personal details and early startup ideas too soon can feel risky.",
     solution: "Anonymous discovery, mutual matching, and consent-based identity reveal let founders explore partnerships before sharing personal details.",
     technicalHighlights: [
@@ -107,9 +106,8 @@ export const projects: Project[] = [
   },
   {
     slug: "joyhub", sortDate: "2026-07-17", date: "Jul 17, 2026", title: "JoyHub: Classroom Engagement Platform", category: "Web", status: "In Development", featured: false,
-    projectType: "Personal project",
-    description: "An offline-friendly classroom engagement platform where teachers can create quizzes, configure students, randomly select participants, reveal question cards, provide animated feedback, and restore saved classroom progress.",
-    overview: "JoyHub gives teachers a playful way to create and run multiple-choice classroom activities without requiring authentication.",
+    projectType: "Web application", context: "Personal project",
+    description: "An offline-friendly classroom engagement platform that helps teachers run interactive quizzes and keep students involved.",
     challenge: "Classroom quizzes can feel repetitive and may not encourage every student to participate.",
     solution: "Question cards, student selection, a spin wheel, answer checking, celebration moments, explanations, and motivational messages make the activity more interactive.",
     github: "https://github.com/khinmyatthu2193/JoyHub", liveUrl: "https://joy-hub-xi.vercel.app/", technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "Local Storage", "Web Audio API"],
@@ -125,16 +123,16 @@ export const projects: Project[] = [
   },
   {
     slug: "climbio", sortDate: "2026-08", date: "Aug 2026", title: "Climbio 2.0: SME Business Management Platform", category: "Web", status: "In Development", featured: true,
-    description: "A smart business management platform for Myanmar SMEs, featuring inventory and product management, invoice workflows, sales dashboards, public storefronts, shop approval controls, and an AI advisor that analyses real business data.",
-    overview: "Climbio 2.0 continues the original Climbio project. Version 1 was a completed MIIT special team project built with React Native and Firebase from June to October 2025 to improve digital adoption for MSMEs. Version 2 followed in August 2026 as a rebuild of the original mobile application, around ten months after v1, and was showcased at the MIIT 2026 Project Show.",
+    description: "A business management platform for Myanmar SMEs that brings day-to-day operations and data-informed guidance into one workspace.",
+    overview: "Climbio began as a mobile toolkit to improve digital adoption for MSMEs. Version 1 was built with React Native and Firebase from June to October 2025. This version rebuilds that foundation for the web, around ten months later.",
     challenge: "Returning to an existing product meant understanding earlier decisions before deciding what to revisit.",
     solution: "Version 2 brings the core business workflows into a full-stack web application with a secure API, public storefronts, reporting, and data-informed AI guidance.",
-    projectType: "MIIT 2026 Project Show team project",
-    role: "Team leader and primary implementer of Version 2",
+    projectType: "Full-stack web application", teamType: "Team project", event: "MIIT 2026 Project Show",
+    role: "Team leader",
     github: "https://github.com/khinmyatthu2193/Climbio-2.0", liveUrl: "https://climbio-2-0.vercel.app",
     technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "TanStack Query", "Recharts", "Node.js", "Express", "Prisma", "PostgreSQL", "Supabase Storage"],
     media: { type: "image", src: climbioShowcase, alt: "Climbio web application showcase" },
-    responsibilities: ["Led the Version 2 team", "Implemented most of the Version 2 rebuild"],
+    responsibilities: ["Implemented most of the Version 2 full-stack rebuild"],
     features: [
       { title: "Inventory & products", description: "Manage product records and stock in a shared business workspace." },
       { title: "Invoices", description: "Handle invoice workflows alongside business records." },
@@ -166,9 +164,8 @@ export const projects: Project[] = [
   },
   {
     slug: "brancy", sortDate: "2024-06", title: "Brancy: Branded Cosmetics Online Shopping System", category: "Web", date: "Jun 2024 – Oct 2024", status: "Completed", featured: false,
-    projectType: "MIIT special project", role: "Team member",
-    description: "A full-stack cosmetics e-commerce platform featuring user authentication, product and category browsing, cart and wishlist management, checkout, order tracking, skin-type product recommendations, and inventory administration.",
-    overview: "Brancy explores a complete cosmetics shopping experience through a Django-based web application.",
+    projectType: "Full-stack web application", context: "MIIT special project", teamType: "Team project", role: "Team member",
+    description: "A cosmetics shopping platform for browsing products and managing online orders.",
     challenge: "The project explored how product information and shopping interactions can be organized clearly in one digital experience.",
     solution: "The existing application includes verified catalog, account, cart, checkout, invoice, and administration screens.",
     github: "https://github.com/khinmyatthu2193/brancy-branded-cosmetics-onlineshopping-system", liveUrl: "https://brancy-branded-cosmetics-onlineshop.vercel.app",
@@ -209,9 +206,8 @@ export const projects: Project[] = [
   },
   {
     slug: "recyclelink", sortDate: "2024-12", date: "Dec 2024 – Mar 2025", title: "RecycleLink: Recycling Marketplace", category: "Web", status: "Completed", featured: false,
-    projectType: "MIIT special project", role: "Team member",
+    projectType: "Web application", context: "MIIT special project", teamType: "Team project", role: "Team member",
     description: "A bilingual marketplace for buying reusable products and selling recyclable materials, with supplier discovery, shopping tools, and recycling resources.",
-    overview: "RecycleLink connects buyers, sellers, and recycling suppliers through an English and Burmese Django application developed as a MIIT special project.",
     challenge: "People and businesses need a way to find recycling suppliers, sell reusable materials, and discover recycled products.",
     solution: "The platform combines searchable product listings, checkout, supplier lookup, and community resources. Django Channels and WebSockets support supplier notifications.",
     github: "https://github.com/khinmyatthu2193/RecycleLink-EcoCommerce-Platform", technologies: ["Django", "Python", "SQLite", "Django Channels", "WebSockets", "JavaScript", "HTML & CSS", "NLTK"], media: { type: "image", src: recyclelinkShowcase, alt: "RecycleLink project showcase" },
@@ -226,9 +222,8 @@ export const projects: Project[] = [
   },
   {
     slug: "maymays-lett-swal", sortDate: "2026-07-03", date: "Jul 3, 2026", title: "May May’s Latt Swal: Cooking Assistant Web App", category: "Web", status: "Needs Update", featured: false,
-    projectType: "Personal project",
+    projectType: "Web application", context: "Personal project",
     description: "A Myanmar-language cooking assistant that suggests dishes and finds recipes by available ingredients and cooking time.",
-    overview: "May May's Latt Swal helps users decide what to cook and browse Myanmar recipes with step-by-step instructions.",
     challenge: "Choosing a meal requires finding recipes that fit the ingredients and cooking time available.",
     solution: "Recipe suggestions and ingredient search help users find meals that fit their available ingredients and cooking time.",
     technicalHighlights: [
@@ -248,9 +243,8 @@ export const projects: Project[] = [
   },
   {
     slug: "university-laptop-rental", sortDate: "2025-12", date: "Dec 2025 – Apr 2026", title: "UniKit: University Laptop Rental Management System", category: "Web", status: "Completed", featured: false,
-    projectType: "MIIT special project", role: "Team member",
+    projectType: "Web application", context: "MIIT special project", teamType: "Team project", role: "Team member",
     description: "A Django application for managing university laptops, student and staff records, assignments, returns, and repairs.",
-    overview: "UniKit centralizes university laptop rental records at MIIT, covering inventory availability, assignments, return dates, and laptop condition.",
     challenge: "Paper files and spreadsheets make laptop availability, rental approvals, expected returns, and maintenance difficult to track.",
     solution: "Management accounts can register or import records, assign available laptops, prevent duplicate active assignments, process returns, and track overdue assignments and repairs.",
     github: "https://github.com/khinmyatthu2193/university-laptop-rental-management-system", technologies: ["Django", "Python", "SQLite", "Bootstrap", "JavaScript", "HTML & CSS", "pandas", "openpyxl"], media: { type: "image", src: laptopRentalShowcase, alt: "University Laptop Rental Management System showcase" },
@@ -265,9 +259,9 @@ export const projects: Project[] = [
   },
   {
     slug: "the-chosen-one", sortDate: "2026-07", date: "Jul 2026", title: "The Chosen One: Truth or Dare Party Game", category: "Web", featured: false,
-    projectType: "Vibe Code Tour team project", role: "Team 08 member",
+    projectType: "Web application", teamType: "Team 08", event: "Vibe Code Tour", role: "Team member",
     description: "A mobile-first Truth or Dare party game that uses multi-touch roulette to select a player, reveal challenge cards, and collect group votes.",
-    overview: "The Chosen One is a client-side, share-the-phone party game built by Team 08 during the Vibe Code Tour. It runs without accounts or a backend.",
+    overview: "The game runs entirely on the client, without accounts or a backend, so a group can play on one shared device.",
     challenge: "Groups need a shared way to select players and move through Truth or Dare rounds on one device.",
     solution: "Players place their fingers on the screen for random selection, choose Truth or Dare, reveal a challenge, and vote on the result. The game supports offline installation as a PWA and click-to-add players on desktop.",
     github: "https://github.com/vibe-code-tours/team-08-app", liveUrl: "https://vibecode.tours/team-08-app/",
