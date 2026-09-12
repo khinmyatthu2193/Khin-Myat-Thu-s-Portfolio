@@ -26,10 +26,12 @@
 .sectionHeading h2 { margin-top: 10px; }
 .prose { max-width: 740px; font-size: 17px; color: rgb(var(--color-text-body)); }
 .grid, .contributions { display: grid; gap: 16px; align-items: start; }
+.contributions { align-items: stretch; }
+.contributions > :only-child { grid-column: 1 / -1; }
 .card { padding: 22px; border: 1px solid rgb(var(--color-border) / .14); border-radius: 18px; background: rgb(var(--color-bg-card)); color: rgb(var(--color-text-body)); }
 .card h3 { color: rgb(var(--color-text-main)); }
 .card p { margin-top: 8px; }
-.number { font-size: 12px; letter-spacing: .1em; font-weight: 600; color: rgb(var(--color-primary)); }
+.number { flex-shrink: 0; white-space: nowrap; font-size: 12px; letter-spacing: .1em; font-weight: 600; color: rgb(var(--color-primary)); }
 .contributions > li.card { display: flex; align-items: baseline; gap: 16px; }
 .contributions > li p { margin: 0; }
 .stack { display: grid; gap: 24px; padding-block: 24px; border-block: 1px solid rgb(var(--color-border) / .14); }
@@ -53,9 +55,10 @@
   .description { font-size: 18px; }
   .section { margin-top: 72px; }
   .grid, .contributions, .stack, .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .snapshot dl { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .snapshot dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 1024px) {
+  .snapshot dl { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .page { padding-inline: 48px; }
   .section { margin-top: 88px; }
   .grid, .stack, .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
