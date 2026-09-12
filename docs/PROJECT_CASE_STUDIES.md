@@ -1,4 +1,4 @@
-﻿# Project case studies
+# Project case studies
 
 All ten project detail routes use `features/projects/project-detail-page.tsx` and
 `src/components/ProjectDetails.tsx`. The route continues to own static parameters,
@@ -8,7 +8,10 @@ metadata, and not-found handling. The case-study styles are scoped to
 To add a project, add its typed record and imported media in `src/data/projects.ts`.
 No new route or copied JSX is needed. Supply factual content only:
 
-- `responsibilities` describes personal work, while `role` and `projectType` provide ownership context. Omit unverified responsibilities.
+- The hero owns `category` and `date` in its eyebrow, plus `projectType`, `event`, and short `context` in one compact line. Do not repeat them in the snapshot or overview.
+- The snapshot owns `role`, `teamType`, `status`, and optional detailed `course`. Keep event/context separate from team structure.
+- `responsibilities` contains verified implementation actions, not role titles. The renderer removes exact role copies and duplicate actions; editorial review must catch paraphrases.
+- `overview` is optional: include purpose or history only when it adds information beyond the hero, metadata, and features.
 - `technologies` is grouped for display; optional `stack` provides explicit groups.
 - `features` supplies short titles and descriptions. Legacy feature arrays remain supported.
 - `featuredWorkflows` pairs a title and short explanation with media. Curate the strongest screens here.
