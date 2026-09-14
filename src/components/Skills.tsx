@@ -1,133 +1,111 @@
-import { motion } from "framer-motion";
-import { Braces, Code2, Database, Smartphone, Sparkles } from "lucide-react";
+﻿import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, GraduationCap, Languages, Sprout, Users } from "lucide-react";
+import { skillGroups, skillsProfile, type Skill } from "@/src/data/skills";
+import styles from "./Skills.module.css";
 
-const skillGroups = [
-  {
-    title: "Programming & web",
-    description: "Technologies I have used while learning to build for the web.",
-    icon: Code2,
-    skills: ["JavaScript", "Python", "React", "Next.js", "Django", "HTML", "CSS"],
-  },
-  {
-    title: "Mobile development",
-    description: "Tools I have explored through mobile application projects.",
-    icon: Smartphone,
-    skills: ["React Native", "Expo", "Firebase"],
-  },
-  {
-    title: "Backend & data",
-    description: "Backend, database, and application concepts I have worked with.",
-    icon: Database,
-    skills: ["Django", "Firebase", "Supabase", "PostgreSQL", "SQLite", "WebSockets", "REST APIs", "CRUD", "Authentication"],
-  },
-  {
-    title: "AI & development tools",
-    description: "AI products and tools I am currently exploring as I learn.",
-    icon: Sparkles,
-    skills: ["Gemini AI", "AI-powered applications", "AI-assisted development", "Claude Code", "Cursor", "Git", "GitHub", "VS Code", "PowerShell", "CI/CD concepts"],
-  },
-];
-
-const languages = [
-  { name: "Python", code: "PY" },
-  { name: "JavaScript", code: "JS" },
-];
+function SkillItem({ skill }: { skill: Skill }) {
+  const Icon = skill.icon;
+  return (
+    <li className={styles.skill}>
+      <Icon aria-hidden="true" className="h-[18px] w-[18px] shrink-0 text-primary" />
+      <span>{skill.name}</span>
+    </li>
+  );
+}
 
 export default function Skills() {
+  const reducedMotion = useReducedMotion();
+  const learningSkills = skillGroups.flatMap((group) => group.skills.filter((skill) => skill.currentlyLearning));
+
   return (
-    <section id="skills" className="section-shell scroll-mt-20">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        className="border-y border-borderSoft py-12 md:py-16"
-      >
-        <div className="grid gap-7 border-b border-borderSoft pb-9 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+    <section id="skills" aria-labelledby="skills-title" className="section-shell scroll-mt-20 !pt-10 md:!pt-14">
+      <header className={styles.hero}>
+        <div className="relative z-10">
+          <p className="eyebrow">Skills / A growing toolkit</p>
+          <h1 id="skills-title" className="section-title mt-5 max-w-2xl">
+            Curiosity into code.<br /><span className="text-gradient italic">Learning into practice.</span>
+          </h1>
+          <p className="mt-6 max-w-xl leading-relaxed text-textBody">
+            I build web, mobile, and AI-powered applications through academic, personal, and collaborative projects — learning new tools as I go.
+          </p>
+          <Link href="/projects" className="text-link mt-6 w-fit text-sm">
+            Explore my project work <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
+        <div className={styles.profile}>
+          <GraduationCap size={24} className="text-primary" aria-hidden="true" />
+          <p className="mt-5 text-xs font-medium uppercase tracking-widest text-primary">{skillsProfile.direction}</p>
+          <p className="mt-3 font-display text-2xl leading-snug">{skillsProfile.role}</p>
+          <p className="mt-3 text-sm leading-relaxed text-textBody">{skillsProfile.institution}</p>
+          <div className="mt-6 flex items-center gap-2 border-t border-primary/15 pt-4 text-xs text-textDim">
+            <Sprout size={15} className="text-primary" aria-hidden="true" /> Built through practice. Always growing.
+          </div>
+        </div>
+      </header>
+
+      <div className="mb-5 mt-10 flex items-end justify-between gap-4">
+        <h2 className="font-display text-2xl">Technical toolkit</h2>
+        <p className="text-xs text-textMuted">Tools, technologies &amp; foundations</p>
+      </div>
+      <div className={styles.grid}>
+        {skillGroups.map(({ id, title, description, icon: Icon, skills, project }, index) => (
+          <motion.article
+            key={id}
+            aria-labelledby={`${id}-title`}
+            initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+            animate={reducedMotion ? { opacity: 1, y: 0 } : undefined}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : (index % 2) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+            className={styles.card}
+          >
+            <div className="flex items-center justify-between gap-4">
+              <span className={styles.categoryIcon}><Icon size={21} aria-hidden="true" /></span>
+              <span aria-hidden="true" className="font-mono text-xs text-textMuted">/ 0{index + 1}</span>
+            </div>
+            <h3 id={`${id}-title`} className="mt-5 font-display text-2xl leading-snug tracking-tight">{title}</h3>
+            <p className="mb-5 mt-2 text-sm leading-relaxed text-textDim">{description}</p>
+            <ul className="flex flex-wrap gap-2">
+              {skills.filter((skill) => !skill.currentlyLearning).map((skill) => <SkillItem key={skill.name} skill={skill} />)}
+            </ul>
+            {project && (
+              <div className="mt-auto pt-6">
+                <div className="border-t border-borderSoft pt-4">
+                  <Link href={project.href} className="text-link text-sm">{project.name}<ArrowUpRight size={14} aria-hidden="true" /></Link>
+                  <p className="mt-1.5 text-xs leading-relaxed text-textMuted">{project.detail}</p>
+                </div>
+              </div>
+            )}
+          </motion.article>
+        ))}
+      </div>
+
+      <aside aria-labelledby="learning-title" className={styles.learning}>
+        <div className="flex items-start gap-4">
+          <span className={styles.categoryIcon}><Sprout size={22} aria-hidden="true" /></span>
           <div>
-            <p className="eyebrow">03 / Skills &amp; languages</p>
-            <h2 className="section-title mt-5">The tools behind the <span className="text-gradient italic">work.</span></h2>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <p className="max-w-md leading-relaxed text-textBody">
-              I&apos;m growing toward full-stack development by using projects to explore frontend, backend, mobile, databases, and AI.
-            </p>
-            <div className="border-l-2 border-primary/40 pl-5">
-              <p className="label-sm text-primary">How I work</p>
-              <p className="mt-2 text-sm leading-relaxed text-textBody">
-                I learn by building, making mistakes, asking questions, and trying again.
-              </p>
-            </div>
+            <h2 id="learning-title" className="font-display text-2xl">Currently Learning</h2>
+            <p className="mt-2 max-w-lg text-sm leading-relaxed text-textDim">Making room for new ideas. Flutter is the next part of my mobile development journey.</p>
           </div>
         </div>
+        <ul className="flex flex-wrap gap-2">{learningSkills.map((skill) => <SkillItem key={skill.name} skill={skill} />)}</ul>
+      </aside>
 
-        <div className="grid md:grid-cols-2">
-          {skillGroups.map(({ title, description, icon: Icon, skills }, index) => (
-            <motion.article
-              key={title}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.07 }}
-              className={`group relative border-borderSoft py-7 transition-colors hover:bg-primary/[0.035] md:p-7 ${
-                index % 2 === 0 ? "md:border-r" : "md:pl-12"
-              } ${index < 2 ? "border-b" : ""}`}
-            >
-              <div className="flex items-start justify-between gap-5">
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-sm italic text-primary/70">0{index + 1}</span>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform duration-300 group-hover:-translate-y-1">
-                    <Icon size={18} />
-                  </div>
-                </div>
-                <span className="h-px flex-1 translate-y-5 bg-borderSoft transition-colors group-hover:bg-primary/25" />
-              </div>
-              <h3 className="mt-5 font-display text-2xl font-medium md:text-[1.7rem]">{title}</h3>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-textBody">{description}</p>
-              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
-                {skills.map((skill) => (
-                  <span key={skill} className="text-xs font-medium uppercase tracking-[0.1em] text-textMuted before:mr-2 before:text-primary before:content-['/']">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.article>
-          ))}
-        </div>
-
-        <div className="mt-12 border-t border-borderSoft pt-8">
-          <div className="mb-6 flex items-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 bg-primary/5 text-primary">
-              <Braces size={17} />
-            </div>
-            <div>
-              <p className="eyebrow">Language toolkit</p>
-              <h3 className="mt-1 font-display text-2xl">Programming languages</h3>
-            </div>
-            <span className="ml-auto hidden h-px flex-1 bg-borderSoft sm:block" />
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {languages.map((language, index) => (
-              <motion.div
-                key={language.name}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
-                whileHover={{ y: -4 }}
-                className="group flex items-center gap-4 rounded-xl border border-borderSoft bg-bgCard/50 p-4 transition-colors hover:border-primary/30 hover:bg-primary/[0.045]"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 font-mono text-xs font-semibold tracking-wider text-primary">
-                  {language.code}
-                </span>
-                <div>
-                  <span className="font-display text-xs italic text-primary/70">0{index + 1}</span>
-                  <p className="mt-0.5 font-medium text-textMain">{language.name}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
+      <div className="mt-8 grid gap-8 border-t border-borderSoft pt-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        <section aria-labelledby="collaboration-title">
+          <h2 id="collaboration-title" className="flex items-center gap-3 font-display text-xl"><Users size={19} className="text-primary" aria-hidden="true" /> Beyond the code</h2>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-3">
+            {skillsProfile.collaboration.map((skill) => <li key={skill} className="text-sm text-textDim">{skill}</li>)}
+          </ul>
+        </section>
+        <section aria-labelledby="languages-title">
+          <h2 id="languages-title" className="flex items-center gap-3 font-display text-xl"><Languages size={19} className="text-primary" aria-hidden="true" /> Languages</h2>
+          <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-3">
+            {skillsProfile.languages.map((language) => <div key={language.name}><dt className="text-sm text-textMain">{language.name}</dt><dd className="mt-1 text-xs text-textMuted">{language.level}</dd></div>)}
+          </dl>
+        </section>
+      </div>
     </section>
   );
 }
