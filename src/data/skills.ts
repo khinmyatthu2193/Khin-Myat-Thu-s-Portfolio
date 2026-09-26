@@ -131,7 +131,7 @@ export const skillGroups: SkillGroup[] = [
 // CV-backed personal context; technology entries also retain the user's supplied list.
 export const skillsProfile = {
   role: "Final-year Computer Science & Engineering student",
-  direction: "Aspiring full-stack developer",
+  direction: "Full-stack developer & product builder",
   institution: "Myanmar Institute of Information Technology (MIIT)",
   collaboration: ["Teamwork & Collaboration", "Problem Solving", "Adaptability", "Time Management", "Presentation & Public Speaking", "Continuous Learning"],
   languages: [{ name: "Burmese", level: "Native" }, { name: "English", level: "Upper Intermediate" }],
