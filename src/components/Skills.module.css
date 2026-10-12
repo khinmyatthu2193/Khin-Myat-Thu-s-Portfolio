@@ -5,11 +5,15 @@
 .skillCount span { color: rgb(var(--color-text-muted)); font-family: 'DM Sans', sans-serif; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
 .showcase { padding: 3rem 0 3.5rem; border-bottom: 1px solid rgb(var(--color-border) / .08); }
 .showcaseHeader { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
-.categoryLegend { display: flex; max-width: 40rem; flex-wrap: wrap; justify-content: flex-end; gap: .55rem 1rem; color: rgb(var(--color-text-muted)); font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; }
-.categoryLegend li { display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; }
-.categoryLegend li span { width: .38rem; height: .38rem; border-radius: 999px; background: rgb(var(--color-primary) / .65); }
-.categoryLegend em { color: rgb(var(--color-primary)); font-style: normal; }
-.skillField { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin-top: 2rem; }
+.categoryList { margin-top: 2rem; }
+.categoryRow { display: grid; gap: 1rem; border-top: 1px solid rgb(var(--color-border) / .08); padding: 2rem 0; }
+.categoryRowReverse { }
+.categoryCopy { display: flex; align-items: flex-start; gap: .8rem; }
+.categoryCopy p { margin-top: .4rem; color: rgb(var(--color-text-muted)); font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
+.categoryIndex { display: inline-flex; width: 1.8rem; height: 1.8rem; flex-shrink: 0; align-items: center; justify-content: center; border: 1px solid rgb(var(--color-primary) / .32); border-radius: 999px; color: rgb(var(--color-primary)); font-size: .62rem; font-weight: 700; letter-spacing: .05em; }
+.logoCluster { position: relative; min-height: 12rem; overflow: visible; }
+.clusterGlow { position: absolute; left: 50%; top: 50%; width: 62%; aspect-ratio: 1.6; transform: translate(-50%, -50%); border-radius: 999px; background: rgb(var(--color-primary) / .07); filter: blur(26px); pointer-events: none; }
+.clusterItem { position: absolute; z-index: 1; width: 5.15rem; height: 5.15rem; margin: -2.575rem 0 0 -2.575rem; list-style: none; }
 .skillCard { display: flex; min-width: 0; min-height: 4.8rem; align-items: center; justify-content: center; gap: .45rem; border: 1px solid rgb(var(--color-border) / .13); border-radius: .75rem; background: rgb(var(--color-bg-card) / .72); padding: .65rem .45rem; color: rgb(var(--color-text-main)); font-size: .68rem; font-weight: 600; line-height: 1.15; text-align: center; transition: border-color .25s ease, background-color .25s ease, transform .25s ease, box-shadow .25s ease; }
 .skillLogo { width: 1.45rem; height: 1.45rem; flex-shrink: 0; color: var(--skill-logo-color, rgb(var(--color-primary))); }
 .skillCard span { max-width: 5.5rem; overflow-wrap: anywhere; }
@@ -19,7 +23,7 @@
 .softSkillList li { border: 1px solid rgb(var(--color-border) / .13); border-radius: 999px; background: rgb(var(--color-bg-card) / .52); padding: .55rem .75rem; color: rgb(var(--color-text-dim)); font-size: .75rem; }
 @keyframes skill-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 @media (hover: hover) and (pointer: fine) { .skillCard:hover { transform: translateY(-3px); border-color: rgb(var(--color-primary) / .4); background: rgb(var(--color-primary) / .07); box-shadow: 0 10px 28px rgb(0 0 0 / .08); } }
-@media (min-width: 640px) { .skillField { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; } .skillCard { min-height: 5rem; } }
-@media (min-width: 768px) { .hero { grid-template-columns: minmax(0, 1.35fr) minmax(220px, .65fr); align-items: end; padding-bottom: 3rem; } .heroMeta { flex-direction: column; align-items: flex-end; justify-content: flex-end; } .showcase { padding-top: 4rem; } .skillField { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .85rem; margin-top: 2.5rem; } .skillCard { min-height: 5.15rem; } .softSkills { grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); align-items: center; padding-top: 3rem; } .softSkillList { justify-content: flex-end; } }
-@media (min-width: 1024px) { .skillField { gap: 1rem; } .skillCard { min-height: 5.35rem; } }
+@media (min-width: 640px) { .categoryList { margin-top: 2.5rem; } .categoryRow { padding: 2.5rem 0; } .logoCluster { min-height: 13rem; } .skillCard { min-height: 5rem; } }
+@media (min-width: 768px) { .hero { grid-template-columns: minmax(0, 1.35fr) minmax(220px, .65fr); align-items: end; padding-bottom: 3rem; } .heroMeta { flex-direction: column; align-items: flex-end; justify-content: flex-end; } .showcase { padding-top: 4rem; } .categoryList { margin-top: 2.5rem; } .categoryRow { grid-template-columns: minmax(0, .8fr) minmax(330px, 1.2fr); align-items: center; min-height: 15.5rem; padding: 2rem 0; } .categoryRowReverse { grid-template-columns: minmax(330px, 1.2fr) minmax(0, .8fr); } .categoryRowReverse .categoryCopy { grid-column: 2; grid-row: 1; } .categoryRowReverse .logoCluster { grid-column: 1; grid-row: 1; } .logoCluster { min-height: 14rem; } .skillCard { min-height: 5.15rem; } .softSkills { grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); align-items: center; padding-top: 3rem; } .softSkillList { justify-content: flex-end; } }
+@media (min-width: 1024px) { .categoryRow { min-height: 17rem; } .logoCluster { min-height: 15rem; } .skillCard { min-height: 5.35rem; } }
 @media (prefers-reduced-motion: reduce) { .skillCardFloating { animation: none; } .skillCard { transition: none; } .skillCard:hover { transform: none; } }
