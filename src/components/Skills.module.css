@@ -1,40 +1,25 @@
-.hero { position: relative; display: grid; gap: 2rem; padding: 1.5rem 0 3rem; border-bottom: 1px solid rgb(var(--color-border) / .08); }
-.hero::before { content: ''; position: absolute; inset: -3rem -2rem auto 40%; height: 18rem; border-radius: 50%; background: rgb(var(--color-primary) / .06); filter: blur(90px); pointer-events: none; }
-.focusList { display: grid; gap: .65rem; }
-.focusItem { display: flex; align-items: flex-start; gap: .75rem; border-top: 1px solid rgb(var(--color-border) / .1); padding: .9rem 0; color: rgb(var(--color-primary)); }
-.focusItem strong, .focusItem span { display: block; }
-.focusItem strong { color: rgb(var(--color-text-main)); font-size: .9rem; font-weight: 600; }
-.focusItem span { margin-top: .2rem; color: rgb(var(--color-text-dim)); font-size: .78rem; line-height: 1.45; }
-.toolkitSection { --toolkit-card: rgb(var(--color-bg-card) / .72); --toolkit-tile: rgb(var(--color-bg-soft) / .7); --toolkit-border: rgb(var(--color-border) / .16); }
-.toolkitGrid { display: grid; gap: 1rem; margin-top: 2rem; }
-.toolkitCategory { min-width: 0; border: 1px solid var(--toolkit-border); border-radius: 1.1rem; padding: 1rem; background: var(--toolkit-card); }
-.toolkitFeatured { border-color: rgb(var(--color-primary) / .34); }
-.toolkitCategoryHeader { display: flex; align-items: flex-start; gap: .7rem; }
-.categoryIndex { display: inline-flex; min-width: 1.8rem; height: 1.8rem; align-items: center; justify-content: center; border: 1px solid rgb(var(--color-primary) / .35); border-radius: 999px; color: rgb(var(--color-primary)); font-size: .65rem; font-weight: 700; letter-spacing: .05em; }
-.toolkitCategoryHeader p { margin-top: .35rem; max-width: 30rem; color: rgb(var(--color-text-dim)); font-size: .78rem; line-height: 1.45; }
-.logoGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin-top: 1rem; }
-.categoryIcon { display: inline-flex; width: 2.7rem; height: 2.7rem; flex-shrink: 0; align-items: center; justify-content: center; border: 1px solid rgb(var(--color-primary) / .2); border-radius: .8rem; background: rgb(var(--color-primary) / .07); color: rgb(var(--color-primary)); }
-.skill { display: flex; min-width: 0; flex-direction: column; align-items: center; justify-content: center; gap: .55rem; min-height: 7rem; border: 1px solid var(--toolkit-border); border-radius: .75rem; padding: .8rem .55rem; background: var(--toolkit-tile); color: rgb(var(--color-text-main)); font-size: .76rem; font-weight: 600; line-height: 1.3; text-align: center; overflow-wrap: anywhere; transition: border-color .2s ease, background-color .2s ease, transform .2s ease; }
-.skill svg { color: var(--skill-logo-color, rgb(var(--color-primary))); }
-.skill[data-api="true"] svg { padding: .2rem; border: 1px solid rgb(var(--color-primary) / .5); border-radius: .35rem; color: rgb(var(--color-primary)); }
-.skill span { min-width: 0; }
-.skillCompact { min-height: 2.6rem; flex-direction: row; justify-content: flex-start; gap: .5rem; padding: .55rem .7rem; background: transparent; font-size: .78rem; font-weight: 400; }
-.skillCompact svg { height: 1rem; width: 1rem; }
-.projectGrid { display: grid; gap: 1rem; margin-top: 2rem; }
-.projectCard { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid rgb(var(--color-border) / .1); border-radius: 1.25rem; background: rgb(var(--color-bg-card) / .58); transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease; }
-.foundationGrid { display: grid; gap: .55rem; margin-top: 1.5rem; }
-.foundationGrid li { display: flex; align-items: center; gap: .6rem; border-top: 1px solid rgb(var(--color-border) / .1); padding: .8rem 0; color: rgb(var(--color-text-body)); font-size: .85rem; }
-.foundationGrid svg { color: rgb(var(--color-primary)); }
-.learning { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3.5rem; border: 1px dashed rgb(var(--color-primary) / .3); border-radius: 1.25rem; padding: 1.25rem; background: linear-gradient(110deg, rgb(var(--color-primary) / .08), rgb(var(--color-bg-card) / .3)); }
-.footerGrid { display: grid; gap: 2.5rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgb(var(--color-border) / .08); }
-.softSkill, .language { border: 1px solid rgb(var(--color-border) / .1); border-radius: .7rem; background: rgb(var(--color-bg-card) / .45); }
-.softSkill { padding: .65rem .75rem; color: rgb(var(--color-text-dim)); font-size: .8rem; }
-.language { padding: .75rem .9rem; }
-@media (hover: hover) and (pointer: fine) { .skill:hover { transform: translateY(-2px); border-color: rgb(var(--color-primary) / .3); background: rgb(var(--color-primary) / .07); } .projectCard:hover { transform: translateY(-4px); border-color: rgb(var(--color-primary) / .3); box-shadow: 0 18px 48px rgb(0 0 0 / .08); } }
-@media (min-width: 640px) { .logoGrid, .foundationGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 768px) { .hero { grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); align-items: end; padding: 2rem 0 3.5rem; } .focusList { padding-bottom: .2rem; } .toolkitGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; } .projectGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .learning { flex-direction: row; align-items: center; justify-content: space-between; padding: 1.5rem 1.75rem; } .footerGrid { grid-template-columns: 1.1fr .9fr; gap: 4rem; } }
-@media (min-width: 1024px) { .hero { gap: 5rem; } .toolkitGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; } .toolkitCategory { grid-column: span 5; padding: 1.25rem; } .toolkitWide, .toolkitFeatured { grid-column: span 7; } .toolkitFeatured { box-shadow: 0 16px 40px rgb(var(--color-primary) / .08); } .logoGrid { grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); } .foundationGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-:global(:root.light) .toolkitSection { --toolkit-card: #FFFFFF; --toolkit-tile: #E6EDE4; --toolkit-border: #C7D5C6; color: #183D29; background: #F4F5EF; }
-:global(:root.light) .toolkitSection .toolkitCategoryHeader p { color: #4E6655; }
-:global(:root.light) .toolkitSection .skill { color: #183D29; }
-@media (prefers-reduced-motion: reduce) { .skill, .projectCard { transition: none; } .skill:hover, .projectCard:hover { transform: none; } }
+.hero { position: relative; display: grid; gap: 1.75rem; padding: 1.5rem 0 2.5rem; border-bottom: 1px solid rgb(var(--color-border) / .08); }
+.hero::before { content: ''; position: absolute; inset: -4rem -2rem auto 42%; height: 18rem; border-radius: 50%; background: rgb(var(--color-primary) / .06); filter: blur(90px); pointer-events: none; }
+.heroMeta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.skillCount { color: rgb(var(--color-primary)); font-family: 'Playfair Display', Georgia, serif; font-size: 1.65rem; line-height: 1; }
+.skillCount span { color: rgb(var(--color-text-muted)); font-family: 'DM Sans', sans-serif; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+.showcase { padding: 3rem 0 3.5rem; border-bottom: 1px solid rgb(var(--color-border) / .08); }
+.showcaseHeader { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+.categoryLegend { display: flex; max-width: 40rem; flex-wrap: wrap; justify-content: flex-end; gap: .55rem 1rem; color: rgb(var(--color-text-muted)); font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; }
+.categoryLegend li { display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; }
+.categoryLegend li span { width: .38rem; height: .38rem; border-radius: 999px; background: rgb(var(--color-primary) / .65); }
+.categoryLegend em { color: rgb(var(--color-primary)); font-style: normal; }
+.skillField { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin-top: 2rem; }
+.skillCard { display: flex; min-width: 0; min-height: 4.8rem; align-items: center; justify-content: center; gap: .45rem; border: 1px solid rgb(var(--color-border) / .13); border-radius: .75rem; background: rgb(var(--color-bg-card) / .72); padding: .65rem .45rem; color: rgb(var(--color-text-main)); font-size: .68rem; font-weight: 600; line-height: 1.15; text-align: center; transition: border-color .25s ease, background-color .25s ease, transform .25s ease, box-shadow .25s ease; }
+.skillLogo { width: 1.45rem; height: 1.45rem; flex-shrink: 0; color: var(--skill-logo-color, rgb(var(--color-primary))); }
+.skillCard span { max-width: 5.5rem; overflow-wrap: anywhere; }
+.skillCardFloating { animation: skill-float 5.5s ease-in-out var(--float-delay) infinite; }
+.softSkills { display: grid; gap: 1.5rem; padding: 2.5rem 0 1rem; }
+.softSkillList { display: flex; flex-wrap: wrap; gap: .5rem; }
+.softSkillList li { border: 1px solid rgb(var(--color-border) / .13); border-radius: 999px; background: rgb(var(--color-bg-card) / .52); padding: .55rem .75rem; color: rgb(var(--color-text-dim)); font-size: .75rem; }
+@keyframes skill-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@media (hover: hover) and (pointer: fine) { .skillCard:hover { transform: translateY(-3px); border-color: rgb(var(--color-primary) / .4); background: rgb(var(--color-primary) / .07); box-shadow: 0 10px 28px rgb(0 0 0 / .08); } }
+@media (min-width: 640px) { .skillField { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; } .skillCard { min-height: 5rem; } }
+@media (min-width: 768px) { .hero { grid-template-columns: minmax(0, 1.35fr) minmax(220px, .65fr); align-items: end; padding-bottom: 3rem; } .heroMeta { flex-direction: column; align-items: flex-end; justify-content: flex-end; } .showcase { padding-top: 4rem; } .skillField { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .85rem; margin-top: 2.5rem; } .skillCard { min-height: 5.15rem; } .softSkills { grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); align-items: center; padding-top: 3rem; } .softSkillList { justify-content: flex-end; } }
+@media (min-width: 1024px) { .skillField { gap: 1rem; } .skillCard { min-height: 5.35rem; } }
+@media (prefers-reduced-motion: reduce) { .skillCardFloating { animation: none; } .skillCard { transition: none; } .skillCard:hover { transform: none; } }
