@@ -27,8 +27,8 @@ export const achievements: Achievement[] = [
     image: undpAwardMoment,
     imageAlt: "Team ICONIC receiving the winner award at the AI for Climate-Resilient Agriculture Hackathon 2026",
     gallery: [
-      { src: undpTeamSelfie, alt: "Team ICONIC celebrating with the winner certificate" },
       { src: undpTeamPhoto, alt: "Team ICONIC members holding their certificates" },
+      { src: undpTeamSelfie, alt: "Team ICONIC celebrating with the winner certificate" },
       { src: undpWinnerCertificate, alt: "Team ICONIC's certificate of excellence for winning the hackathon" },
       { src: undpCertificates, alt: "Team ICONIC participation certificates from the hackathon" },
     ],
