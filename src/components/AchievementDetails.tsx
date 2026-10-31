@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Maximize2, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { assetUrl } from "@/lib/asset-url";
 import type { Achievement } from "../data/achievements";
@@ -8,11 +8,13 @@ import { AchievementVisual } from "./AchievementCard";
 
 export default function AchievementDetails({ achievement }: { achievement: Achievement }) {
   const [activeImage, setActiveImage] = useState<{ src: string; alt: string } | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!activeImage) return;
     const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setActiveImage(null);
     document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
     window.addEventListener("keydown", closeOnEscape);
     return () => {
       document.body.style.overflow = "";
@@ -39,8 +41,11 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
             <AchievementVisual achievement={achievement} fit="contain" />
           </div>
           <div className="lg:pl-8">
-            <p className="eyebrow">The milestone</p>
+            <p className="eyebrow">{achievement.award ?? "The milestone"}</p>
             <p className="mt-5 font-display text-2xl leading-snug text-textMain md:text-3xl">{achievement.description}</p>
+            {achievement.project && <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-primary">Winning project · {achievement.project}</p>}
+            {achievement.programme && <p className="mt-2 text-sm text-textMuted">Programme · {achievement.programme}</p>}
+            {achievement.context && <p className="mt-6 leading-relaxed text-textBody">{achievement.context}</p>}
             {achievement.credentialUrl && (
               <a href={achievement.credentialUrl} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-bg">
                 View credential <ExternalLink size={16} />
@@ -48,6 +53,29 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
             )}
           </div>
         </section>
+
+        {achievement.ongoingDevelopment && (
+          <section className="section-shell border-y border-borderSoft bg-bgSoft/35" aria-labelledby="ongoing-development-title">
+            <div className="grid gap-6 md:grid-cols-[0.7fr_1.3fr] md:items-start md:gap-12">
+              <div>
+                <p className="eyebrow">Beyond the hackathon</p>
+                <h2 id="ongoing-development-title" className="mt-4 font-display text-3xl font-medium md:text-4xl">Still in progress.</h2>
+              </div>
+              <div>
+                <span className="inline-flex rounded-full border border-primary/35 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">Ongoing</span>
+                <p className="mt-5 max-w-2xl leading-relaxed text-textBody">{achievement.ongoingDevelopment}</p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {achievement.tags && achievement.tags.length > 0 && (
+          <div className="section-shell !py-0" aria-label="Achievement tags">
+            <div className="flex flex-wrap gap-2 border-t border-borderSoft pt-8">
+              {achievement.tags.map((tag) => <span key={tag} className="label-tag">{tag}</span>)}
+            </div>
+          </div>
+        )}
 
         {achievement.gallery && achievement.gallery.length > 0 && (
           <section className="section-shell border-t border-borderSoft pt-16 md:pt-20">
@@ -57,7 +85,7 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
                 <h2 className="mt-4 font-display text-3xl font-medium md:text-4xl">The winning moment.</h2>
               </div>
               <p className="max-w-2xl leading-relaxed text-textBody">
-                Team photos, award moments, and certificates from the One Project One Week Hackathon 2026.
+                Award moments, team photos, and certificates from the AI for Climate-Resilient Agriculture Hackathon 2026.
               </p>
             </div>
             <motion.div
@@ -131,7 +159,7 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
                 <figcaption className="mx-auto mt-4 max-w-3xl text-center text-sm leading-relaxed text-white/75">{activeImage.alt}</figcaption>
               </motion.figure>
             </div>
-            <button type="button" onClick={() => setActiveImage(null)} className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white transition-colors hover:bg-black/80 sm:right-5 sm:top-5" aria-label="Close expanded image">
+            <button ref={closeButtonRef} type="button" onClick={() => setActiveImage(null)} className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white transition-colors hover:bg-black/80 sm:right-5 sm:top-5" aria-label="Close expanded image">
               <X size={20} />
             </button>
           </motion.div>

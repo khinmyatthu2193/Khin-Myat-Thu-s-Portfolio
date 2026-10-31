@@ -44,13 +44,14 @@ export default function AchievementCard({ achievement, index }: { achievement: A
         </div>
         <div className="pt-5">
           <div className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.14em]">
-            <span className="inline-flex items-center gap-2 text-primary"><Award size={14} /> {achievement.type}</span>
+            <span className="inline-flex items-center gap-2 text-primary"><Award size={14} /> {achievement.award ?? achievement.type}</span>
             <span className="text-textMuted">{achievement.date}</span>
           </div>
           <h3 className="mt-3 font-display text-2xl font-medium leading-tight transition-colors group-hover:text-primary">
             {achievement.title}
           </h3>
           <p className="mt-2 text-sm uppercase tracking-[0.1em] text-textMuted">{achievement.issuer}</p>
+          {achievement.project && <p className="mt-2 text-sm font-semibold text-primary">{achievement.project} · {achievement.team}</p>}
           <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-textBody">{achievement.description}</p>
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
             View achievement <ArrowUpRight size={16} />
