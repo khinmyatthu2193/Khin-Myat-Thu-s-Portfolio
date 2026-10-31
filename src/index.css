@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Roboto+Slab:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -116,7 +116,15 @@
 .project-card-media img{transition:transform .28s cubic-bezier(.2,.8,.2,1)}.project-archive-card:hover .project-card-media img{transform:scale(1.012)}
 .project-card-action svg,.featured-action svg{transition:transform .25s ease}.project-archive-card:hover .project-card-action svg,.featured-project:hover .featured-action svg{transform:translateX(3px)}
 .nav-logo{filter:brightness(1.85) saturate(.85);transition:filter .25s ease,transform .25s ease}
+.navbar-nav,.navbar-desktop-links,.navbar-actions{font-family:'Roboto Slab',Georgia,serif}
+.navbar-nav{transition:min-height .25s ease}
+.navbar-desktop-links{letter-spacing:-.012em}
+.navbar-actions{letter-spacing:-.01em}
 .achievement-media{background:linear-gradient(145deg,rgb(var(--color-bg-soft)),rgb(var(--color-bg-card)))}.achievement-placeholder{background:radial-gradient(circle at 50% 45%,rgb(var(--color-primary)/.18),transparent 34%),linear-gradient(135deg,rgb(var(--color-border)/.035) 25%,transparent 25%) 0 0/24px 24px}
+.navbar-link,.navbar-contact,.navbar-mobile-link{font-family:'Roboto Slab',Georgia,serif;letter-spacing:-.01em}
+.navbar-link{font-size:14px;font-weight:500;transition:color .25s ease-out}.navbar-link::before,.navbar-link::after{position:absolute;left:0;width:100%;height:2px;border-radius:999px;background:linear-gradient(to right,rgb(var(--color-primary)),rgb(var(--color-accent)));content:"";transform:scaleX(0);transition:transform .35s ease-out}.navbar-link::before{top:5px;transform-origin:left}.navbar-link::after{bottom:5px;transform-origin:right}.navbar-link:hover::before,.navbar-link:hover::after,.navbar-link-active::before,.navbar-link-active::after{transform:scaleX(1)}.navbar-link:hover:not(.navbar-link-active){color:rgb(var(--color-text-main))}.navbar-link-active:hover{color:rgb(var(--color-primary))}
+.navbar-contact{font-size:14px;font-weight:500;transition:background-color .25s ease-out,border-color .25s ease-out,color .25s ease-out}.navbar-contact svg{transition:transform .25s ease-out}.navbar-contact:hover svg{transform:translate(2px,-2px)}
+.navbar-theme-toggle{transition:background-color .25s ease-out,border-color .25s ease-out,color .25s ease-out}.navbar-theme-toggle:hover{background-color:rgb(var(--color-bg-soft))}.navbar-theme-toggle svg{transition:transform .25s ease-out,opacity .25s ease-out}.navbar-theme-toggle:hover svg{transform:rotate(12deg);opacity:.82}
 :root.light .nav-logo{filter:none}
 :root.light .orb{opacity:.05}:root.light .grid-lines{opacity:.75}:root.light .portrait-frame{box-shadow:0 24px 70px rgb(54 96 43/.14)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.portrait-float{animation:none}.portrait-composition,.portrait-photo,.portrait-ring,.portrait-offset-ring,.portrait-badge,.portrait-glow,.featured-project-frame,.featured-project-frame img,.project-archive-card,.project-card-media img,.project-card-action svg,.featured-action svg{transform:none!important;translate:none!important;rotate:none!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
