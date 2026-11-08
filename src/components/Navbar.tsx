@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import logo from "../assets/my_logo.png";
-import { assetUrl } from "@/lib/asset-url";
 
 const links = [
   { name: "Home", href: "/" },
@@ -83,9 +83,12 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
     }`}>
       <nav className="navbar-nav mx-auto flex h-[72px] max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:h-[88px] lg:px-10" aria-label="Main navigation">
         <Link href="/" className="relative h-11 w-[50px] shrink-0 overflow-hidden lg:h-12 lg:w-[55px]" aria-label="Khin Myat Thu, home">
-          <img
-            src={assetUrl(logo)}
+          <Image
+            src={logo}
             alt=""
+            width={129}
+            height={48}
+            priority
             className="nav-logo pointer-events-none absolute -left-[36px] -top-[16.5px] w-[118px] max-w-none lg:-left-[39.5px] lg:-top-[18px] lg:w-[129px]"
           />
         </Link>
