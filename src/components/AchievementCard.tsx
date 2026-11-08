@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { assetUrl } from "@/lib/asset-url";
 import { ArrowUpRight, Award, Image as ImageIcon, Trophy } from "lucide-react";
@@ -7,23 +8,24 @@ import type { Achievement } from "../data/achievements";
 export function AchievementVisual({ achievement, fit = "cover" }: { achievement: Achievement; fit?: "cover" | "contain" }) {
   if (achievement.image) {
     return (
-      <img
+      <Image
         src={assetUrl(achievement.image)}
         alt={achievement.imageAlt ?? achievement.title}
-        loading="lazy"
+        fill
+        sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 420px"
         className={`h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} transition duration-700 group-hover:scale-[1.025]`}
       />
     );
   }
 
   return (
-    <div className="achievement-placeholder absolute inset-0 flex items-center justify-center" role="img" aria-label={achievement.imageAlt}>
+    <div className="achievement-placeholder absolute inset-0 flex items-center justify-center" role="img" aria-label={achievement.imageAlt ?? `${achievement.title} placeholder`}>
       <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary">
         <span className="absolute inset-3 rounded-full border border-primary/15" />
-        <Trophy size={46} strokeWidth={1.35} />
+        <Trophy size={46} strokeWidth={1.35} aria-hidden="true" />
       </div>
       <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/35 px-3 py-2 text-xs text-white backdrop-blur-md">
-        <ImageIcon size={13} /> Achievement photo
+        <ImageIcon size={13} aria-hidden="true" /> Achievement photo
       </span>
     </div>
   );

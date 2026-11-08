@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Maximize2, X } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { assetUrl } from "@/lib/asset-url";
@@ -9,16 +10,21 @@ import { AchievementVisual } from "./AchievementCard";
 export default function AchievementDetails({ achievement }: { achievement: Achievement }) {
   const [activeImage, setActiveImage] = useState<{ src: string; alt: string } | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!activeImage) return;
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
     const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setActiveImage(null);
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
     window.addEventListener("keydown", closeOnEscape);
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = previousOverflow;
+      previousFocusRef.current?.focus();
     };
   }, [activeImage]);
 
@@ -112,10 +118,11 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
                     className={`${index === 0 ? "aspect-[16/8]" : "aspect-[4/3]"} relative block w-full cursor-zoom-in overflow-hidden bg-bgSoft`}
                     aria-label={`View full size: ${item.alt}`}
                   >
-                    <img
+                    <Image
                       src={assetUrl(item.src)}
                       alt={item.alt}
-                      loading="lazy"
+                      fill
+                      sizes={index === 0 ? "(max-width: 767px) 100vw, 1400px" : "(max-width: 767px) 100vw, 680px"}
                       className={`h-full w-full transition-transform duration-700 group-hover:scale-[1.025] ${index >= 4 ? "object-contain" : index === 0 ? "object-cover object-bottom" : "object-cover"}`}
                     />
                     <span className="absolute right-4 top-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white opacity-0 backdrop-blur-md transition-all group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
@@ -155,6 +162,8 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
                 transition={{ duration: 0.25 }}
                 onClick={(event) => event.stopPropagation()}
               >
+                {/* The lightbox source is a normalized dynamic URL without intrinsic dimensions. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={activeImage.src} alt={activeImage.alt} className="min-h-0 max-h-[calc(100dvh-10rem)] w-auto max-w-full rounded-xl object-contain shadow-2xl sm:max-h-[calc(100dvh-12rem)]" />
                 <figcaption className="mx-auto mt-4 max-w-3xl text-center text-sm leading-relaxed text-white/75">{activeImage.alt}</figcaption>
               </motion.figure>
