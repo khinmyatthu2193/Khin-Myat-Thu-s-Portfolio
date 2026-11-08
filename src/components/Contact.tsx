@@ -49,13 +49,13 @@ export default function Contact() {
             <div className="overflow-hidden rounded-2xl border border-borderMedium bg-bgCard/60">
               {contacts.map(({ label, value, href, icon: Icon, copy }) => (
                 <div key={label} className="group flex items-center gap-4 border-b border-borderSoft p-5 last:border-b-0 sm:p-6">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary/5 text-primary"><Icon size={19} /></div>
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary/5 text-primary"><Icon size={19} aria-hidden="true" /></div>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs uppercase tracking-[0.15em] text-textMuted">{label}</p>
                     {href ? <a className="mt-1 block break-all text-sm text-textMain underline decoration-borderMedium underline-offset-4 hover:text-primary sm:text-base" href={href}>{value}</a> : <p className="mt-1 break-all text-sm text-textMain sm:text-base">{value}</p>}
                   </div>
                   {copy && (
-                    <button onClick={() => copyValue(value)} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-borderMedium text-textDim transition-colors hover:border-primary hover:text-primary" aria-label={`Copy ${label.toLowerCase()}`} title={`Copy ${label.toLowerCase()}`}>
+                    <button type="button" onClick={() => copyValue(value)} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-borderMedium text-textDim transition-colors hover:border-primary hover:text-primary" aria-label={`Copy ${label.toLowerCase()}`} title={`Copy ${label.toLowerCase()}`}>
                       {copied === value ? <Check size={17} className="text-primary" /> : <Copy size={17} />}
                     </button>
                   )}
