@@ -41,3 +41,45 @@ These guidelines describe the current interface; they are not a proposal for a n
 - Use `next/image` for ordinary imported images when practical, including accurate `sizes`, `alt`, and intentional `priority` usage.
 - Project and achievement models permit missing images. Preserve the existing accessible placeholder treatment rather than assuming every content item has media.
 - Treat portfolio text as factual content. Preserve neutral or unconfirmed wording unless the user supplies corrections.
+
+## Skills page design
+
+The Skills page is a dedicated route in a multi-page portfolio. It should be compact, recruiter-friendly, and visually consistent with the existing editorial design language.
+
+### Page composition
+
+- Use a concise introductory header.
+- Present core development capabilities in a balanced Skill Set section.
+- Follow with a Technical Skills section featuring selected technologies and proficiency indicators.
+- Display remaining technologies in a compact logo-and-name collection.
+- Present soft skills as a lightweight secondary section.
+- Avoid unnecessary project showcases or oversized hero sections.
+
+### Layout
+
+- Favor consistent alignment, card dimensions, and spacing.
+- Use a balanced three-column layout for six capability cards on wide screens.
+- Keep capability descriptions concise enough to avoid excessive height differences.
+- Use responsive column changes without horizontal overflow.
+- Do not enforce a fixed viewport height that clips content.
+
+### Proficiency indicators
+
+- Use verified, user-approved proficiency information.
+- Prefer descriptive levels over unsupported numerical percentages.
+- Ensure the level remains understandable without relying on color or bar length alone.
+- Do not imply that proficiency percentages are objectively measured.
+
+### Technology logos
+
+- Preserve recognizable technology branding.
+- Keep logo dimensions and optical alignment consistent.
+- Ensure sufficient contrast in both themes.
+- Include readable technology names.
+
+### Visual quality
+
+- Maintain the established DM Sans and Playfair Display typography.
+- Reuse semantic color tokens and existing component primitives.
+- Avoid washed-out light-mode surfaces and excessive decorative effects.
+- Keep animations subtle and compatible with reduced-motion preferences.
