@@ -2,10 +2,10 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDownToLine, MapPin } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import profile from "../assets/khin.jpg";
-import { assetUrl } from "@/lib/asset-url";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
@@ -74,7 +74,7 @@ export default function Hero() {
           <svg aria-hidden="true" className="portrait-ring pointer-events-none absolute -inset-4 h-[calc(100%+2rem)] w-[calc(100%+2rem)] text-primary/35" viewBox="0 0 420 420"><motion.circle cx="210" cy="210" r="207" fill="none" stroke="currentColor" strokeWidth="1" initial={reduceMotion ? false : { pathLength: 0, rotate: -3 }} animate={{ pathLength: 1, rotate: 2 }} transition={{ pathLength: { duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }, rotate: { duration: 1.1, delay: 0.4, ease: [0.22, 1, 0.36, 1] } }} /></svg>
           <div className="portrait-frame relative aspect-square overflow-hidden rounded-full border-2 border-primary/45 bg-bgCard p-1.5">
             <motion.div className="h-full w-full overflow-hidden rounded-full" initial={reduceMotion ? false : { clipPath: "inset(100% 0 0 0)" }} animate={{ clipPath: "inset(0% 0 0 0)" }} transition={{ duration: 0.85, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-              <img src={assetUrl(profile)} alt="Portrait of Khin Myat Thu" width="480" height="480" fetchPriority="high" className="portrait-photo h-full w-full rounded-full object-cover object-top grayscale-[12%] transition-[filter] duration-700 hover:grayscale-0" />
+              <Image src={profile} alt="Portrait of Khin Myat Thu" width={480} height={480} priority className="portrait-photo h-full w-full rounded-full object-cover object-top grayscale-[12%] transition-[filter] duration-700 hover:grayscale-0" />
             </motion.div>
           </div>
           <div className="portrait-offset-ring absolute -bottom-4 -left-4 -z-10 h-full w-full rounded-full border border-primary/25" />
