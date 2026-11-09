@@ -29,7 +29,7 @@ Route files are currently server components, while interactive UI is delegated t
 
 ## State and browser behavior
 
-There is no global state library. UI state is local React state for filters, active panels, mobile navigation, lightboxes, clipboard feedback, and interactive highlights. Browser effects handle scroll state, keyboard dismissal, body scroll locking, pointer movement, and clipboard access. Theme state is implemented by `Navbar` toggling the root `light` class; the default root layout starts in light mode.
+There is no global state library. UI state is local React state for filters, active panels, mobile navigation, lightboxes, clipboard feedback, and interactive highlights. Browser effects handle scroll state, keyboard dismissal, body scroll locking, pointer movement, and clipboard access. Theme state is implemented by `Navbar` toggling the root `light` class; the default root layout and navbar state start in dark mode.
 
 ## Media and rendering
 

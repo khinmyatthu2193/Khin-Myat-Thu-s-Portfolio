@@ -43,7 +43,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
   const activeSection = links.find(({ href }) => href.split("#")[0] === pathname)?.href ?? "";
   const contactHref = pathname === "/" ? "#contact" : "/contact-me";
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);

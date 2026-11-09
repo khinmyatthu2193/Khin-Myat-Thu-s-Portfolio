@@ -19,10 +19,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7fced" },
-    { media: "(prefers-color-scheme: dark)", color: "#0e0f0e" },
-  ],
+  themeColor: "#0e0f0e",
 };
 
 const personId = new URL("/#person", SITE_URL).toString();
@@ -47,7 +44,7 @@ const structuredData = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="light">
+    <html lang="en">
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
         <PortfolioShell>{children}</PortfolioShell>
