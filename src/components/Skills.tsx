@@ -6,11 +6,11 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
 import {
   additionalTechnologyGroups, aiDevelopmentTools, capabilities, coreTechnologies,
-  currentlyExploring, softSkills, technologyFilters, type Technology, type TechnologyFilter,
+  currentlyExploring, proficiencyLevels, softSkills, technologyFilters, type Technology, type TechnologyFilter, type TechnologyIdentity,
 } from "@/src/data/skills";
 import styles from "./Skills.module.css";
 
-function TechnologyLogo({ technology }: { technology: Technology }) {
+function TechnologyLogo({ technology }: { technology: TechnologyIdentity }) {
   const Icon = technology.icon;
   return (
     <span className={styles.logo}>
@@ -117,7 +117,7 @@ export default function Skills() {
         >
           <div className={styles.coreHeading}>
             <h3>Core Technologies</h3>
-            <p id="proficiency-note">Levels reflect self-assessed practical experience. Bar lengths are illustrative, not measured scores.</p>
+            <p id="proficiency-note">Provisional levels reflect self-assessed practical experience. Bar lengths are illustrative, not measured scores.</p>
           </div>
           <motion.ul
             key={activeFilter}
@@ -129,37 +129,43 @@ export default function Skills() {
             transition={{ duration: reduce ? 0 : 0.2 }}
           >
             {filteredTechnologies.map((technology) => {
-              const value = Math.min(100, Math.max(0, technology.value));
+              const value = technology.value === null ? null : Math.min(100, Math.max(0, technology.value));
               return (
                 <li key={technology.name} className={styles.proficiencyItem}>
                   <TechnologyLogo technology={technology} />
                   <div className={styles.proficiencyContent}>
                     <div className={styles.proficiencyLabel}>
                       <span>{technology.name}</span>
-                      <span className={styles.level}>{technology.level}</span>
+                      <span className={styles.level}>{technology.level ?? "Needs confirmation"}</span>
                     </div>
                     <div
                       className={styles.proficiencyBar}
-                      role="meter"
-                      aria-label={`${technology.name} practical experience`}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-valuenow={value}
-                      aria-valuetext={`${technology.level} — self-assessed practical experience`}
+                      role={value === null ? undefined : "meter"}
+                      aria-hidden={value === null ? true : undefined}
+                      aria-label={value === null ? undefined : `${technology.name} practical experience`}
+                      aria-valuemin={value === null ? undefined : 0}
+                      aria-valuemax={value === null ? undefined : 100}
+                      aria-valuenow={value ?? undefined}
+                      aria-valuetext={technology.level ? `${technology.level} — self-assessed practical experience` : undefined}
                     >
-                      <motion.span
+                      {value !== null && <motion.span
                         style={{ width: `${value}%` }}
                         initial={false}
                         whileInView={reduce ? undefined : { scaleX: [0, 1] }}
                         viewport={{ once: true, amount: 0.5 }}
                         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                      />
+                      />}
                     </div>
                   </div>
                 </li>
               );
             })}
           </motion.ul>
+          <dl className={styles.proficiencyLegend} aria-label="Proficiency levels">
+            {Object.entries(proficiencyLevels).map(([level, { description }]) => (
+              <div key={level}><dt>{level}</dt><dd>{description}</dd></div>
+            ))}
+          </dl>
         </div>
 
         <div className={styles.technologyGroup}>
