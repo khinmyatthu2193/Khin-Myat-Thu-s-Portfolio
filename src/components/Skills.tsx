@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import {
   additionalTechnologyGroups, aiDevelopmentTools, capabilities, coreTechnologies,
   currentlyExploring, proficiencyLevels, softSkills, technologyFilters, type Technology, type TechnologyFilter, type TechnologyIdentity,
@@ -21,13 +21,27 @@ function TechnologyLogo({ technology }: { technology: TechnologyIdentity }) {
   );
 }
 
+function TechnologyName({ technology }: { technology: TechnologyIdentity }) {
+  return technology.evidence ? (
+    <a
+      className={styles.technologyName}
+      href={technology.evidence.href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`View ${technology.name} example in ${technology.evidence.project} on GitHub (opens in a new tab)`}
+    >
+      {technology.name}<ArrowUpRight size={12} aria-hidden="true" />
+    </a>
+  ) : <span>{technology.name}</span>;
+}
+
 function TechnologyList({ technologies, label }: { technologies: Technology[]; label: string }) {
   return (
     <ul className={styles.technologyList} aria-label={label}>
       {technologies.map((technology) => (
         <li key={technology.name}>
           <TechnologyLogo technology={technology} />
-          <span>{technology.name}</span>
+          <TechnologyName technology={technology} />
           {technology.level && <span className={styles.tagLevel}>{technology.level}</span>}
         </li>
       ))}
@@ -61,7 +75,8 @@ export default function Skills() {
       <header className={styles.hero}>
         <p className="eyebrow">What I work with</p>
         <h1 id="skills-title" className={styles.heroTitle}>Skills <span>&amp; Technologies.</span></h1>
-        <p className={styles.heroText}>I enjoy building practical digital solutions and exploring how different technologies work together.</p>
+        <p className={styles.heroText}>From Django inventory systems to React Native business tools and Next.js booking experiences, I learn by building practical applications.</p>
+        <a className={styles.githubLink} href="https://github.com/khinmyatthu2193" target="_blank" rel="noreferrer">Explore my GitHub<ArrowUpRight size={14} aria-hidden="true" /><span className="sr-only"> (opens in a new tab)</span></a>
       </header>
 
       <section aria-labelledby="skill-set-title" className={styles.section}>
@@ -70,7 +85,7 @@ export default function Skills() {
           <h2 id="skill-set-title">Skill Set</h2>
         </div>
         <div className={styles.capabilityGrid}>
-          {capabilities.map(({ title, description, icon: Icon }) => (
+          {capabilities.map(({ title, description, icon: Icon, evidence }) => (
             <motion.article
               key={title}
               className={styles.capabilityCard}
@@ -82,6 +97,13 @@ export default function Skills() {
               <span className={styles.capabilityIcon}><Icon size={20} strokeWidth={1.6} aria-hidden="true" /></span>
               <h3>{title}</h3>
               <p>{description}</p>
+              <div className={styles.capabilityEvidence} aria-label={`${title} implementation examples`}>
+                {evidence.map((source) => (
+                  <a key={source.href} href={source.href} target="_blank" rel="noreferrer" aria-label={`View ${title} example in ${source.project} on GitHub (opens in a new tab)`}>
+                    {source.project}<ArrowUpRight size={12} aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
             </motion.article>
           ))}
         </div>
@@ -117,7 +139,7 @@ export default function Skills() {
         >
           <div className={styles.coreHeading}>
             <h3>Core Technologies</h3>
-            <p id="proficiency-note">Provisional levels reflect self-assessed practical experience. Bar lengths are illustrative, not measured scores.</p>
+            <p id="proficiency-note">Levels are self-assessed and provisional. Linked code shows project usage; bar lengths are illustrative, not measured scores.</p>
           </div>
           <motion.ul
             key={activeFilter}
@@ -135,7 +157,7 @@ export default function Skills() {
                   <TechnologyLogo technology={technology} />
                   <div className={styles.proficiencyContent}>
                     <div className={styles.proficiencyLabel}>
-                      <span>{technology.name}</span>
+                      <TechnologyName technology={technology} />
                       <span className={styles.level}>{technology.level ?? "Needs confirmation"}</span>
                     </div>
                     <div
