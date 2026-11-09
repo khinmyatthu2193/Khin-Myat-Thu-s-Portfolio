@@ -70,7 +70,7 @@ The Skills page is a dedicated route in a multi-page portfolio. It should be com
 - Prefer descriptive levels over unsupported numerical percentages.
 - Ensure the level remains understandable without relying on color or bar length alone.
 - Do not imply that proficiency percentages are objectively measured.
-- The editable levels are Advanced (85), Intermediate (60), and Basic (35). Keep each technology's label and value separate; unassessed technologies have neither a level nor a value and display “Needs confirmation.” Technologies under Currently Exploring carry no established proficiency label.
+- The editable levels are Advanced (85), Intermediate (60), and Basic (35). Keep each technology's label and value separate; unassessed technologies have neither a level nor a value and display no proficiency label. Technologies under Currently Exploring carry no established proficiency label.
 
 ### Technology logos
 

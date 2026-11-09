@@ -8,7 +8,7 @@ Repository code demonstrates examples of technology use. It does not establish i
 
 Previously approved self-assessments remain unchanged. TypeScript and Next.js move into Core Technologies at their existing Basic / 35 assessment because they appear in current application implementations. They are removed from additional pills to avoid duplication. No technology is assigned Advanced.
 
-Firebase and Supabase have implementation evidence, but their proficiency assessments remain pending user confirmation. Their empty tracks carry no numeric rating. C#, PHP, and Laravel remain in Currently Exploring without assessed levels. Existing user-supplied technologies without a linked example are retained; absence from this review is not evidence that the user lacks those skills.
+Firebase and Supabase have implementation evidence, but both entries were removed from Core Technologies at the user's request on 2026-11-10. Their names, icons and empty proficiency tracks are no longer rendered as skill items. The implementation evidence below remains as review context. C#, PHP, and Laravel remain in Currently Exploring without assessed levels. Existing user-supplied technologies without a linked example are retained; absence from this review is not evidence that the user lacks those skills.
 
 ## Implementation examples
 

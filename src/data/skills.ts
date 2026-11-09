@@ -2,9 +2,9 @@ import type { IconType } from "react-icons";
 import { FaCss3Alt, FaJava } from "react-icons/fa";
 import { TbBrandCSharp } from "react-icons/tb";
 import {
-  SiBootstrap, SiClaude, SiDjango, SiExpo, SiFirebase, SiGit, SiGithub,
+  SiBootstrap, SiClaude, SiDjango, SiExpo, SiGit, SiGithub,
   SiHtml5, SiJavascript, SiKotlin, SiMysql, SiNextdotjs, SiOpenai,
-  SiPostgresql, SiPrisma, SiPython, SiReact, SiSupabase, SiTailwindcss,
+  SiPostgresql, SiPrisma, SiPython, SiReact, SiTailwindcss,
   SiTypescript, SiVercel, SiPhp, SiLaravel,
 } from "react-icons/si";
 import { Code2, Database, Plug, Server, Smartphone, Sparkles, type LucideIcon } from "lucide-react";
@@ -141,8 +141,6 @@ export const coreTechnologies: CoreTechnology[] = [
   { name: "Django", icon: SiDjango, level: "Intermediate", value: 60, category: "Backend", evidence: repositoryEvidence.rental },
   { name: "React Native", icon: SiReact, level: "Intermediate", value: 60, category: "Mobile", evidence: repositoryEvidence.mobile },
   { name: "Tailwind CSS", icon: SiTailwindcss, level: "Intermediate", value: 60, category: "Frontend", evidence: repositoryEvidence.snaporaUI },
-  { name: "Firebase", icon: SiFirebase, level: null, value: null, category: "Database & Tools", evidence: repositoryEvidence.firebase },
-  { name: "Supabase", icon: SiSupabase, level: null, value: null, category: "Database & Tools", evidence: repositoryEvidence.bookingAPI },
   { name: "HTML5", icon: SiHtml5, level: "Intermediate", value: 60, category: "Frontend", evidence: repositoryEvidence.snaporaUI },
   { name: "CSS3", icon: FaCss3Alt, level: "Intermediate", value: 60, category: "Frontend", evidence: repositoryEvidence.snaporaUI },
   { name: "Git", icon: SiGit, level: "Intermediate", value: 60, category: "Database & Tools" },

@@ -158,7 +158,7 @@ export default function Skills() {
                   <div className={styles.proficiencyContent}>
                     <div className={styles.proficiencyLabel}>
                       <TechnologyName technology={technology} />
-                      <span className={styles.level}>{technology.level ?? "Needs confirmation"}</span>
+                      {technology.level && <span className={styles.level}>{technology.level}</span>}
                     </div>
                     <div
                       className={styles.proficiencyBar}
