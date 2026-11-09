@@ -29,13 +29,13 @@
   letter-spacing: -.035em;
   line-height: 1.2;
 }
-.capabilityGrid { display: grid; grid-auto-rows: 1fr; gap: .85rem; }
+.capabilityGrid { display: grid; grid-auto-rows: 1fr; gap: 1rem; }
 .capabilityCard {
   min-width: 0;
   border: 1px solid rgb(var(--color-border) / .12);
   border-radius: 1rem;
   background: rgb(var(--color-bg-card) / .8);
-  padding: 1.25rem;
+  padding: 1.5rem;
   transition: border-color .2s ease, background-color .2s ease;
 }
 .capabilityIcon {
@@ -59,7 +59,7 @@
 .capabilityCard p { margin-top: .5rem; color: rgb(var(--color-text-body)); font-size: .84rem; line-height: 1.65; }
 .coreHeading h3, .technologyGroup h3 { color: rgb(var(--color-text-main)); font-size: .9rem; font-weight: 600; }
 .coreHeading p { max-width: 37rem; margin-top: .4rem; color: rgb(var(--color-text-body)); font-size: .78rem; line-height: 1.6; }
-.proficiencyGrid { display: grid; gap: 1.25rem 2.5rem; margin-top: 1.5rem; padding: 0; list-style: none; }
+.proficiencyGrid { display: grid; gap: 1.5rem 3rem; margin-top: 1.5rem; padding: 0; list-style: none; }
 .proficiencyItem { display: flex; min-width: 0; align-items: center; gap: .75rem; }
 .logo { display: inline-flex; width: 2rem; height: 2rem; flex-shrink: 0; align-items: center; justify-content: center; color: rgb(var(--color-text-main)); }
 .logo svg, .logo img { width: 1.4rem; height: 1.4rem; object-fit: contain; }
@@ -67,20 +67,26 @@
 .proficiencyLabel { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; color: rgb(var(--color-text-main)); font-size: .83rem; font-weight: 500; }
 .level { color: rgb(var(--color-text-body)); font-size: .7rem; font-weight: 400; }
 .proficiencyBar { height: .3rem; margin-top: .6rem; overflow: hidden; border-radius: 999px; background: rgb(var(--color-primary) / .13); }
-.proficiencyBar > span { display: block; height: 100%; border-radius: inherit; background: rgb(var(--color-primary)); }
+.proficiencyBar > span { display: block; height: 100%; border-radius: inherit; background: rgb(var(--color-primary)); transform-origin: left; }
 .technologyGroup { margin-top: 1.75rem; }
+.additionalGroups { display: grid; gap: 1.25rem 2rem; margin-top: 1rem; }
+.additionalGroup { min-width: 0; }
+.additionalGroup h4 { color: rgb(var(--color-text-body)); font-size: .76rem; font-weight: 500; }
+.additionalGroup .technologyList { margin-top: .5rem; }
+.groupDescription { margin-top: .4rem; color: rgb(var(--color-text-body)); font-size: .8rem; line-height: 1.6; }
+.tagLevel { border-left: 1px solid rgb(var(--color-border) / .15); padding-left: .45rem; color: rgb(var(--color-text-body)); font-size: .65rem; }
 .technologyList, .softSkillList { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0 0; padding: 0; list-style: none; }
-.technologyList li, .softSkillList li { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid rgb(var(--color-border) / .12); border-radius: .6rem; background: rgb(var(--color-bg-card) / .6); padding: .4rem .7rem; color: rgb(var(--color-text-body)); font-size: .8rem; line-height: 1.5; }
+.technologyList li, .softSkillList li { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid rgb(var(--color-border) / .12); border-radius: 999px; background: rgb(var(--color-bg-card) / .6); padding: .4rem .7rem; color: rgb(var(--color-text-body)); font-size: .8rem; line-height: 1.5; }
 .technologyList .logo { width: 1.5rem; height: 1.5rem; }
 .technologyList .logo svg, .technologyList .logo img { width: 1.15rem; height: 1.15rem; }
 .softSkillList li { border-radius: 999px; padding: .55rem .8rem; }
 .softSkillList svg { flex-shrink: 0; color: rgb(var(--color-primary)); }
 @media (min-width: 640px) {
-  .capabilityGrid, .proficiencyGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .capabilityGrid, .proficiencyGrid, .additionalGroups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 1024px) {
-  .capabilityGrid, .proficiencyGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .capabilityCard { padding: 1.4rem; }
+  .capabilityGrid { gap: 1.25rem; }
+  .capabilityCard { padding: 1.75rem; }
   .coreHeading { display: flex; align-items: baseline; justify-content: space-between; gap: 2rem; }
   .coreHeading p { margin-top: 0; }
 }

@@ -4,8 +4,8 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
 import {
-  additionalTechnologies, aiDevelopmentTools, capabilities, coreTechnologies,
-  proficiencyLevels, softSkills, type Technology,
+  additionalTechnologyGroups, aiDevelopmentTools, capabilities, coreTechnologies,
+  currentlyLearning, softSkills, type Technology,
 } from "@/src/data/skills";
 import styles from "./Skills.module.css";
 
@@ -27,6 +27,7 @@ function TechnologyList({ technologies, label }: { technologies: Technology[]; l
         <li key={technology.name}>
           <TechnologyLogo technology={technology} />
           <span>{technology.name}</span>
+          {technology.level && <span className={styles.tagLevel}>{technology.level}</span>}
         </li>
       ))}
     </ul>
@@ -77,38 +78,59 @@ export default function Skills() {
           <p id="proficiency-note">Levels reflect self-assessed practical experience. Bar lengths are illustrative, not measured scores.</p>
         </div>
         <ul className={styles.proficiencyGrid} aria-label="Core technologies" aria-describedby="proficiency-note">
-          {coreTechnologies.map((technology) => (
-            <li key={technology.name} className={styles.proficiencyItem}>
-              <TechnologyLogo technology={technology} />
-              <div className={styles.proficiencyContent}>
-                <div className={styles.proficiencyLabel}>
-                  <span>{technology.name}</span>
-                  <span className={styles.level}>{technology.level}</span>
+          {coreTechnologies.map((technology) => {
+            const value = Math.min(100, Math.max(0, technology.value));
+            return (
+              <li key={technology.name} className={styles.proficiencyItem}>
+                <TechnologyLogo technology={technology} />
+                <div className={styles.proficiencyContent}>
+                  <div className={styles.proficiencyLabel}>
+                    <span>{technology.name}</span>
+                    <span className={styles.level}>{technology.level}</span>
+                  </div>
+                  <div
+                    className={styles.proficiencyBar}
+                    role="meter"
+                    aria-label={`${technology.name} practical experience`}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={value}
+                    aria-valuetext={`${technology.level} — self-assessed practical experience`}
+                  >
+                    <motion.span
+                      style={{ width: `${value}%` }}
+                      initial={false}
+                      whileInView={reduce ? undefined : { scaleX: [0, 1] }}
+                      viewport={{ once: true, amount: 0.5 }}
+                      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </div>
                 </div>
-                <div
-                  className={styles.proficiencyBar}
-                  role="meter"
-                  aria-label={`${technology.name} practical experience`}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-valuenow={proficiencyLevels[technology.level]}
-                  aria-valuetext={`${technology.level} — self-assessed practical experience`}
-                >
-                  <span style={{ width: `${proficiencyLevels[technology.level]}%` }} />
-                </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
 
         <div className={styles.technologyGroup}>
           <h3>Additional Technologies</h3>
-          <TechnologyList technologies={additionalTechnologies} label="Additional technologies" />
+          <div className={styles.additionalGroups}>
+            {additionalTechnologyGroups.map(({ category, technologies }) => (
+              <div className={styles.additionalGroup} key={category}>
+                <h4>{category}</h4>
+                <TechnologyList technologies={technologies} label={`${category} technologies`} />
+              </div>
+            ))}
+          </div>
         </div>
         <div className={styles.technologyGroup}>
           <h3>AI Development Tools</h3>
+          <p className={styles.groupDescription}>AI-powered tools that support my coding, experimentation, and development workflow.</p>
           <TechnologyList technologies={aiDevelopmentTools} label="AI development tools" />
         </div>
+        <section aria-labelledby="currently-learning-title" className={styles.technologyGroup}>
+          <h3 id="currently-learning-title">Currently Learning</h3>
+          <TechnologyList technologies={currentlyLearning} label="Currently learning" />
+        </section>
       </section>
 
       <section aria-labelledby="soft-skills-title" className={styles.humanSection}>
