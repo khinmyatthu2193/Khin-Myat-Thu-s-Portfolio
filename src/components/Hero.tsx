@@ -38,8 +38,8 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative z-10 flex items-center px-5 pb-12 pt-28 sm:min-h-[680px] sm:px-8 sm:pb-14 sm:pt-32 lg:min-h-[min(720px,82vh)] lg:px-12">
-      <div className="mx-auto grid w-full max-w-[1400px] items-center gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14">
+    <section id="home" className="relative z-10 flex items-center pb-12 pt-[calc(var(--navbar-height)+2.5rem)] sm:min-h-[680px] sm:pb-14 lg:min-h-[min(720px,82vh)]">
+      <div className="layout-container grid items-center gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14">
         <div>
           <motion.div initial={reduceMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="mb-6 flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.16em] text-textDim">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-3 py-2 text-primary">

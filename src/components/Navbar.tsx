@@ -81,7 +81,7 @@ export default function Navbar({ isHome = true }: { isHome?: boolean }) {
           ? "border-borderSoft bg-bg/95 backdrop-blur-[14px]"
           : "border-borderSoft bg-bg"
     }`}>
-      <nav className="navbar-nav mx-auto flex h-[72px] max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:h-[88px] lg:px-10" aria-label="Main navigation">
+      <nav className="navbar-nav layout-container flex h-[var(--navbar-height)] items-center justify-between" aria-label="Main navigation">
         <Link href="/" className="relative h-11 w-[50px] shrink-0 overflow-hidden lg:h-12 lg:w-[55px]" aria-label="Khin Myat Thu, home">
           <Image
             src={logo}

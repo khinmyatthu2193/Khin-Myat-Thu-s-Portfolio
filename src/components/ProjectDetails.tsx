@@ -101,7 +101,7 @@ export default function ProjectDetails({ project }: { project: Project }) {
     </figure>;
   }
 
-  return <main id="main-content" className={styles.page}>
+  return <main id="main-content" className={`layout-container ${styles.page}`}>
     <article>
       <header className={styles.hero}>
         <Link href="/projects" className="text-link mb-7 w-fit text-sm"><ArrowLeft size={16} aria-hidden="true" /> Back to Projects</Link>

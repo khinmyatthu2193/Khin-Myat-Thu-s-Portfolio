@@ -31,7 +31,7 @@ export default function AllProjects() {
 
   return (
     <main id="main-content" className={`relative z-10 ${styles.projects}`}>
-      <section className="mx-auto max-w-[1280px] px-5 pb-9 pt-28 sm:px-8 md:pb-10 md:pt-32 lg:px-12">
+      <section className="layout-container pb-9 pt-28 md:pb-10 md:pt-32">
         <p className="eyebrow !text-[0.6875rem]">Selected work</p>
         <div className="mt-4 grid gap-5 lg:grid-cols-[1.1fr_0.7fr] lg:items-end lg:gap-12">
           <h1 className="max-w-3xl font-display text-[clamp(2rem,calc(1.5rem+2vw),2.75rem)] font-medium leading-[1.07] tracking-[-0.035em] text-balance">
@@ -44,12 +44,12 @@ export default function AllProjects() {
       </section>
 
       {featuredProject && (
-        <section className="mx-auto max-w-[1280px] px-5 pb-10 sm:px-8 md:pb-12 lg:px-12">
+        <section className="layout-container pb-10 md:pb-12">
           <FeaturedProject project={featuredProject} />
         </section>
       )}
 
-      <section className="section-shell !max-w-[1280px] !pt-0">
+      <section className="section-shell !pt-0">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="font-display text-[clamp(1.625rem,calc(1.4rem+0.7vw),1.875rem)] font-medium leading-[1.1] tracking-[-0.025em]">All projects</h2>

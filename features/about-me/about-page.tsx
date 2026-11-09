@@ -46,7 +46,7 @@ export function AboutPage() {
   const sectionMotion = { initial: reveal, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.1 }, transition: { duration: 0.72, ease } };
 
   return <main id="main-content">
-    <section className="section-shell !max-w-[1280px] !pb-14 pt-28 md:!pb-16 md:pt-36" aria-labelledby="about-title">
+    <section className="section-shell !pb-14 pt-28 md:!pb-16 md:pt-36" aria-labelledby="about-title">
       <div className="grid gap-12 lg:grid-cols-[38fr_62fr] lg:items-center lg:gap-14 xl:gap-[72px]">
         <motion.div initial={reduce ? false : { opacity: 0, y: 24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.75, delay: 0.42, ease }} className="relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-3xl border border-primary/25 bg-bgCard shadow-[0_16px_40px_rgb(20_54_35_/_0.06)] sm:max-w-[340px] md:max-w-[360px] lg:max-w-[400px]"><Image src={portrait} alt="Portrait of Khin Myat Thu" fill priority className="object-cover object-[center_30%]" sizes="(max-width: 639px) 280px, (max-width: 1023px) 360px, 400px" /></motion.div>
         <div className="min-w-0">

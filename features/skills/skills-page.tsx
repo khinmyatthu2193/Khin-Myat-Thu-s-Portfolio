@@ -1,5 +1,5 @@
 import Skills from "@/src/components/Skills";
 
 export function SkillsPage() {
-  return <main id="main-content" className="pt-20"><Skills /></main>;
+  return <main id="main-content" className="page-offset"><Skills /></main>;
 }

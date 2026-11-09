@@ -4,6 +4,9 @@
 @tailwind utilities;
 @layer base {
   :root {
+    --layout-max-width: 1400px;
+    --layout-gutter: 1.25rem;
+    --navbar-height: 72px;
     color-scheme: dark;
     --color-bg: 14 15 14;
     --color-bg-soft: 20 21 20;
@@ -32,7 +35,9 @@
     --color-border: 43 91 40;
     --color-surface-border: 220 230 216;
   }
-  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  @media (min-width: 640px) { :root { --layout-gutter: 2rem; } }
+  @media (min-width: 1024px) { :root { --layout-gutter: 3rem; --navbar-height: 88px; } }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--navbar-height); }
   body { margin: 0; background: rgb(var(--color-bg)); color: rgb(var(--color-text-main)); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; transition: background-color .25s ease, color .25s ease; }
   * { scrollbar-width: none; -ms-overflow-style: none; }
   *::-webkit-scrollbar { display: none; }
@@ -40,8 +45,15 @@
   :focus-visible { outline: 2px solid rgb(var(--color-primary)); outline-offset: 4px; }
 }
 @layer components {
-  .section-shell { @apply relative z-10 mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-24 lg:px-12; }
-  .home-section { @apply relative z-10 mx-auto max-w-[1400px] px-5 py-14 sm:px-8 md:py-16 lg:px-12 lg:py-20; }
+  .layout-container, .section-shell, .home-section {
+    width: 100%;
+    max-width: var(--layout-max-width);
+    margin-inline: auto;
+    padding-inline: var(--layout-gutter);
+  }
+  .page-offset { padding-top: var(--navbar-height); }
+  .section-shell { @apply relative z-10 py-20 md:py-24; }
+  .home-section { @apply relative z-10 py-14 md:py-16 lg:py-20; }
   .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.15em] text-primary; }
   .section-title { @apply font-display text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-balance sm:text-4xl lg:text-5xl; }
   .text-body { color: rgb(var(--color-text-body)); }

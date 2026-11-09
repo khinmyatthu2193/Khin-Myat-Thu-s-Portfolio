@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Maximize2, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -8,6 +8,7 @@ import type { Achievement } from "../data/achievements";
 import { AchievementVisual } from "./AchievementCard";
 
 export default function AchievementDetails({ achievement }: { achievement: Achievement }) {
+  const reduce = useReducedMotion();
   const [activeImage, setActiveImage] = useState<{ src: string; alt: string } | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -42,8 +43,8 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
           <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-textMuted">{achievement.issuer}</p>
         </header>
 
-        <section className="mx-auto grid max-w-[1400px] gap-10 px-5 pb-24 sm:px-8 md:pb-32 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-12">
-          <div className="achievement-media group relative aspect-[4/3] min-h-[300px] overflow-hidden rounded-3xl border border-borderSoft bg-bgCard p-2 sm:p-4">
+        <section className="layout-container grid grid-cols-1 gap-10 pb-24 md:pb-32 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div className="achievement-media group relative aspect-[4/3] min-h-[300px] min-w-0 w-full overflow-hidden rounded-3xl border border-borderSoft bg-bgCard p-2 sm:p-4">
             <AchievementVisual achievement={achievement} fit="contain" />
           </div>
           <div className="lg:pl-8">
@@ -105,11 +106,11 @@ export default function AchievementDetails({ achievement }: { achievement: Achie
                 <motion.figure
                   key={assetUrl(item.src)}
                   variants={{
-                    hidden: { opacity: 0, y: 20, rotateY: index % 2 === 0 ? -18 : 18, scale: 0.97 },
+                    hidden: reduce ? { opacity: 1, y: 0, rotateY: 0, scale: 1 } : { opacity: 0, y: 20, rotateY: index % 2 === 0 ? 18 : -18, scale: 0.97 },
                     visible: { opacity: 1, y: 0, rotateY: 0, scale: 1 },
                   }}
-                  transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ transformPerspective: 1200, transformOrigin: index % 2 === 0 ? "left center" : "right center" }}
+                  transition={{ duration: reduce ? 0 : 0.62, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ transformPerspective: reduce ? undefined : 1200, transformOrigin: index % 2 === 0 ? "left center" : "right center" }}
                   className={`${index === 0 ? "md:col-span-2" : ""} group overflow-hidden rounded-2xl border border-borderSoft bg-bgCard transition-colors hover:border-primary/35`}
                 >
                   <button

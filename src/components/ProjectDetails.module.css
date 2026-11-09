@@ -1,4 +1,4 @@
-.page { position: relative; z-index: 10; max-width: 1240px; margin: auto; padding: 112px 20px 64px; overflow-wrap: anywhere; }
+.page { position: relative; z-index: 10; padding-top: 112px; padding-bottom: 64px; overflow-wrap: anywhere; }
 .page h1, .page h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; letter-spacing: -.03em; }
 .page h1 { max-width: 1000px; margin-top: 16px; font-size: clamp(2rem, 4.5vw, 3.8rem); line-height: 1.12; }
 .page h2 { font-size: clamp(1.9rem, 3vw, 2.7rem); line-height: 1.2; }
@@ -51,7 +51,7 @@
 .dialog p { margin-top: 16px; text-align: center; font-size: 14px; }
 .close { position: absolute; top: 8px; right: 12px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgb(var(--color-border) / .2); }
 @media (min-width: 768px) {
-  .page { padding: 128px 32px 80px; }
+  .page { padding-top: 128px; padding-bottom: 80px; }
   .description { font-size: 18px; }
   .section { margin-top: 72px; }
   .grid, .contributions, .stack, .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -59,7 +59,6 @@
 }
 @media (min-width: 1024px) {
   .snapshot dl { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-  .page { padding-inline: 48px; }
   .section { margin-top: 88px; }
   .grid, .stack, .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .workflow { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: 40px; }

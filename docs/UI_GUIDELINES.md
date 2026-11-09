@@ -11,7 +11,8 @@ These guidelines describe the current interface; they are not a proposal for a n
 
 ## Layout and spacing
 
-- Use `section-shell` for general full-page sections and `home-section` for the denser home rhythm. Both cap content at `1400px` and provide responsive horizontal padding.
+- Use `layout-container` for horizontal alignment, `section-shell` for full-page sections, and `home-section` for the denser home rhythm. All share `--layout-max-width` (1400px) and `--layout-gutter` (20px / 32px / 48px) with the navbar and footer.
+- `--navbar-height` matches the fixed navbar (72px below `lg`, 88px above). Use `page-offset` for page wrappers whose sections do not already account for the navbar, rather than adding a second offset.
 - Existing pages favor generous vertical space, asymmetric editorial grids at large breakpoints, bordered section divisions, and single-column mobile fallbacks.
 - Cards generally use `rounded-xl`, `rounded-2xl`, or `rounded-3xl`, `border-borderSoft`/`border-borderMedium`, and token-based backgrounds.
 - Preserve established primitives such as `eyebrow`, `section-title`, `label-tag`, `project-tech-chip`, `text-link`, `button-primary`, `button-secondary`, and `social-button` before creating equivalents.
@@ -58,7 +59,7 @@ The Skills page is a dedicated route in a multi-page portfolio. It should be com
 ### Layout
 
 - Favor consistent alignment, card dimensions, and spacing.
-- Use a balanced three-column layout for six capability cards on wide screens.
+- Use a balanced two-column layout for six capability cards and core technologies on tablet and desktop, with one column on mobile.
 - Keep capability descriptions concise enough to avoid excessive height differences.
 - Use responsive column changes without horizontal overflow.
 - Do not enforce a fixed viewport height that clips content.
