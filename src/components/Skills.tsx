@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useState, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
 import {
   additionalTechnologyGroups, aiDevelopmentTools, capabilities, coreTechnologies,
-  currentlyLearning, softSkills, type Technology,
+  currentlyExploring, softSkills, technologyFilters, type Technology, type TechnologyFilter,
 } from "@/src/data/skills";
 import styles from "./Skills.module.css";
 
@@ -36,6 +37,24 @@ function TechnologyList({ technologies, label }: { technologies: Technology[]; l
 
 export default function Skills() {
   const reduce = useReducedMotion();
+  const [activeFilter, setActiveFilter] = useState<TechnologyFilter>("All");
+  const filteredTechnologies = coreTechnologies.filter((technology) => (
+    activeFilter === "All" || technology.category === activeFilter
+  ));
+
+  function handleFilterKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    let nextIndex: number;
+    switch (event.key) {
+      case "ArrowRight": nextIndex = (index + 1) % technologyFilters.length; break;
+      case "ArrowLeft": nextIndex = (index - 1 + technologyFilters.length) % technologyFilters.length; break;
+      case "Home": nextIndex = 0; break;
+      case "End": nextIndex = technologyFilters.length - 1; break;
+      default: return;
+    }
+    event.preventDefault();
+    setActiveFilter(technologyFilters[nextIndex]);
+    event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[nextIndex]?.focus();
+  }
 
   return (
     <section id="skills" aria-labelledby="skills-title" className="section-shell scroll-mt-20 !py-10 md:!py-14">
@@ -73,43 +92,75 @@ export default function Skills() {
           <p className="eyebrow">02 / Technologies &amp; tools</p>
           <h2 id="technical-skills-title">Technical Skills</h2>
         </div>
-        <div className={styles.coreHeading}>
-          <h3>Core Technologies</h3>
-          <p id="proficiency-note">Levels reflect self-assessed practical experience. Bar lengths are illustrative, not measured scores.</p>
+        <div className={styles.filterTabs} role="tablist" aria-label="Core technology categories">
+          {technologyFilters.map((filter, index) => (
+            <button
+              key={filter}
+              id={`technology-tab-${index}`}
+              type="button"
+              role="tab"
+              aria-selected={activeFilter === filter}
+              aria-controls="core-technologies-panel"
+              tabIndex={activeFilter === filter ? 0 : -1}
+              onClick={() => setActiveFilter(filter)}
+              onKeyDown={(event) => handleFilterKeyDown(event, index)}
+            >
+              {filter}
+            </button>
+          ))}
         </div>
-        <ul className={styles.proficiencyGrid} aria-label="Core technologies" aria-describedby="proficiency-note">
-          {coreTechnologies.map((technology) => {
-            const value = Math.min(100, Math.max(0, technology.value));
-            return (
-              <li key={technology.name} className={styles.proficiencyItem}>
-                <TechnologyLogo technology={technology} />
-                <div className={styles.proficiencyContent}>
-                  <div className={styles.proficiencyLabel}>
-                    <span>{technology.name}</span>
-                    <span className={styles.level}>{technology.level}</span>
+        <div
+          id="core-technologies-panel"
+          role="tabpanel"
+          aria-labelledby={`technology-tab-${technologyFilters.indexOf(activeFilter)}`}
+          tabIndex={0}
+        >
+          <div className={styles.coreHeading}>
+            <h3>Core Technologies</h3>
+            <p id="proficiency-note">Levels reflect self-assessed practical experience. Bar lengths are illustrative, not measured scores.</p>
+          </div>
+          <motion.ul
+            key={activeFilter}
+            className={styles.proficiencyGrid}
+            aria-label="Core technologies"
+            aria-describedby="proficiency-note"
+            initial={false}
+            animate={{ opacity: reduce ? 1 : [0.6, 1] }}
+            transition={{ duration: reduce ? 0 : 0.2 }}
+          >
+            {filteredTechnologies.map((technology) => {
+              const value = Math.min(100, Math.max(0, technology.value));
+              return (
+                <li key={technology.name} className={styles.proficiencyItem}>
+                  <TechnologyLogo technology={technology} />
+                  <div className={styles.proficiencyContent}>
+                    <div className={styles.proficiencyLabel}>
+                      <span>{technology.name}</span>
+                      <span className={styles.level}>{technology.level}</span>
+                    </div>
+                    <div
+                      className={styles.proficiencyBar}
+                      role="meter"
+                      aria-label={`${technology.name} practical experience`}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-valuenow={value}
+                      aria-valuetext={`${technology.level} — self-assessed practical experience`}
+                    >
+                      <motion.span
+                        style={{ width: `${value}%` }}
+                        initial={false}
+                        whileInView={reduce ? undefined : { scaleX: [0, 1] }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                      />
+                    </div>
                   </div>
-                  <div
-                    className={styles.proficiencyBar}
-                    role="meter"
-                    aria-label={`${technology.name} practical experience`}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={value}
-                    aria-valuetext={`${technology.level} — self-assessed practical experience`}
-                  >
-                    <motion.span
-                      style={{ width: `${value}%` }}
-                      initial={false}
-                      whileInView={reduce ? undefined : { scaleX: [0, 1] }}
-                      viewport={{ once: true, amount: 0.5 }}
-                      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                </li>
+              );
+            })}
+          </motion.ul>
+        </div>
 
         <div className={styles.technologyGroup}>
           <h3>Additional Technologies</h3>
@@ -127,9 +178,9 @@ export default function Skills() {
           <p className={styles.groupDescription}>AI-powered tools that support my coding, experimentation, and development workflow.</p>
           <TechnologyList technologies={aiDevelopmentTools} label="AI development tools" />
         </div>
-        <section aria-labelledby="currently-learning-title" className={styles.technologyGroup}>
-          <h3 id="currently-learning-title">Currently Learning</h3>
-          <TechnologyList technologies={currentlyLearning} label="Currently learning" />
+        <section aria-labelledby="currently-exploring-title" className={styles.technologyGroup}>
+          <h3 id="currently-exploring-title">Currently Exploring</h3>
+          <TechnologyList technologies={currentlyExploring} label="Currently exploring" />
         </section>
       </section>
 

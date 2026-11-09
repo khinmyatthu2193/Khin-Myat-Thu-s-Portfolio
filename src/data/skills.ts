@@ -48,15 +48,15 @@ export const capabilities: Capability[] = [
   },
 ];
 
-export type ProficiencyLevel = "Learning" | "Familiar" | "Working" | "Strong";
+export type ProficiencyLevel = "Exploring" | "Practiced" | "Hands-on" | "Confident";
 
 // Reference values for each band, not measured proficiency scores.
 // Core technologies retain their individually supplied values within a band.
 export const proficiencyLevels: Record<ProficiencyLevel, number> = {
-  Learning: 25,
-  Familiar: 40,
-  Working: 65,
-  Strong: 85,
+  "Exploring": 25,
+  "Practiced": 40,
+  "Hands-on": 65,
+  "Confident": 85,
 };
 
 export type Technology = { name: string; level?: ProficiencyLevel } & (
@@ -64,53 +64,58 @@ export type Technology = { name: string; level?: ProficiencyLevel } & (
   | { icon?: never; logo: string }
 );
 export type AssessedTechnology = Technology & { level: ProficiencyLevel };
-export type CoreTechnology = AssessedTechnology & { value: number };
+export const technologyFilters = ["All", "Frontend", "Backend", "Mobile", "Database & Tools"] as const;
+export type TechnologyFilter = (typeof technologyFilters)[number];
+export type CoreTechnology = AssessedTechnology & {
+  value: number;
+  category: Exclude<TechnologyFilter, "All">;
+};
 export type TechnologyGroup = { category: string; technologies: AssessedTechnology[] };
 
 // User-supplied provisional labels and values are deliberately independent.
 // Edit each entry as practical experience changes; never infer its label from its value.
 export const coreTechnologies: CoreTechnology[] = [
-  { name: "JavaScript", icon: SiJavascript, level: "Working", value: 70 },
-  { name: "Python", icon: SiPython, level: "Working", value: 65 },
-  { name: "React.js", icon: SiReact, level: "Working", value: 70 },
-  { name: "Django", icon: SiDjango, level: "Working", value: 60 },
-  { name: "React Native", icon: SiReact, level: "Working", value: 65 },
-  { name: "Tailwind CSS", icon: SiTailwindcss, level: "Working", value: 60 },
-  { name: "Firebase", icon: SiFirebase, level: "Working", value: 60 },
-  { name: "Supabase", icon: SiSupabase, level: "Working", value: 55 },
-  { name: "HTML5", icon: SiHtml5, level: "Working", value: 70 },
-  { name: "CSS3", icon: FaCss3Alt, level: "Working", value: 70 },
-  { name: "Git", icon: SiGit, level: "Working", value: 65 },
-  { name: "GitHub", icon: SiGithub, level: "Working", value: 70 },
+  { name: "JavaScript", icon: SiJavascript, level: "Hands-on", value: 70, category: "Frontend" },
+  { name: "Python", icon: SiPython, level: "Hands-on", value: 65, category: "Backend" },
+  { name: "React.js", icon: SiReact, level: "Hands-on", value: 70, category: "Frontend" },
+  { name: "Django", icon: SiDjango, level: "Hands-on", value: 60, category: "Backend" },
+  { name: "React Native", icon: SiReact, level: "Hands-on", value: 65, category: "Mobile" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, level: "Hands-on", value: 60, category: "Frontend" },
+  { name: "Firebase", icon: SiFirebase, level: "Hands-on", value: 60, category: "Database & Tools" },
+  { name: "Supabase", icon: SiSupabase, level: "Hands-on", value: 55, category: "Database & Tools" },
+  { name: "HTML5", icon: SiHtml5, level: "Hands-on", value: 70, category: "Frontend" },
+  { name: "CSS3", icon: FaCss3Alt, level: "Hands-on", value: 70, category: "Frontend" },
+  { name: "Git", icon: SiGit, level: "Hands-on", value: 65, category: "Database & Tools" },
+  { name: "GitHub", icon: SiGithub, level: "Hands-on", value: 70, category: "Database & Tools" },
 ];
 
 export const additionalTechnologyGroups: TechnologyGroup[] = [
   { category: "Frontend", technologies: [
-    { name: "TypeScript", icon: SiTypescript, level: "Familiar" },
-    { name: "Next.js", icon: SiNextdotjs, level: "Familiar" },
-    { name: "Bootstrap", icon: SiBootstrap, level: "Familiar" },
+    { name: "TypeScript", icon: SiTypescript, level: "Practiced" },
+    { name: "Next.js", icon: SiNextdotjs, level: "Practiced" },
+    { name: "Bootstrap", icon: SiBootstrap, level: "Practiced" },
   ] },
   { category: "Mobile", technologies: [
-    { name: "Expo", icon: SiExpo, level: "Working" },
+    { name: "Expo", icon: SiExpo, level: "Hands-on" },
   ] },
   { category: "Database & ORM", technologies: [
-    { name: "PostgreSQL", icon: SiPostgresql, level: "Familiar" },
-    { name: "MySQL", icon: SiMysql, level: "Familiar" },
-    { name: "Prisma", icon: SiPrisma, level: "Familiar" },
+    { name: "PostgreSQL", icon: SiPostgresql, level: "Practiced" },
+    { name: "MySQL", icon: SiMysql, level: "Practiced" },
+    { name: "Prisma", icon: SiPrisma, level: "Practiced" },
   ] },
   { category: "Programming", technologies: [
-    { name: "Kotlin", icon: SiKotlin, level: "Familiar" },
-    { name: "Java", icon: FaJava, level: "Familiar" },
+    { name: "Kotlin", icon: SiKotlin, level: "Practiced" },
+    { name: "Java", icon: FaJava, level: "Practiced" },
   ] },
   { category: "Deployment", technologies: [
-    { name: "Vercel", icon: SiVercel, level: "Working" },
+    { name: "Vercel", icon: SiVercel, level: "Hands-on" },
   ] },
 ];
 
-export const currentlyLearning: AssessedTechnology[] = [
-  { name: "C#", icon: TbBrandCSharp, level: "Learning" },
-  { name: "PHP", icon: SiPhp, level: "Learning" },
-  { name: "Laravel", icon: SiLaravel, level: "Learning" },
+export const currentlyExploring: AssessedTechnology[] = [
+  { name: "C#", icon: TbBrandCSharp, level: "Exploring" },
+  { name: "PHP", icon: SiPhp, level: "Exploring" },
+  { name: "Laravel", icon: SiLaravel, level: "Exploring" },
 ];
 
 export const aiDevelopmentTools: Technology[] = [
