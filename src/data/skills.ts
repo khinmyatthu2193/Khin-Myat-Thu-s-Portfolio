@@ -7,7 +7,7 @@ import {
   SiPostgresql, SiPrisma, SiPython, SiReact, SiTailwindcss,
   SiTypescript, SiVercel, SiPhp, SiLaravel,
 } from "react-icons/si";
-import { Code2, Database, Plug, Server, Smartphone, Sparkles, type LucideIcon } from "lucide-react";
+import { BookOpen, Code2, Compass, Database, Lightbulb, MessageCircle, Plug, RefreshCw, Server, Smartphone, Sparkles, Users, type LucideIcon } from "lucide-react";
 
 export type SkillEvidence = { project: string; href: string };
 
@@ -181,11 +181,11 @@ export const aiDevelopmentTools: Technology[] = [
   { name: "Claude Code", icon: SiClaude },
 ];
 
-export const softSkills: string[] = [
-  "Problem-Solving",
-  "Team Collaboration",
-  "Adaptability",
-  "Communication",
-  "Leadership & Coordination",
-  "Continuous Learning",
+export const softSkills: { title: string; description: string; icon: LucideIcon }[] = [
+  { title: "Problem-Solving", description: "Finding practical solutions to real-world challenges.", icon: Lightbulb },
+  { title: "Team Collaboration", description: "Working with teammates towards shared project goals.", icon: Users },
+  { title: "Adaptability", description: "Learning new technologies and adjusting to changing requirements.", icon: RefreshCw },
+  { title: "Communication", description: "Sharing ideas, discussing requirements, and providing constructive feedback.", icon: MessageCircle },
+  { title: "Leadership & Coordination", description: "Taking initiative and coordinating collaborative work.", icon: Compass },
+  { title: "Teaching & Knowledge Sharing", description: "Sharing knowledge and helping others learn through teaching experience.", icon: BookOpen },
 ];

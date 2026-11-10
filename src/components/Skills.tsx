@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import {
   additionalTechnologyGroups, aiDevelopmentTools, capabilities, coreTechnologies,
   currentlyExploring, proficiencyLevels, softSkills, technologyFilters, type Technology, type TechnologyFilter, type TechnologyIdentity,
@@ -218,7 +218,17 @@ export default function Skills() {
           <h2 id="soft-skills-title">Beyond the Code</h2>
         </div>
         <ul className={styles.softSkillList}>
-          {softSkills.map((skill) => <li key={skill}><Check size={15} aria-hidden="true" />{skill}</li>)}
+          {softSkills.map(({ title, description, icon: Icon }) => (
+            <li key={title} className={styles.softSkillCard}>
+              <span className={styles.softSkillIcon}>
+                <Icon size={21} strokeWidth={1.5} aria-hidden="true" focusable="false" />
+              </span>
+              <div className={styles.softSkillContent}>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+            </li>
+          ))}
         </ul>
       </section>
     </section>
