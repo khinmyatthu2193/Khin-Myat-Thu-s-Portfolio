@@ -103,12 +103,47 @@
 .additionalGroup .technologyList { margin-top: .5rem; }
 .groupDescription { margin-top: .4rem; color: rgb(var(--color-text-body)); font-size: .8rem; line-height: 1.6; }
 .tagLevel { border-left: 1px solid rgb(var(--color-border) / .15); padding-left: .45rem; color: rgb(var(--color-text-body)); font-size: .65rem; }
-.technologyList, .softSkillList { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0 0; padding: 0; list-style: none; }
-.technologyList li, .softSkillList li { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid rgb(var(--color-border) / .12); border-radius: 999px; background: rgb(var(--color-bg-card) / .6); padding: .4rem .7rem; color: rgb(var(--color-text-body)); font-size: .8rem; line-height: 1.5; }
+.technologyList { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0 0; padding: 0; list-style: none; }
+.technologyList li { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid rgb(var(--color-border) / .12); border-radius: 999px; background: rgb(var(--color-bg-card) / .6); padding: .4rem .7rem; color: rgb(var(--color-text-body)); font-size: .8rem; line-height: 1.5; }
 .technologyList .logo { width: 1.5rem; height: 1.5rem; }
 .technologyList .logo svg, .technologyList .logo img { width: 1.15rem; height: 1.15rem; }
-.softSkillList li { border-radius: 999px; padding: .55rem .8rem; }
-.softSkillList svg { flex-shrink: 0; color: rgb(var(--color-primary)); }
+.softSkillList {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.softSkillCard {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 1rem;
+  border: 1px solid rgb(var(--color-border) / .12);
+  border-radius: 1rem;
+  background: rgb(var(--color-bg-soft) / .65);
+  padding: 1.5rem;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.softSkillIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--color-primary) / .14);
+  border-radius: .75rem;
+  background: rgb(var(--color-primary) / .06);
+  color: rgb(var(--color-primary));
+}
+.softSkillContent { min-width: 0; }
+.softSkillContent h3 { color: rgb(var(--color-text-main)); font-size: .95rem; font-weight: 600; line-height: 1.5; }
+.softSkillContent p { margin-top: .35rem; color: rgb(var(--color-text-body)); font-size: .84rem; line-height: 1.65; }
+@media (min-width: 768px) {
+  .softSkillList { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (min-width: 640px) {
   .capabilityGrid, .proficiencyGrid, .additionalGroups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -120,10 +155,11 @@
   .coreHeading p { margin-top: 0; }
 }
 @media (hover: hover) and (pointer: fine) {
+  .softSkillCard:hover { border-color: rgb(var(--color-primary) / .35); background: rgb(var(--color-bg-soft)); }
   .capabilityCard:hover { border-color: rgb(var(--color-primary) / .4); background: rgb(var(--color-bg-soft) / .8); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .capabilityCard, .filterTabs button { transition: none; }
+  .capabilityCard, .filterTabs button, .softSkillCard { transition: none; }
   .proficiencyGrid { opacity: 1 !important; }
   .proficiencyBar > span { transform: none !important; }
 }
