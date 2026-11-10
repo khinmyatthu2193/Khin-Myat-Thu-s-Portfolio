@@ -85,14 +85,47 @@
 .filterTabs button:hover { border-color: rgb(var(--color-primary) / .45); color: rgb(var(--color-primary)); }
 .filterTabs button[aria-selected="true"] { border-color: rgb(var(--color-primary) / .45); background: rgb(var(--color-primary) / .1); color: rgb(var(--color-primary)); }
 .proficiencyGrid { display: grid; gap: 1.5rem 3rem; margin-top: 1.5rem; padding: 0; list-style: none; }
-.proficiencyItem { display: flex; min-width: 0; align-items: center; gap: .75rem; }
+.proficiencyItem { display: flex; min-width: 0; align-items: center; gap: 1rem; }
+.proficiencyItem > .logo {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgb(var(--color-border) / .1);
+  border-radius: .8rem;
+  background: rgb(var(--color-bg-card) / .7);
+}
 .logo { display: inline-flex; width: 2rem; height: 2rem; flex-shrink: 0; align-items: center; justify-content: center; color: rgb(var(--color-text-main)); }
 .logo svg, .logo img { width: 1.4rem; height: 1.4rem; object-fit: contain; }
 .proficiencyContent { min-width: 0; flex: 1; }
-.proficiencyLabel { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; color: rgb(var(--color-text-main)); font-size: .83rem; font-weight: 500; }
-.level { color: rgb(var(--color-text-body)); font-size: .7rem; font-weight: 400; }
-.proficiencyBar { height: .3rem; margin-top: .6rem; overflow: hidden; border-radius: 999px; background: rgb(var(--color-primary) / .13); }
-.proficiencyBar > span { display: block; height: 100%; border-radius: inherit; background: rgb(var(--color-primary)); transform-origin: left; }
+.proficiencyLabel { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .35rem .5rem; color: rgb(var(--color-text-main)); font-size: .83rem; font-weight: 500; }
+.level {
+  flex-shrink: 0;
+  border: 1px solid rgb(var(--color-primary) / .16);
+  border-radius: 999px;
+  background: rgb(var(--color-primary) / .07);
+  padding: .15rem .55rem;
+  color: rgb(var(--color-primary));
+  font-size: .65rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.proficiencyBar {
+  height: .5rem;
+  margin-top: .65rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(var(--color-primary) / .1);
+  box-shadow: inset 0 0 0 1px rgb(var(--color-primary) / .08);
+  transition: background-color .2s ease;
+}
+.proficiencyBar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgb(var(--color-primary)), rgb(var(--color-primary-glow)));
+  box-shadow: inset 0 1px 0 rgb(var(--color-border) / .12);
+  transform-origin: left;
+}
+.proficiencyItem:focus-within .proficiencyBar { background-color: rgb(var(--color-primary) / .18); }
 .proficiencyLegend { display: grid; gap: .85rem 1.5rem; margin-top: 1.5rem; border-top: 1px solid rgb(var(--color-border) / .1); padding-top: 1rem; color: rgb(var(--color-text-body)); font-size: .72rem; line-height: 1.6; }
 .proficiencyLegend dt { margin-bottom: .2rem; color: rgb(var(--color-text-main)); font-weight: 600; }
 .proficiencyLegend dd { margin: 0; }
@@ -155,11 +188,12 @@
   .coreHeading p { margin-top: 0; }
 }
 @media (hover: hover) and (pointer: fine) {
+  .proficiencyItem:hover .proficiencyBar { background-color: rgb(var(--color-primary) / .18); }
   .softSkillCard:hover { border-color: rgb(var(--color-primary) / .35); background: rgb(var(--color-bg-soft)); }
   .capabilityCard:hover { border-color: rgb(var(--color-primary) / .4); background: rgb(var(--color-bg-soft) / .8); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .capabilityCard, .filterTabs button, .softSkillCard { transition: none; }
+  .capabilityCard, .filterTabs button, .softSkillCard, .proficiencyBar { transition: none; }
   .proficiencyGrid { opacity: 1 !important; }
   .proficiencyBar > span { transform: none !important; }
 }
