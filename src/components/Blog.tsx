@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, BookOpen, ChevronDown, Clock3, NotebookPen, Search, X } from "lucide-react";
-import { posts } from "../data/posts";
+import { ArrowDown, ArrowLeft, ArrowUpRight, BookOpen, Clock3, NotebookPen, Search, X } from "lucide-react";
+import { posts, type Post } from "../data/posts";
 
 const notes = [...posts].reverse();
 const topics = Array.from(new Set(notes.map((post) => post.tags[0])));
@@ -12,6 +12,21 @@ export default function Blog() {
   const reduceMotion = useReducedMotion();
   const [query, setQuery] = useState("");
   const [topic, setTopic] = useState<string | null>(null);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const readingHeading = useRef<HTMLHeadingElement>(null);
+  const openingCard = useRef<string | null>(null);
+  const cardButtons = useRef(new Map<string, HTMLButtonElement>());
+  const archiveScroll = useRef(0);
+
+  useEffect(() => {
+    if (selectedPost) {
+      readingHeading.current?.focus({ preventScroll: true });
+      window.scrollTo({ top: 0, behavior: "instant" });
+    } else if (openingCard.current) {
+      cardButtons.current.get(openingCard.current)?.focus({ preventScroll: true });
+      window.scrollTo({ top: archiveScroll.current, behavior: "instant" });
+    }
+  }, [selectedPost]);
   const search = query.trim().toLowerCase();
   const visibleNotes = notes.filter((post) =>
     (topic === null || post.tags[0] === topic) &&
@@ -21,6 +36,38 @@ export default function Blog() {
   function resetFilters() {
     setQuery("");
     setTopic(null);
+  }
+
+  if (selectedPost) {
+    return (
+      <section className="section-shell" aria-labelledby="reading-title">
+        <div className="mx-auto max-w-3xl">
+          <button type="button" onClick={() => setSelectedPost(null)} className="text-link min-h-11 text-sm">
+            <ArrowLeft size={16} aria-hidden="true" />Back to all notes
+          </button>
+          <article className="mt-8 sm:mt-12">
+            <header className="border-b border-borderMedium pb-8 sm:pb-10">
+              <p className="eyebrow">{selectedPost.tags[0]} / Learning notes</p>
+              <h1 ref={readingHeading} tabIndex={-1} id="reading-title" className="mt-5 rounded-sm font-display text-4xl font-medium leading-[1.15] tracking-[-0.03em] text-balance sm:text-5xl">{selectedPost.title}</h1>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-textMuted">
+                <span>{selectedPost.date}</span>
+                <span className="inline-flex items-center gap-2"><Clock3 size={15} aria-hidden="true" />{selectedPost.readTime}</span>
+              </div>
+              <p className="mt-7 text-lg leading-relaxed text-textBody sm:text-xl">{selectedPost.summary}</p>
+            </header>
+            <div className="py-9 sm:py-12">
+              <h2 className="font-display text-2xl font-medium sm:text-3xl">What I took away</h2>
+              <div className="mt-7 space-y-6 text-base leading-8 text-textBody sm:text-lg sm:leading-9">
+                {selectedPost.lessons.map((lesson) => <p key={lesson}>{lesson}</p>)}
+              </div>
+            </div>
+            <footer className="flex flex-wrap gap-2 border-t border-borderMedium pt-6">
+              {selectedPost.tags.map((tag) => <span key={tag} className="label-tag">{tag}</span>)}
+            </footer>
+          </article>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -93,7 +140,21 @@ export default function Blog() {
           {visibleNotes.map((post) => {
             const isLatest = post === notes[0];
             return (
-              <article key={post.title} className={`group flex flex-col overflow-hidden rounded-2xl border transition-colors hover:border-primary/35 focus-within:border-primary/35 ${isLatest ? "border-primary/25 bg-primary/5" : "border-borderMedium bg-bgCard/70"}`}>
+              <article key={post.title} className={`group relative flex flex-col rounded-2xl border transition-colors hover:border-primary/35 focus-within:border-primary/35 ${isLatest ? "border-primary/25 bg-primary/5" : "border-borderMedium bg-bgCard/70"}`}>
+                <button
+                  type="button"
+                  aria-label={`Read ${post.title}`}
+                  ref={(button) => {
+                    if (button) cardButtons.current.set(post.title, button);
+                    else cardButtons.current.delete(post.title);
+                  }}
+                  onClick={() => {
+                    openingCard.current = post.title;
+                    archiveScroll.current = window.scrollY;
+                    setSelectedPost(post);
+                  }}
+                  className="absolute inset-0 z-10 cursor-pointer rounded-2xl"
+                />
                 <div className="flex min-h-[66px] items-center justify-between gap-3 border-b border-borderSoft px-6 py-5 sm:px-7">
                   <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary"><BookOpen size={16} aria-hidden="true" />{post.tags[0]}</span>
                   {isLatest && <span className="rounded-full border border-primary/25 bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary">Latest note</span>}
@@ -108,20 +169,9 @@ export default function Blog() {
                   <div className="mb-7 mt-5 flex flex-wrap gap-2">
                     {post.tags.map((tag) => <span key={tag} className="label-tag !text-[10px]">{tag}</span>)}
                   </div>
-                  <details className="group/note mt-auto border-t border-borderMedium pt-1">
-                    <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-sm py-3 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden">
-                      <span><span className="group-open/note:hidden">Read the note</span><span className="hidden group-open/note:inline">Close the note</span><span className="sr-only">: {post.title}</span></span>
-                      <ChevronDown size={17} aria-hidden="true" className="shrink-0 transition-transform group-open/note:rotate-180" />
-                    </summary>
-                    <div className="pb-1 pt-4">
-                      <h4 className="text-xs font-semibold uppercase tracking-[0.12em] text-textMuted">What I took away</h4>
-                      <ol className="mt-5 space-y-5">
-                        {post.lessons.map((lesson, index) => (
-                          <li key={lesson} className="flex gap-3 text-sm leading-7 text-textBody"><span aria-hidden="true" className="pt-0.5 font-display text-base italic text-primary">{String(index + 1).padStart(2, "0")}</span><span>{lesson}</span></li>
-                        ))}
-                      </ol>
-                    </div>
-                  </details>
+                  <div aria-hidden="true" className="mt-auto flex min-h-12 items-center justify-between gap-3 border-t border-borderMedium py-3 text-sm font-semibold text-primary">
+                    Read the note<ArrowUpRight size={17} aria-hidden="true" />
+                  </div>
                 </div>
               </article>
             );
